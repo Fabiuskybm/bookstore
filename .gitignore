@@ -1,0 +1,15 @@
+# dependencias node
+node_modules/
+package-lock.json
+
+# Salida de Webpack
+public/assets/js/
+public/assets/css/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Logs
+*.log
