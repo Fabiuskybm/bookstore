@@ -1,0 +1,23 @@
+
+@use '../core/variables' as *;
+
+
+body {
+    margin: 0;
+    font-family: $font-family-base;
+    background-color: $color-bg-page;
+    color: $color-text-main;
+}
+
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.page__main {
+    flex: 1;
+    padding-inline: $spacing-page-x;
+}
