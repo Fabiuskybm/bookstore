@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 <body class="page">
 
-    <header class="page__header header"></header>
+    <?php require __DIR__ . '/partials/header.php' ?>
     
     <main class="page__main">
         <?php 
