@@ -1,0 +1,26 @@
+
+@use '../core/variables' as *;
+
+
+.nav {
+    padding-inline: $spacing-page-x;
+}
+
+.nav__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav__link {
+    text-decoration: none;
+    color: $color-text-main;
+    font-weight: 500;
+}
+
+.nav__link--active {
+    text-decoration: underline;
+}

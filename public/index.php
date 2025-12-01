@@ -27,6 +27,20 @@ $view = $_GET['view'] ?? 'home';
 switch ($view) {
 
     case 'home':
+        $viewFile = __DIR__ . '/../src/Home/views/home.php';
+        $pageTitle = 'Bookstore | Home';
+        break;
+
+    case 'login':
+        $viewFile = __DIR__ . '/../src/Auth/views/login.php';
+        $pageTitle = 'Bookstore | Login';
+        break;
+
+    case 'cart':
+        $viewFile = __DIR__ . '/../src/Cart/views/cart.php';
+        $pageTitle = 'Bookstore | Carrito';
+        break;
+
     default:
         $viewFile = __DIR__ . '/../src/Home/views/home.php';
         $pageTitle = 'Bookstore | Home';
