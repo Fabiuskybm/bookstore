@@ -6,4 +6,5 @@ services:
       - "8080:80"
     volumes:
       - ./public:/var/www/html
+      - ./src:/var/www/src
     working_dir: /var/www/html
