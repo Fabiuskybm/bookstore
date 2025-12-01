@@ -31,8 +31,7 @@ Desde la carpeta `frontend`:
 
 ```bash
 cd frontend
-npm install --save-dev webpack webpack-cli
-npm install --save-dev sass sass-loader css-loader style-loader
+npm install
 ```
 
 Esto instalará:
