@@ -1,0 +1,96 @@
+<?php
+declare(strict_types=1);
+?>
+
+
+<form 
+    action="index.php?view=login" 
+    method="post"
+    autocomplete="off"
+    class="auth__form auth__form--register">
+
+    <div class="auth__field">
+        <label 
+            for="register-username"
+            class="auth__label">
+            Nombre de usuario
+        </label>
+
+        <input 
+            type="text" 
+            name="register_username" 
+            id="register-username"
+            class="auth__input"
+            value=""
+            autocomplete="off"
+            required>
+
+        <p class="auth__error-message" aria-live="polite"></p>
+    </div>
+
+    <div class="auth__field">
+        <label 
+            for="register-email"
+            class="auth__label">
+            Correo electrónico
+        </label>
+
+        <input 
+            type="email" 
+            name="register_email" 
+            id="register-email"
+            class="auth__input"
+            value=""
+            autocomplete="off"
+            required>
+
+        <p class="auth__error-message" aria-live="polite"></p>
+    </div>
+
+    <div class="auth__field">
+        <label 
+            for="register-password"
+            class="auth__label">
+            Contraseña
+        </label>
+
+        <input 
+            type="password" 
+            name="register_password" 
+            id="register-password"
+            class="auth__input"
+            value=""
+            autocomplete="off"
+            required>
+
+        <p class="auth__error-message" aria-live="polite"></p>
+    </div>
+
+    <div class="auth__field">
+        <label 
+            for="register-password-confirm"
+            class="auth__label">
+            Repetir contraseña
+        </label>
+
+        <input 
+            type="password" 
+            name="register_password_confirm" 
+            id="register-password-confirm"
+            class="auth__input"
+            value=""
+            autocomplete="off"
+            required>
+
+        <p class="auth__error-message" aria-live="polite"></p>
+    </div>
+
+    <button 
+        type="submit"
+        name="action"
+        value="register"
+        class="auth__submit">
+        Crear cuenta
+    </button>
+
+</form>
