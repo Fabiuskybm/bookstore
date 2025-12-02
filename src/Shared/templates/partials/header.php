@@ -1,5 +1,7 @@
 <?php 
 declare(strict_types=1);
+
+$currentUser = auth_user();
 ?>
 
 
@@ -33,16 +35,38 @@ declare(strict_types=1);
 
     <div class="header__actions">
 
-        <a 
-            href="index.php?view=login"
-            class="header__action header__action--user"
-            title="Usuario">
-            
-            <img 
-                src="assets/images/user.png" 
-                alt="user icon"
-                class="header__icon header__icon--user">
-        </a>
+        <div class="header__user">
+
+            <a 
+                href="<?= $currentUser ? 'index.php?view=home' : 'index.php?view=login' ?>"
+                class="header__action header__action--user"
+                title="Usuario">
+
+                <img 
+                    src="assets/images/user.png" 
+                    alt="user icon"
+                    class="header__icon header__icon--user">
+            </a>
+
+            <!-- Si está logueado: saludo -->
+            <?php if ($currentUser !== null): ?>
+                <span class="header__user-name">
+                    Hola,
+                    <?= $currentUser->isAdmin() ? 'administrador' : e($currentUser->getUsername()) ?>
+                </span>
+
+                <form action="index.php?view=home" method="post" class="header__logout-form">
+                    <button 
+                        type="submit" 
+                        name="action" 
+                        value="logout"
+                        class="header__logout-btn">
+                        Cerrar sesión
+                    </button>
+                </form>
+            <?php endif; ?>
+
+        </div>
 
         <a 
             href="index.php?view=cart"

@@ -1,5 +1,7 @@
 <?php
 declare(strict_types=1);
+
+$old = $data['old'] ?? [];
 ?>
 
 
@@ -21,7 +23,7 @@ declare(strict_types=1);
             name="username" 
             id="login-username"
             class="auth__input"
-            value=""
+            value="<?= e($old['username'] ?? '') ?>"
             autocomplete="off"
             required>
 
