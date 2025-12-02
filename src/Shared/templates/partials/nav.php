@@ -20,7 +20,7 @@ $items = get_navigation_items();
 
             <?php
                 $isActive = ($item['view'] === $currentView);
-                $classes = 'nav__link' . ($isActive ? 'nav__link--active' : ''); 
+                $classes = 'nav__link' . ($isActive ? ' nav__link--active' : ''); 
             ?>
 
             <li class="nav__item">

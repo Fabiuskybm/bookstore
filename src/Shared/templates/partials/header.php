@@ -1,5 +1,7 @@
 <?php 
 declare(strict_types=1);
+
+$currentUser = auth_user();
 ?>
 
 
@@ -33,16 +35,56 @@ declare(strict_types=1);
 
     <div class="header__actions">
 
-        <a 
-            href="index.php?view=login"
-            class="header__action header__action--user"
-            title="Usuario">
-            
-            <img 
-                src="assets/images/user.png" 
-                alt="user icon"
-                class="header__icon header__icon--user">
-        </a>
+        <div class="header__user">
+
+            <?php if ($currentUser === null): ?>
+                
+                <!-- Invitado: Icono lleva a login -->
+                 <a 
+                    href="index.php?view=login"
+                    class="header__action header__action--user"
+                    title="Iniciar sesión">
+
+                    <img 
+                        src="assets/images/user.png" 
+                        alt="user icon"
+                        class="header__icon header__icon--user">
+                </a>
+
+            <?php else: ?>
+
+                <!-- Usuario logueado: trigger + saludo + menú -->
+                <button 
+                    type="button"
+                    class="header__user-trigger"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="header-user-menu">
+
+                    <img 
+                        src="assets/images/user.png" 
+                        alt="user icon"
+                        class="header__icon header__icon--user">
+
+                    <span class="header__user-name">
+                        Hola,
+                        <?= $currentUser->isAdmin() ? 'administrador' : e($currentUser->getUsername()) ?>
+                    </span>
+
+                </button>
+
+
+                <div class="header__user-menu"
+                    id="header-user-menu"
+                    role="menu"
+                    hidden>
+                    <?php require __DIR__ . '/user-menu.php'; ?>
+                </div>
+
+            <?php endif; ?>
+
+        </div>
+
 
         <a 
             href="index.php?view=cart"

@@ -11,8 +11,59 @@ declare(strict_types=1);
 //   CARGAR MÓDULOS  
 // ------------------
 
+require_once __DIR__ . '/../src/Shared/SessionService.php';
+require_once __DIR__ . '/../src/Shared/config.php';
+require_once __DIR__ . '/../src/Shared/validation.php';
+
+require_once __DIR__ . '/../src/Auth/services/AuthService.php';
+require_once __DIR__ . '/../src/Auth/controllers/AuthController.php';
+
+
 // Helpers de presentación (función e())
 require_once __DIR__ . '/../src/Shared/html.php';
+
+session_start_safe();
+
+
+$auth = new AuthController();
+$data = [];
+
+
+
+// -----------------------------
+//   Procesar formularios POST  
+// -----------------------------
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $action = $_POST['action'] ?? '';
+    $result = null;
+
+    switch ($action) {
+
+        case 'login':
+            $result = $auth->processLogin();
+            break;
+
+        case 'logout':
+            $result = $auth->logout();
+            break;
+
+    }
+
+    // Redirecciones
+    if ($result !== null && isset($result['redirect'])) {
+        header('Location: index.php?view=' . urlencode($result['redirect']));
+        exit;
+    }
+
+    // Preparar datos para mostrar vista
+    if ($result !== null && isset($result['view'])) {
+        $view  = $result['view'];
+        $data  = $result['data'] ?? [];
+    }
+}
+
 
 
 
@@ -21,7 +72,14 @@ require_once __DIR__ . '/../src/Shared/html.php';
 // -----------------------
 
 // 1. Determinar vista solicitada (home por defecto)
-$view = $_GET['view'] ?? 'home';
+$view = $view ?? ($_GET['view'] ?? 'home');
+
+// Si es petición GET y la vista es login, preparar datos vacíos
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && $view === 'login') {
+    $result = $auth->showLogin();
+    $data = $result['data'] ?? [];
+}
+
 
 // 2. Resolver archivo de vista
 switch ($view) {
@@ -39,6 +97,11 @@ switch ($view) {
     case 'cart':
         $viewFile = __DIR__ . '/../src/Cart/views/cart.php';
         $pageTitle = 'Bookstore | Carrito';
+        break;
+
+    case 'wishlist':
+        $viewFile = __DIR__ . '/../src/Wishlist/views/wishlist.php';
+        $pageTitle = 'Bookstore | Wishlist';
         break;
 
     default:
