@@ -37,36 +37,54 @@ $currentUser = auth_user();
 
         <div class="header__user">
 
-            <a 
-                href="<?= $currentUser ? 'index.php?view=home' : 'index.php?view=login' ?>"
-                class="header__action header__action--user"
-                title="Usuario">
+            <?php if ($currentUser === null): ?>
+                
+                <!-- Invitado: Icono lleva a login -->
+                 <a 
+                    href="index.php?view=login"
+                    class="header__action header__action--user"
+                    title="Iniciar sesión">
 
-                <img 
-                    src="assets/images/user.png" 
-                    alt="user icon"
-                    class="header__icon header__icon--user">
-            </a>
+                    <img 
+                        src="assets/images/user.png" 
+                        alt="user icon"
+                        class="header__icon header__icon--user">
+                </a>
 
-            <!-- Si está logueado: saludo -->
-            <?php if ($currentUser !== null): ?>
-                <span class="header__user-name">
-                    Hola,
-                    <?= $currentUser->isAdmin() ? 'administrador' : e($currentUser->getUsername()) ?>
-                </span>
+            <?php else: ?>
 
-                <form action="index.php?view=home" method="post" class="header__logout-form">
-                    <button 
-                        type="submit" 
-                        name="action" 
-                        value="logout"
-                        class="header__logout-btn">
-                        Cerrar sesión
-                    </button>
-                </form>
+                <!-- Usuario logueado: trigger + saludo + menú -->
+                <button 
+                    type="button"
+                    class="header__user-trigger"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="header-user-menu">
+
+                    <img 
+                        src="assets/images/user.png" 
+                        alt="user icon"
+                        class="header__icon header__icon--user">
+
+                    <span class="header__user-name">
+                        Hola,
+                        <?= $currentUser->isAdmin() ? 'administrador' : e($currentUser->getUsername()) ?>
+                    </span>
+
+                </button>
+
+
+                <div class="header__user-menu"
+                    id="header-user-menu"
+                    role="menu"
+                    hidden>
+                    <?php require __DIR__ . '/user-menu.php'; ?>
+                </div>
+
             <?php endif; ?>
 
         </div>
+
 
         <a 
             href="index.php?view=cart"

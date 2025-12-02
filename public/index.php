@@ -99,6 +99,11 @@ switch ($view) {
         $pageTitle = 'Bookstore | Carrito';
         break;
 
+    case 'wishlist':
+        $viewFile = __DIR__ . '/../src/Wishlist/views/wishlist.php';
+        $pageTitle = 'Bookstore | Wishlist';
+        break;
+
     default:
         $viewFile = __DIR__ . '/../src/Home/views/home.php';
         $pageTitle = 'Bookstore | Home';
