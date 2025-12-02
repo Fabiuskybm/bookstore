@@ -20,3 +20,7 @@ const AUTH_ADMIN_PASS = 'admin123';
 
 const AUTH_USER_USER = 'user';
 const AUTH_USER_PASS = 'user123';
+
+
+// Ruta al catálogo de libros (JSON).
+const BOOKS_FILE = __DIR__ . '/../Book/data/books.json';
