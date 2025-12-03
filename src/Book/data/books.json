@@ -1,7 +1,7 @@
 [
   {
     "id": "B001",
-    "title": "Nacidos de la bruma (edición limitada)",
+    "title": "Nacidos de la bruma",
     "author": "Brandon Sanderson",
     "price": 16.30,
     "coverImage": "assets/images/books/mistborn-limited.jpg",
@@ -21,7 +21,7 @@
   },
   {
     "id": "B003",
-    "title": "Trenza del mar esmeralda (ed. limitada)",
+    "title": "Trenza del mar esmeralda",
     "author": "Brandon Sanderson",
     "price": 14.38,
     "coverImage": "assets/images/books/trenza-mar-esmeralda.jpg",
