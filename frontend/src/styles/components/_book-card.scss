@@ -1,0 +1,135 @@
+
+
+.book-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    max-width: 230px;
+    width: 100%;
+
+    transition: box-shadow 0.15s ease, transform 0.15s ease,
+        border-color 0.15s ease;
+
+    &:hover {
+        border-color: #ccc;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+    }
+
+    &__image-wrapper {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f7f7f7;
+        border-radius: 6px;
+    }
+
+    &__image {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+    }
+
+    &__title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    &__author {
+        font-size: 0.875rem;
+        color: #555;
+        margin: 0;
+    }
+
+    &__price {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 0.5rem;
+    }
+
+    &__actions {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    &__btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.55rem 1rem;
+        min-height: 40px;
+        background: #eee;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.875rem;
+
+        transition: background-color 0.15s ease, transform 0.1s ease;
+
+        &:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-1px);
+        }
+
+        &--wishlist {
+            padding-inline: 0.6rem;
+            width: 44px;      // botón redondeado pequeño
+        }
+
+        &--cart {
+            flex: 1;          // ocupa todo el resto del espacio
+            background: #222;
+            color: #fff;
+
+            &:hover {
+                background: #000;
+            }
+        }
+    }
+
+    &__btn-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        width: 100%;
+    }
+
+    &__icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        display: block;
+
+        &--wishlist {
+            opacity: 0.9;
+        }
+
+        &--cart {
+            filter: invert(1); // icono negro → blanco en botón oscuro
+        }
+    }
+
+    &__btn-label {
+        font-size: 0.875rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+}

@@ -18,6 +18,8 @@ require_once __DIR__ . '/../src/Shared/validation.php';
 require_once __DIR__ . '/../src/Auth/services/AuthService.php';
 require_once __DIR__ . '/../src/Auth/controllers/AuthController.php';
 
+require_once __DIR__ . '/../src/Book/services/BookService.php';
+
 
 // Helpers de presentación (función e())
 require_once __DIR__ . '/../src/Shared/html.php';
@@ -105,11 +107,20 @@ switch ($view) {
         break;
 
     default:
+        $view = 'home';
         $viewFile = __DIR__ . '/../src/Home/views/home.php';
         $pageTitle = 'Bookstore | Home';
         break;
 
 }
 
-// 3. Cargar layout común
+
+// 3. Cargar datos
+if ($view === 'home') {
+    $data['books'] = books_get_all();
+    $data['featuredBooks'] = books_get_featured();
+}
+
+
+// 4. Cargar layout común
 require __DIR__ . '/../src/Shared/templates/layout.php';
