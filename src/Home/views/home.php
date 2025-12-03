@@ -8,11 +8,13 @@ declare(strict_types=1);
 
     <?php if (!empty($data['books'])): ?>
 
-        <ul>
+        <div class="home__grid">
             <?php foreach($data['books'] as $book): ?>
-                <li><?= e($book->getTitle()) ?> - <?= e($book->getAuthor()) ?></li>
+
+                <?php require __DIR__ . '/../../Book/views/partials/book-card.php'; ?>
+                
             <?php endforeach; ?>
-        </ul>
+        </div>
 
     <?php else: ?>
         <p>No hay libros disponibles</p>

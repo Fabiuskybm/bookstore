@@ -16,10 +16,10 @@ const ROLE_USER = 'user';
 
 // Credenciales de prueba
 const AUTH_ADMIN_USER = 'admin';
-const AUTH_ADMIN_PASS = 'admin123';
+const AUTH_ADMIN_PASS = '1234';
 
-const AUTH_USER_USER = 'user';
-const AUTH_USER_PASS = 'user123';
+const AUTH_USER_USER = 'fabio';
+const AUTH_USER_PASS = '1234';
 
 
 // Ruta al catálogo de libros (JSON).
