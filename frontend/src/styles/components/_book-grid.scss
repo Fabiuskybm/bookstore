@@ -1,0 +1,28 @@
+
+.book-grid {
+    display: grid;
+    gap: 1.5rem 1.5rem;
+    justify-items: stretch;
+}
+
+
+.book-grid--home,
+.book-grid--wishlist {
+    grid-template-columns: 1fr;
+}
+
+
+@media (min-width: 768px) {
+    .book-grid--home,
+    .book-grid--wishlist {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .book-grid--home,
+    .book-grid--wishlist {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}

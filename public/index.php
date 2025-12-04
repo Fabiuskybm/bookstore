@@ -20,6 +20,9 @@ require_once __DIR__ . '/../src/Auth/controllers/AuthController.php';
 
 require_once __DIR__ . '/../src/Book/services/BookService.php';
 
+require_once __DIR__ . '/../src/Wishlist/services/WishlistService.php';
+require_once __DIR__ . '/../src/Wishlist/controllers/WishlistController.php';
+
 
 // Helpers de presentación (función e())
 require_once __DIR__ . '/../src/Shared/html.php';
@@ -28,6 +31,8 @@ session_start_safe();
 
 
 $auth = new AuthController();
+$wishlist = new WishlistController();
+
 $data = [];
 
 
@@ -49,6 +54,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'logout':
             $result = $auth->logout();
+            break;
+        
+        case 'wishlist_add':
+            $result = $wishlist->add();
+            break;
+
+        case 'wishlist_remove':
+            $result = $wishlist->remove();
+            break;
+
+        case 'wishlist_bulk_remove':
+            $result = $wishlist->bulkRemove();
+            break;
+
+        case 'wishlist_clear':
+            $result = $wishlist->clear();
             break;
 
     }

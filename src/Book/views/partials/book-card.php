@@ -1,10 +1,13 @@
 <?php
 declare(strict_types=1);
+
+
+$cardContext = $cardContext ?? 'home';
 ?>
 
 
 <article
-    class="book-card"
+    class="book-card book-card--<?= e($cardContext) ?>"
     data-book-id="<?= e($book->getId()) ?>"
     data-book-title="<?= e($book->getTitle()) ?>"
     data-book-author="<?= e($book->getAuthor()) ?>"
@@ -34,30 +37,10 @@ declare(strict_types=1);
 
         <div class="book-card__actions">
 
-            <button 
-                type="button"
-                class="book-card__btn book-card__btn--wishlist">
-
-                <img 
-                    src="assets/images/wishlist.png" 
-                    alt="Wishlist icon"
-                    class="book-card__icon book-card__icon--wishlist"
-                >
-            </button>
-
-            <button 
-                type="button"
-                class="book-card__btn book-card__btn--cart">
-
-                <div class="book-card__btn-content">
-                    <img 
-                        src="assets/images/shopping-bag.png" 
-                        alt="Añadir al carrito"
-                        class="book-card__icon book-card__icon--cart"
-                    >
-                    <span class="book-card__btn-label">Añadir al carrito</span>
-                </div>
-            </button>
+            <?php
+                $actionTemplate = __DIR__ . '/book-card-actions-' . $cardContext . '.php';
+                if (file_exists($actionTemplate)) require $actionTemplate;
+            ?>
 
         </div>
 

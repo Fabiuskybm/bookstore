@@ -10,5 +10,7 @@
 @use 'components/search-bar';
 @use 'components/auth';
 @use 'components/book-card';
+@use 'components/book-grid';
 
 @use 'pages/home';
+@use 'pages/wishlist';
