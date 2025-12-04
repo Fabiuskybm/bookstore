@@ -12,12 +12,54 @@ $wishlistBooks = wishlist_get_books();
         <p class="wishlist__empty">Tu lista de deseos está vacía.</p>
     <?php else: ?>
 
-        <div class="wishlist__grid">
-            <?php foreach($wishlistBooks as $book): ?>
-                <?php require __DIR__ . '/../../Book/views/partials/book-card.php'; ?>
-            <?php endforeach; ?>
+        <form 
+            method="post"
+            class="wishlist__form">
 
-        </div>
+            <input type="hidden" name="_return" value="wishlist">
+
+            <div class="wishlist__select-all">
+                <label class="wishlist__select-all-label">
+                    <input 
+                        type="checkbox" 
+                        class="wishlist__select-all-input">
+                        Seleccionar todo
+                </label>
+
+            </div>
+
+            <div class="book-grid book-grid--wishlist">
+                <?php foreach($wishlistBooks as $book):
+                    $cardContext = 'wishlist';
+                    require __DIR__ . '/../../Book/views/partials/book-card.php';
+                endforeach; ?>
+            </div>
+
+            <div class="wishlist__actions">
+                
+                <button 
+                    type="button"
+                    class="wishlist__btn wishlist__btn--cart">
+                    Añadir al carrito
+                </button>
+
+                <button 
+                    type="submit"
+                    name="action"
+                    value="wishlist_bulk_remove"
+                    class="wishlist__btn wishlist__btn--remove">
+                    Eliminar
+                </button>
+
+            </div>
+
+            <p
+                class="wishlist__error"
+                data-wishlist-error
+            ></p>
+
+        </form>
+
 
     <?php endif; ?>
 </section>

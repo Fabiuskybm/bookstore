@@ -64,6 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $wishlist->remove();
             break;
 
+        case 'wishlist_bulk_remove':
+            $result = $wishlist->bulkRemove();
+            break;
+
         case 'wishlist_clear':
             $result = $wishlist->clear();
             break;

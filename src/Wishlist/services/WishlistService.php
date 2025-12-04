@@ -123,6 +123,38 @@ function wishlist_remove(string $bookId): void
 
 
 /**
+ * Elimina varios libros de la wishlist del usuario actual
+ */
+function wishlist_bulk_remove(array $bookIds): void
+{
+    if (empty($bookIds)) return;
+
+    $ctx = wishlist_context();
+    if ($ctx === null) return;
+
+    $toRemove = [];
+
+    foreach ($bookIds as $id) {
+        if (!is_string($id)) continue;
+        $cleanId = trim($id);
+        if ($cleanId !== '') $toRemove[] = $cleanId;
+    }
+
+    if (empty($toRemove)) return;
+
+    $toRemove = array_unique($toRemove);
+
+    $remaining = array_values(array_filter(
+        $ctx['ids'],
+        static fn (string $id): bool => !in_array($id, $toRemove, true)
+    ));
+
+    wishlist_save_ids($remaining);
+}
+
+
+
+/**
  * Elimina por completo la wishlist del usuario actual.
  */
 function wishlist_clear(): void

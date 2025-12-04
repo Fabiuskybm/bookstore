@@ -13,6 +13,7 @@ class WishlistController
     }
 
 
+
     public function remove(): array
     {
         return $this->handle('wishlist_remove', true, 'home');
@@ -25,7 +26,21 @@ class WishlistController
     }
 
 
+    public function bulkRemove(): array
+    {
+        $selected = $_POST['selected_books'] ?? [];
+        if (!is_array($selected)) $selected = [];
+
+        wishlist_bulk_remove($selected);
+
+        $return = $_POST['_return'] ?? 'wishlist';
+
+        return [ 'redirect' => $return ];
+    }
+
+
     
+
     private function handle(
         string $serviceFunction,
         bool $needsBookId,

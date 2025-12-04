@@ -1,70 +1,81 @@
 
 
 .book-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1.75rem;
+    background: #FFF;
+    border: 1px solid #E0E0E0;
+    border-radius: .75rem;
+    padding: 1.2rem;
+
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: .75rem;
 
-    max-width: 230px;
-    width: 100%;
-
-    transition: box-shadow 0.15s ease, transform 0.15s ease,
-        border-color 0.15s ease;
+    transition: box-shadow .15s ease,
+        transform .15s ease,
+        border-color .15s ease;
 
     &:hover {
-        border-color: #ccc;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        border-color: #D0D0D0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         transform: translateY(-2px);
     }
 
+    /* ---------- Imagen ---------- */
     &__image-wrapper {
         width: 100%;
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 1 / 1;
         overflow: hidden;
+
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #f7f7f7;
-        border-radius: 6px;
+
+        background: #F7F7F7;
+        border-radius: .5rem;
     }
 
     &__image {
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
         display: block;
     }
 
+    /* ---------- Contenido ---------- */
+    &__body {
+        display: flex;
+        flex-direction: column;
+        margin-top: .5rem;
+        gap: .2rem;
+        flex: 1;
+    }
+
     &__title {
-        font-size: 1rem;
+        font-size: .95rem;
         font-weight: 600;
         margin: 0;
+        line-height: 1.2;
         cursor: pointer;
     }
 
     &__author {
-        font-size: 0.875rem;
-        color: #555;
-        margin: 0;
+        font-size: .85rem;
+        color: #666;
+        margin: .1rem 0 0;
     }
 
     &__price {
-        font-size: 1rem;
+        font-size: .95rem;
         font-weight: 700;
-        margin-top: 0.5rem;
+        margin-top: .3rem;
     }
 
+    /* ---------- Botones ---------- */
     &__actions {
-        margin-top: 1rem;
+        margin-top: .6rem;
         display: flex;
         justify-content: space-between;
-        gap: 0.75rem;
+        gap: .6rem;
         align-items: center;
     }
 
@@ -72,31 +83,37 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.4rem;
-        padding: 0.55rem 1rem;
-        min-height: 40px;
-        background: #eee;
+        gap: .35rem;
+        padding: .5rem .9rem;
+        min-height: 38px;
+        background: #EEE;
         border: none;
-        border-radius: 8px;
+        border-radius: .6rem;
         cursor: pointer;
-        font-size: 0.875rem;
+        font-size: .8rem;
 
-        transition: background-color 0.15s ease, transform 0.1s ease;
+        transition: background-color .15s ease, transform .1s ease;
 
         &:hover {
-            background-color: #e0e0e0;
+            background: #E4E4E4;
             transform: translateY(-1px);
         }
 
         &--wishlist {
-            padding-inline: 0.6rem;
-            width: 44px;      // botón redondeado pequeño
+            padding-inline: .6rem;
+            width: 44px;
+        }
+
+        &--wishlist-active {
+            background: #FF8A3D;
+            color: #FFF;
+            opacity: .75;
         }
 
         &--cart {
-            flex: 1;          // ocupa todo el resto del espacio
+            flex: 1;
             background: #222;
-            color: #fff;
+            color: #FFF;
 
             &:hover {
                 background: #000;
@@ -108,7 +125,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.4rem;
+        gap: .4rem;
         width: 100%;
     }
 
@@ -119,17 +136,46 @@
         display: block;
 
         &--wishlist {
-            opacity: 0.9;
+            opacity: .9;
         }
 
         &--cart {
-            filter: invert(1); // icono negro → blanco en botón oscuro
+            filter: invert(1);
         }
     }
 
     &__btn-label {
-        font-size: 0.875rem;
+        font-size: .8rem;
         line-height: 1;
         white-space: nowrap;
+    }
+}
+
+
+/* ================================================================= */
+/*                        WISHLIST VARIANTE                          */
+/* ================================================================= */
+
+.book-card--wishlist {
+
+    .book-card__body {
+        flex: 0;
+    }
+
+    .book-card__price {
+        margin-bottom: .2rem;
+    }
+
+    .book-card__actions {
+        margin-top: .4rem;
+        justify-content: flex-start;
+    }
+
+    /* Checkbox personalizado */
+    .book-card__select-input {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        accent-color: #FF8A3D;
     }
 }

@@ -1,18 +1,13 @@
 <?php
 declare(strict_types=1);
 
-$user = auth_user();
-$isInWishlist = false;
 
-if ($user !== null) {
-    $isInWishlist = wishlist_has($book->getId());
-}
-
+$cardContext = $cardContext ?? 'home';
 ?>
 
 
 <article
-    class="book-card"
+    class="book-card book-card--<?= e($cardContext) ?>"
     data-book-id="<?= e($book->getId()) ?>"
     data-book-title="<?= e($book->getTitle()) ?>"
     data-book-author="<?= e($book->getAuthor()) ?>"
@@ -43,49 +38,9 @@ if ($user !== null) {
         <div class="book-card__actions">
 
             <?php
-                $wishlistBtnClass = 'book-card__btn book-card__btn--wishlist';
-                
-                if ($isInWishlist)
-                    $wishlistBtnClass .= ' book-card__btn--wishlist-active';
-
-                $wishlistAction = $isInWishlist ? 'wishlist_remove' : 'wishlist_add';
-                $currentView = $view ?? 'home';
+                $actionTemplate = __DIR__ . '/book-card-actions-' . $cardContext . '.php';
+                if (file_exists($actionTemplate)) require $actionTemplate;
             ?>
-
-            <form 
-                method="post"
-                class="book-card__wishlist-form">
-
-                <input type="hidden" name="action" value="<?= e($wishlistAction) ?>">
-                <input type="hidden" name="book_id" value="<?= e($book->getId()) ?>">
-                <input type="hidden" name="_return" value="<?= e($currentView) ?>">
-
-                <button 
-                    type="submit"
-                    class="<?= e($wishlistBtnClass) ?>">
-    
-                    <img 
-                        src="assets/images/wishlist.png" 
-                        alt="Wishlist icon"
-                        class="book-card__icon book-card__icon--wishlist"
-                    >
-                </button>
-            </form>
-
-
-            <button 
-                type="button"
-                class="book-card__btn book-card__btn--cart">
-
-                <div class="book-card__btn-content">
-                    <img 
-                        src="assets/images/shopping-bag.png" 
-                        alt="Añadir al carrito"
-                        class="book-card__icon book-card__icon--cart"
-                    >
-                    <span class="book-card__btn-label">Añadir al carrito</span>
-                </div>
-            </button>
 
         </div>
 
