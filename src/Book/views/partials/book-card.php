@@ -1,5 +1,13 @@
 <?php
 declare(strict_types=1);
+
+$user = auth_user();
+$isInWishlist = false;
+
+if ($user !== null) {
+    $isInWishlist = wishlist_has($book->getId());
+}
+
 ?>
 
 
@@ -34,16 +42,36 @@ declare(strict_types=1);
 
         <div class="book-card__actions">
 
-            <button 
-                type="button"
-                class="book-card__btn book-card__btn--wishlist">
+            <?php
+                $wishlistBtnClass = 'book-card__btn book-card__btn--wishlist';
+                
+                if ($isInWishlist)
+                    $wishlistBtnClass .= ' book-card__btn--wishlist-active';
 
-                <img 
-                    src="assets/images/wishlist.png" 
-                    alt="Wishlist icon"
-                    class="book-card__icon book-card__icon--wishlist"
-                >
-            </button>
+                $wishlistAction = $isInWishlist ? 'wishlist_remove' : 'wishlist_add';
+                $currentView = $view ?? 'home';
+            ?>
+
+            <form 
+                method="post"
+                class="book-card__wishlist-form">
+
+                <input type="hidden" name="action" value="<?= e($wishlistAction) ?>">
+                <input type="hidden" name="book_id" value="<?= e($book->getId()) ?>">
+                <input type="hidden" name="_return" value="<?= e($currentView) ?>">
+
+                <button 
+                    type="submit"
+                    class="<?= e($wishlistBtnClass) ?>">
+    
+                    <img 
+                        src="assets/images/wishlist.png" 
+                        alt="Wishlist icon"
+                        class="book-card__icon book-card__icon--wishlist"
+                    >
+                </button>
+            </form>
+
 
             <button 
                 type="button"
