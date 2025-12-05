@@ -93,4 +93,114 @@ function saveCart(items) {
 
 
 
-export { loadCart, saveCart };
+
+// ==========================
+// |  Funciones de Dominio  |
+// ==========================
+
+
+/**
+ * Devuelve los items del carrito.
+ */
+function getCartItems() { return loadCart(); }
+
+
+/**
+ * Añade un producto al carrito.
+ * itemData = { id, title, price, coverImage }
+ */
+function addItem(itemData) {
+    if (!itemData || typeof itemData.id !== 'string' ) return;
+
+    const items = loadCart();
+    const existing = items.find((i) => i.id === itemData.id);
+
+    // Si existe, aumenta la cantidad.
+    if (existing) {
+        existing.quantity += 1;
+        saveCart(items);
+        return;
+    }
+
+    // Si no existe, añadir nuevo con quantity = 1
+    const newItem = normalizeCartItem({
+        ...itemData,
+        quantity: 1
+    });
+
+    if (!newItem) return;
+
+    items.push(newItem);
+    saveCart(items);
+}
+
+
+
+/**
+ * Elimina un producto del carrito por id.
+ */
+function removeItem(id) {
+    if (!id) return;
+
+    const items = loadCart();
+    const filtered = items.filter((item) => item.id !== id);
+
+    saveCart(filtered);
+}
+
+
+/**
+ * Cambia la cantidad de un producto.
+ * cantidad mínima: 1
+ */
+function setQuantity(id, quantity) {
+    if (!id) return;
+
+    const qty = Number(quantity);
+    if (!Number.isInteger(qty) || qty < 1) return;
+
+    const items = loadCart();
+    const item = items.find((i) => i.id === id);
+    if (!item) return;
+
+    item.quantity = qty;
+    saveCart(items);
+}
+
+
+/**
+ * Vacía completamente el carrito.
+ */
+function clearCart() { saveCart([]); }
+
+
+/**
+ * Calcula los totales del carrito.
+ * Devuelve { totalQuantity, totalPrice }
+ */
+function getTotals() {
+    const items = loadCart();
+
+    let totalQuantity = 0;
+    let totalPrice = 0;
+
+    for (const item of items) {
+        totalQuantity += item.quantity;
+        totalPrice += item.price * item.quantity;
+    }
+
+    return { totalQuantity, totalPrice };
+}
+
+
+
+export { 
+    loadCart,
+    saveCart,
+    getCartItems,
+    addItem,
+    removeItem,
+    setQuantity,
+    clearCart,
+    getTotals
+};

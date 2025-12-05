@@ -1,5 +1,7 @@
 <?php 
 declare(strict_types=1);
+
+$currentUser = auth_user();
 ?>
 
 
@@ -13,7 +15,10 @@ declare(strict_types=1);
     <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
 </head>
 
-<body class="page">
+<body 
+    class="page"
+    data-user="<?= $currentUser ? e($currentUser-> getUsername()) : 'guest' ?>"
+>
 
     <?php require __DIR__ . '/partials/header.php' ?>
     <?php require __DIR__ . '/partials/nav.php' ?>
