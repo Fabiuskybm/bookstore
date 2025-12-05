@@ -1,4 +1,6 @@
 
+import { addItem, getCartItems } from "../cart/cart-storage.js";
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -6,21 +8,42 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!form) return;
 
     const selectAllCheckbox = form.querySelector('.wishlist__select-all-input');
-    const intemCheckboxes = form.querySelectorAll('.book-card__select-input');
+    const itemCheckboxes = form.querySelectorAll('.book-card__select-input');
     const errorBox = form.querySelector('[data-wishlist-error]');
+    const addToCartBtn = form.querySelector('.wishlist__btn--cart');
 
-    if (!selectAllCheckbox || intemCheckboxes.length === 0) return;
+
+    if (!selectAllCheckbox || itemCheckboxes.length === 0) return;
 
     const clearError = () => {
         if (errorBox) errorBox.textContent = '';
     }
 
+    const showError = (msg) => {
+        if (!errorBox) {
+            alert(msg);
+            return;
+        }
 
-    // Marcar / desmarcar al pulsar "Seleccionar todo"
+        errorBox.textContent = msg;
+
+        setTimeout(() => {
+            errorBox.textContent = '';
+        }, 3000);
+    }
+
+    const anyChecked = () =>
+        Array.from(itemCheckboxes).some((item) => item.checked);
+
+
+    // ======================
+    // |  Seleccionar todo  |
+    // ======================
+
     selectAllCheckbox.addEventListener('change', () => {
         const checked = selectAllCheckbox.checked;
 
-        intemCheckboxes.forEach((checkbox) => {
+        itemCheckboxes.forEach((checkbox) => {
             checkbox.checked = checked;
         });
 
@@ -28,41 +51,86 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    intemCheckboxes.forEach((checkbox) => {
+    itemCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', () => {
-            const allChecked = Array.from(intemCheckboxes)
-                .every((item) => item.cheched);
+
+            const allChecked = Array
+                .from(itemCheckboxes)
+                .every((item) => item.checked);
             
             selectAllCheckbox.checked = allChecked;
-
-            const anyChecked = Array.from(intemCheckboxes)
-                .some((item) => item.checked);
             
-            if (anyChecked) clearError();
+            if (anyChecked()) clearError();
         });
     });
 
 
+    // =================================
+    // |  Validación botón "Eliminar"  |
+    // =================================
+
     form.addEventListener('submit', (event) => {
-
-        const anyChecked = Array.from(intemCheckboxes)
-                .some((item) => item.checked);
             
-        if (!anyChecked) {
+        if (!anyChecked()) {
             event.preventDefault();
-
-            if (errorBox) {
-                errorBox.textContent = 'Debes seleccionar al menos un libro.';
-
-                setTimeout(() => {
-                    errorBox.textContent = '';
-                }, 3000);
-                
-            } else {
-                alert('Debes seleccionar al menos un libro.');
-            }
+            showError('Debes seleccionar al menos un libro.');
         }
 
     });
+
+
+    // ===============================
+    // |  Botón "Añadir al carrito"  |
+    // ===============================
+
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', () => {
+
+            const selected = Array
+                .from(itemCheckboxes)
+                .filter((checkbox) => checkbox.checked);
+
+            if (selected.length === 0) {
+                showError('Debes seleccionar al menos un libro.');
+                return;
+            }
+
+            const cartItems = getCartItems();
+            const cartIds = new Set(cartItems.map((item) => item.id));
+
+            let addedCount = 0;
+
+            selected.forEach((checkbox) => {
+                const card = checkbox.closest('.book-card');
+                if (!card) return;
+
+                const bookId = card.dataset.bookId;
+                if (!bookId ||cartIds.has(bookId)) return;
+
+                const img = card.querySelector('.book-card__image');
+
+                const itemData = {
+                    id: card.dataset.bookId,
+                    title: card.dataset.bookTitle,
+                    price: Number(card.dataset.bookPrice),
+                    coverImage: img ? img.getAttribute('src') : ''
+                };
+
+                addItem(itemData);
+                addedCount += 1;
+            });
+
+            if (addedCount === 0) {
+                showError('Todos los libros seleccionados ya están en el carrito.');
+                return;
+            }
+
+            selectAllCheckbox.checked = false;
+            itemCheckboxes.forEach((c) => { c.checked = false; });
+            clearError();
+
+            window.location.href = 'index.php?view=cart';
+        });
+    }
 
 });

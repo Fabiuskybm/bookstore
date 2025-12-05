@@ -46,7 +46,7 @@ $currentUser = auth_user();
                     title="Iniciar sesión">
 
                     <img 
-                        src="assets/images/user.png" 
+                        src="assets/images/user.svg" 
                         alt="user icon"
                         class="header__icon header__icon--user">
                 </a>
@@ -62,7 +62,7 @@ $currentUser = auth_user();
                     aria-controls="header-user-menu">
 
                     <img 
-                        src="assets/images/user.png" 
+                        src="assets/images/user.svg" 
                         alt="user icon"
                         class="header__icon header__icon--user">
 
@@ -92,7 +92,7 @@ $currentUser = auth_user();
             title="Carrito">
             
             <img 
-                src="assets/images/shopping-bag.png" 
+                src="assets/images/shopping-bag.svg" 
                 alt="Shopping bag icon"
                 class="header__icon header__icon--cart">
         </a>
