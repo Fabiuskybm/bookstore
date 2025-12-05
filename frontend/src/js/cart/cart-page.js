@@ -3,7 +3,8 @@ import {
     getCartItems,
     getTotals,
     setQuantity,
-    removeItem
+    removeItem,
+    clearCart
 } from './cart-storage.js';
 
 
@@ -11,6 +12,46 @@ import {
 function formatPrice(price) {
     const num = Number(price) || 0;
     return num.toFixed(2).replace('.', ',') + ' €';
+}
+
+
+function buildTicketHtml(items, totals) {
+    const date = new Date();
+
+    const formattedDate =
+        date.toLocaleDateString('es-ES') +
+        ' ' +
+        date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    
+    let linesHtml = '';
+
+    items.forEach((item) => {
+        const lineTotal = item.price * item.quantity;
+
+        linesHtml += `
+            <div class="ticket__item">
+                <span class="ticket__title">${item.title}</span>
+                <span class="ticket__qty">${item.quantity}</span>
+                <span class="ticket__total">${formatPrice(lineTotal)}</span>
+            </div>
+        `;
+    });
+
+
+    return `
+        <div class="ticket">
+            <h3 class="ticket__title">Pedido realizado</h3>
+            <p class="ticket__date">${formattedDate}</p>
+
+            <div class="ticket__item">
+                ${linesHtml}
+            </div>
+
+            <p class="ticket__grand-total">
+                Total: ${formatPrice(totals.totalPrice)}
+            </p>
+        </div>
+    `;
 }
 
 
@@ -47,6 +88,12 @@ export function initCartPage() {
     if (!dom) return;
 
     renderCart();
+
+    if (dom.checkoutBtn) {
+        dom.checkoutBtn.addEventListener('click', () => {
+            handleCheckout(dom);
+        });
+    }
 }
 
 
@@ -86,10 +133,6 @@ function renderEmptyCart(dom) {
     if (totalQtyEl) totalQtyEl.textContent = '0';
     if (totalPriceEl) totalPriceEl.textContent = formatPrice(0);
     if (checkoutBtn) checkoutBtn.disabled = true;
-    if (ticketEl) {
-        ticketEl.hidden = true;
-        ticketEl.innerHTML = '';
-    }
 
 }
 
@@ -203,4 +246,54 @@ function updateCartTotals(dom) {
     if (totalQtyEl) totalQtyEl.textContent = String(totals.totalQuantity);
     if (totalPriceEl) totalPriceEl.textContent = formatPrice(totals.totalPrice);
     if (checkoutBtn) checkoutBtn.disabled = totals.totalQuantity === 0;
+}
+
+
+
+function handleCheckout(dom) {
+    const items = getCartItems();
+
+    if (!items.length) {
+        alert('El carrito está vacío.');
+        return;
+    }
+
+    const totals = getTotals();
+    const ticketHtml = buildTicketHtml(items, totals);
+
+    dom.ticketEl.innerHTML = ticketHtml;
+    dom.ticketEl.hidden = false;
+
+    const purchasedIds = items.map((item) => item.id);
+
+    clearCart();
+    renderCart();
+
+    sendWishlistCleanup(purchasedIds);
+}
+
+
+function sendWishlistCleanup(bookIds) {
+    if (!Array.isArray(bookIds) || bookIds.length === 0) return;
+
+    const formData = new FormData();
+
+    bookIds.forEach((id) => {
+        if (typeof id === 'string' && id.trim() !== '') {
+            formData.append('selected_books[]', id.trim());
+        }
+    });
+
+    if (!formData.has('selected_books[]')) return;
+
+    formData.append('action', 'wishlist_bulk_remove');
+    formData.append('_return', 'cart');
+
+    fetch('index.php?view=wishlist', {
+        method: 'POST',
+        body: formData
+    }).catch(() => {
+        // Se ignora por el momento.
+    });
+
 }

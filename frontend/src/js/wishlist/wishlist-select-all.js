@@ -1,5 +1,5 @@
 
-import { addItem } from "../cart/cart-storage.js";
+import { addItem, getCartItems } from "../cart/cart-storage.js";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -95,9 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const cartItems = getCartItems();
+            const cartIds = new Set(cartItems.map((item) => item.id));
+
+            let addedCount = 0;
+
             selected.forEach((checkbox) => {
                 const card = checkbox.closest('.book-card');
                 if (!card) return;
+
+                const bookId = card.dataset.bookId;
+                if (!bookId ||cartIds.has(bookId)) return;
 
                 const img = card.querySelector('.book-card__image');
 
@@ -109,7 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 addItem(itemData);
+                addedCount += 1;
             });
+
+            if (addedCount === 0) {
+                showError('Todos los libros seleccionados ya están en el carrito.');
+                return;
+            }
 
             selectAllCheckbox.checked = false;
             itemCheckboxes.forEach((c) => { c.checked = false; });
