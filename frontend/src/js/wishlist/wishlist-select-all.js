@@ -70,6 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // =================================
 
     form.addEventListener('submit', (event) => {
+
+        const submitter = event.submitter;
+        const action = submitter?.value ?? '';
+
+        if (action === 'wishlist_clear') return;
             
         if (!anyChecked()) {
             event.preventDefault();

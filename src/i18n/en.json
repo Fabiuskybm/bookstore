@@ -52,7 +52,9 @@
         "empty": "Your wishlist is empty.",
         "select_all": "Select all",
         "add_to_cart": "Add to cart",
-        "remove_selected": "Remove"
+        "remove_selected": "Remove",
+        "total_label": "Wishlist total",
+        "clear_all": "Clear wishlist"
     },
     "cart": {
         "title": "Cart",
