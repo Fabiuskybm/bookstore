@@ -4,7 +4,8 @@
         "page_title_home": "Bookstore | Home",
         "page_title_login": "Bookstore | Login",
         "page_title_cart": "Bookstore | Cart",
-        "page_title_wishlist": "Bookstore | Wishlist"
+        "page_title_wishlist": "Bookstore | Wishlist",
+        "page_title_preferences": "Bookstore | Preferences"
     },
     "header": {
         "logo_alt": "Bookstore logo",
@@ -21,7 +22,8 @@
         "language_en_label": "English"
     },
     "nav": {
-        "home": "Home"
+        "home": "Home",
+        "preferences": "Preferences"
     },
     "user_menu": {
         "wishlist": "Wishlist",
@@ -80,6 +82,24 @@
         "wishlist_icon_alt": "Wishlist icon",
         "cart_icon_alt": "Add to cart icon",
         "add_to_cart_label": "Add to cart"
+    },
+    "preferences": {
+        "title": "Preferences",
+        "theme": "Theme",
+        "theme_light": "Light",
+        "theme_dark": "Dark",
+
+        "items_per_page": "Items per page",
+
+        "view_mode": "View mode",
+        "view_normal": "Normal view",
+        "view_compact": "Compact view",
+        "view_normal_alt": "Normal view icon",
+        "view_compact_alt": "Compact view icon",
+
+        "compact_view_note": "This preference is stored only in your browser.",
+
+        "save_button": "Save changes"
     }
 
 }

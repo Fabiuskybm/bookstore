@@ -12,5 +12,6 @@ declare(strict_types=1);
 function get_navigation_items(): array {
     return [
         [ 'view' => 'home' ],
+        [ 'view' => 'preferences' ],
     ];
 }

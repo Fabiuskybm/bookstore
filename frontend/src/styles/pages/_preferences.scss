@@ -1,0 +1,75 @@
+.preferences {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+
+    &__title {
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__label {
+        font-weight: 500;
+    }
+
+    &__select,
+    &__input {
+        max-width: 200px;
+        padding: 0.35rem 0.5rem;
+    }
+
+    &__group--view {
+        align-items: flex-start;
+    }
+
+    &__view-toggle {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    &__view-button {
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 0.35rem;
+        background: #fff;
+        cursor: pointer;
+
+        &:hover {
+            background: #f3f3f3;
+        }
+    }
+
+    &__view-icon {
+        width: 32px;
+        height: 32px;
+        display: block;
+    }
+
+    &__note {
+        font-size: 0.875rem;
+        color: #555;
+    }
+
+    &__submit {
+        align-self: flex-start;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #333;
+        background: #333;
+        color: #fff;
+        cursor: pointer;
+    }
+}
