@@ -6,10 +6,10 @@ $wishlistBooks = wishlist_get_books();
 
 
 <section class="wishlist">
-    <h1 class="wishlist__title">Wishlist</h1>
+    <h1 class="wishlist__title"><?= e(t('wishlist.title')) ?></h1>
 
     <?php if (empty($wishlistBooks)): ?>
-        <p class="wishlist__empty">Tu lista de deseos está vacía.</p>
+        <p class="wishlist__empty"><?= e(t('wishlist.empty')) ?></p>
     <?php else: ?>
 
         <form 
@@ -23,7 +23,7 @@ $wishlistBooks = wishlist_get_books();
                     <input 
                         type="checkbox" 
                         class="wishlist__select-all-input">
-                        Seleccionar todo
+                        <?= e(t('wishlist.select_all')) ?>
                 </label>
 
             </div>
@@ -40,7 +40,7 @@ $wishlistBooks = wishlist_get_books();
                 <button 
                     type="button"
                     class="wishlist__btn wishlist__btn--cart">
-                    Añadir al carrito
+                    <?= e(t('wishlist.add_to_cart')) ?>
                 </button>
 
                 <button 
@@ -48,7 +48,7 @@ $wishlistBooks = wishlist_get_books();
                     name="action"
                     value="wishlist_bulk_remove"
                     class="wishlist__btn wishlist__btn--remove">
-                    Eliminar
+                    <?= e(t('wishlist.remove_selected')) ?>
                 </button>
 
             </div>

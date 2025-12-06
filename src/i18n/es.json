@@ -1,0 +1,79 @@
+{
+    "layout": {
+        "app_name": "Bookstore",
+        "page_title_home": "Bookstore | Inicio",
+        "page_title_login": "Bookstore | Iniciar sesión",
+        "page_title_cart": "Bookstore | Carrito",
+        "page_title_wishlist": "Bookstore | Lista de deseos"
+    },
+    "header": {
+        "logo_alt": "Logo de Bookstore",
+        "search_placeholder": "Buscar por título, autor...",
+        "login_title": "Iniciar sesión",
+        "user_icon_alt": "Icono de usuario",
+        "cart_icon_alt": "Icono de carrito de la compra",
+        "cart_title": "Carrito",
+        "greeting_prefix": "Hola,",
+        "greeting_admin_label": "administrador"
+    },
+    "nav": {
+        "home": "Inicio"
+    },
+    "user_menu": {
+        "wishlist": "Lista de deseos",
+        "logout": "Cerrar sesión"
+    },
+    "auth": {
+        "tabs_aria_label": "Selección de formulario de autenticación",
+        "tabs_login_title": "Acceso a tu cuenta",
+        "tabs_register_title": "Nuevo usuario",
+
+        "login_username_label": "Usuario",
+        "login_password_label": "Contraseña",
+        "login_submit": "Iniciar sesión",
+
+        "register_username_label": "Nombre de usuario",
+        "register_email_label": "Correo electrónico",
+        "register_password_label": "Contraseña",
+        "register_password_confirm_label": "Repetir contraseña",
+        "register_submit": "Crear cuenta"
+    },
+    "home": {
+        "title": "Bienvenido a Bookstore",
+        "subtitle": "Contenido principal",
+        "empty": "No hay libros disponibles"
+    },
+    "wishlist": {
+        "title": "Lista de deseos",
+        "empty": "Tu lista de deseos está vacía.",
+        "select_all": "Seleccionar todo",
+        "add_to_cart": "Añadir al carrito",
+        "remove_selected": "Eliminar"
+    },
+    "cart": {
+        "title": "Carrito",
+        "header_title": "Título",
+        "header_price": "Precio",
+        "header_quantity": "Cantidad",
+        "header_total": "Total",
+        "continue_shopping": "Continuar comprando",
+        "summary_title": "Resumen del pedido",
+        "summary_items_label": "Artículos",
+        "summary_total_label": "Total",
+        "checkout": "Tramitar pedido",
+        "empty": "Tu carrito está vacío",
+        "ticket_title": "Pedido realizado",
+        "alert_empty": "El carrito está vacío.",
+        "quantity_label": "Cantidad",
+        "cover_alt": "Portada del libro",
+        "remove_alt": "Eliminar"
+
+    },
+    "book": {
+        "cover_alt_prefix": "Portada de",
+        "wishlist_icon_alt": "Icono de lista de deseos",
+        "cart_icon_alt": "Icono de añadir al carrito",
+        "add_to_cart_label": "Añadir al carrito"
+    }
+
+}

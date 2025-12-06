@@ -27,7 +27,7 @@ $items = get_navigation_items();
                 <a 
                     href="index.php?view=<?= e($item['view']) ?>"
                     class="<?= e($classes) ?>">
-                    <?= e($item['label']) ?>
+                    <?= t('nav.' . $item['view']) ?>
                 </a>
             </li>
 

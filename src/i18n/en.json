@@ -1,0 +1,79 @@
+{
+    "layout": {
+        "app_name": "Bookstore",
+        "page_title_home": "Bookstore | Home",
+        "page_title_login": "Bookstore | Login",
+        "page_title_cart": "Bookstore | Cart",
+        "page_title_wishlist": "Bookstore | Wishlist"
+    },
+    "header": {
+        "logo_alt": "Bookstore logo",
+        "search_placeholder": "Search by title, author...",
+        "login_title": "Sign in",
+        "user_icon_alt": "User icon",
+        "cart_icon_alt": "Shopping bag icon",
+        "cart_title": "Cart",
+        "greeting_prefix": "Hello,",
+        "greeting_admin_label": "admin"
+    },
+    "nav": {
+        "home": "Home"
+    },
+    "user_menu": {
+        "wishlist": "Wishlist",
+        "logout": "Sign out"
+    },
+    "auth": {
+        "tabs_aria_label": "Authentication form selection",
+        "tabs_login_title": "Access your account",
+        "tabs_register_title": "New user",
+
+        "login_username_label": "Username",
+        "login_password_label": "Password",
+        "login_submit": "Sign in",
+
+        "register_username_label": "Username",
+        "register_email_label": "Email address",
+        "register_password_label": "Password",
+        "register_password_confirm_label": "Repeat password",
+        "register_submit": "Create account"
+    },
+    "home": {
+        "title": "Welcome to Bookstore",
+        "subtitle": "Main content",
+        "empty": "No books available"
+    },
+    "wishlist": {
+        "title": "Wishlist",
+        "empty": "Your wishlist is empty.",
+        "select_all": "Select all",
+        "add_to_cart": "Add to cart",
+        "remove_selected": "Remove"
+    },
+    "cart": {
+        "title": "Cart",
+        "header_title": "Title",
+        "header_price": "Price",
+        "header_quantity": "Quantity",
+        "header_total": "Total",
+        "continue_shopping": "Continue shopping",
+        "summary_title": "Order summary",
+        "summary_items_label": "Items",
+        "summary_total_label": "Total",
+        "checkout": "Checkout",
+        "empty": "Your cart is empty",
+        "ticket_title": "Order placed",
+        "alert_empty": "The cart is empty.",
+        "quantity_label": "Quantity",
+        "cover_alt": "Book cover",
+        "remove_alt": "Remove"
+
+    },
+    "book": {
+        "cover_alt_prefix": "Cover of",
+        "wishlist_icon_alt": "Wishlist icon",
+        "cart_icon_alt": "Add to cart icon",
+        "add_to_cart_label": "Add to cart"
+    }
+
+}

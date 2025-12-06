@@ -16,7 +16,7 @@ $cardContext = $cardContext ?? 'home';
     <div class="book-card__image-wrapper">
         <img 
             src="<?= e($book->getCoverImage()) ?>" 
-            alt="<?= e('Portada de ' . $book->getTitle()) ?>"
+            alt="<?= e(t('book.cover_alt_prefix') . ' ' . $book->getTitle()) ?>"
             class="book-card__image"
         >
     </div>

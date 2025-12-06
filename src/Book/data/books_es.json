@@ -4,7 +4,7 @@
     "title": "Nacidos de la bruma",
     "author": "Brandon Sanderson",
     "price": 16.30,
-    "coverImage": "assets/images/books/mistborn-limited.jpg",
+    "coverImage": "assets/images/books/es/mistborn-limited.jpg",
     "categories": ["fantasy", "cosmere"],
     "format": "paperback",
     "isFeatured": true
@@ -14,7 +14,7 @@
     "title": "Islas de la ascuaoscura",
     "author": "Brandon Sanderson",
     "price": 25.87,
-    "coverImage": "assets/images/books/islas-ascuaoscura.jpg",
+    "coverImage": "assets/images/books/es/islas-ascuaoscura.jpg",
     "categories": ["fantasy", "cosmere"],
     "format": "hardcover",
     "isFeatured": true
@@ -24,7 +24,7 @@
     "title": "Trenza del mar esmeralda",
     "author": "Brandon Sanderson",
     "price": 14.38,
-    "coverImage": "assets/images/books/trenza-mar-esmeralda.jpg",
+    "coverImage": "assets/images/books/es/trenza-mar-esmeralda.jpg",
     "categories": ["fantasy", "cosmere"],
     "format": "paperback",
     "isFeatured": false
@@ -34,7 +34,7 @@
     "title": "Los diablos",
     "author": "Joe Abercrombie",
     "price": 23.03,
-    "coverImage": "assets/images/books/los-diablos.jpg",
+    "coverImage": "assets/images/books/es/los-diablos.jpg",
     "categories": ["fantasy", "grimdark"],
     "format": "hardcover",
     "isFeatured": false
@@ -44,7 +44,7 @@
     "title": "Los héroes",
     "author": "Joe Abercrombie",
     "price": 28.37,
-    "coverImage": "assets/images/books/los-heroes.jpg",
+    "coverImage": "assets/images/books/es/los-heroes.jpg",
     "categories": ["fantasy", "grimdark"],
     "format": "hardcover",
     "isFeatured": true
@@ -54,7 +54,7 @@
     "title": "El instituto",
     "author": "Stephen King",
     "price": 14.38,
-    "coverImage": "assets/images/books/el-instituto.jpg",
+    "coverImage": "assets/images/books/es/el-instituto.jpg",
     "categories": ["horror", "thriller"],
     "format": "paperback",
     "isFeatured": true
@@ -64,7 +64,7 @@
     "title": "La bestia",
     "author": "Carmen Mola",
     "price": 12.45,
-    "coverImage": "assets/images/books/la-bestia.jpg",
+    "coverImage": "assets/images/books/es/la-bestia.jpg",
     "categories": ["thriller", "historical"],
     "format": "paperback",
     "isFeatured": false
@@ -74,7 +74,7 @@
     "title": "Carl el mazmorrero",
     "author": "Matt Dinniman",
     "price": 22.02,
-    "coverImage": "assets/images/books/carl-mazmorrero.jpg",
+    "coverImage": "assets/images/books/es/carl-mazmorrero.jpg",
     "categories": ["science-fiction", "fantasy"],
     "format": "paperback",
     "isFeatured": true
@@ -84,7 +84,7 @@
     "title": "El imperio del silencio",
     "author": "Christopher Ruocchio",
     "price": 25.91,
-    "coverImage": "assets/images/books/el-imperio-del-silencio.jpg",
+    "coverImage": "assets/images/books/es/el-imperio-del-silencio.jpg",
     "categories": ["science-fiction", "space-opera"],
     "format": "paperback",
     "isFeatured": false

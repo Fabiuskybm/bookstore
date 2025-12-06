@@ -11,7 +11,7 @@ $currentUser = auth_user();
         <a href="index.php?view=home" class="header__logo-link">
             <img 
                 src="assets/images/logo.png" 
-                alt="Bookstore Logo"
+                alt="<?= e(t('header.logo_alt')) ?>"
                 class="header__logo-img">
         </a>
     </div>
@@ -27,7 +27,7 @@ $currentUser = auth_user();
                 type="search" 
                 name="q" 
                 class="header__search-input"
-                placeholder="Buscar por título, autor...">
+                placeholder="<?= e(t('header.search_placeholder')) ?>">
 
         </form>
 
@@ -43,11 +43,11 @@ $currentUser = auth_user();
                  <a 
                     href="index.php?view=login"
                     class="header__action header__action--user"
-                    title="Iniciar sesión">
+                    title="<?= e(t('header.login_title')) ?>">
 
                     <img 
-                        src="assets/images/user.svg" 
-                        alt="user icon"
+                        src="assets/images/icons/user.svg" 
+                        alt="<?= e(t('header.user_icon_alt')) ?>"
                         class="header__icon header__icon--user">
                 </a>
 
@@ -62,13 +62,16 @@ $currentUser = auth_user();
                     aria-controls="header-user-menu">
 
                     <img 
-                        src="assets/images/user.svg" 
-                        alt="user icon"
+                        src="assets/images/icons/user.svg" 
+                        alt="<?= e(t('header.user_icon_alt')) ?>"
                         class="header__icon header__icon--user">
 
                     <span class="header__user-name">
-                        Hola,
-                        <?= $currentUser->isAdmin() ? 'administrador' : e($currentUser->getUsername()) ?>
+                        <?= e(t('header.greeting_prefix')) ?>
+                        <?= $currentUser->isAdmin() 
+                            ? e(t('header.greeting_admin_label')) 
+                            : e($currentUser->getUsername()) 
+                        ?>
                     </span>
 
                 </button>
@@ -89,11 +92,11 @@ $currentUser = auth_user();
         <a 
             href="index.php?view=cart"
             class="header__action header__action--cart"
-            title="Carrito">
+            title="<?= e(t('header.cart_title')) ?>">
             
             <img 
-                src="assets/images/shopping-bag.svg" 
-                alt="Shopping bag icon"
+                src="assets/images/icons/shopping-bag.svg" 
+                alt="<?= e(t('header.cart_icon_alt')) ?>"
                 class="header__icon header__icon--cart">
         </a>
 

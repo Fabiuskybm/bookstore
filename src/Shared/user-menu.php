@@ -17,20 +17,16 @@ require_once __DIR__ . '/../Auth/models/User.php';
  */
 function get_user_menu_items(User $user): array
 {
-    $items = [];
-
-    // Wishlist
-    $items[] = [
-        'type'  => 'link',
-        'view'  => 'wishlist',
-        'label' => 'Wishlist',
+    return [
+        [
+            'type' => 'link',
+            'view' => 'wishlist',
+            'key'  => 'wishlist',
+        ],
+        [
+            'type' => 'logout',
+            'key'  => 'logout',
+        ],
     ];
-
-    // Logout
-    $items[] = [
-        'type'  => 'logout',
-        'label' => 'Cerrar sesión',
-    ];
-
-    return $items;
 }
+

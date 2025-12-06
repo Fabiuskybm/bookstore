@@ -15,7 +15,7 @@ $old = $data['old'] ?? [];
         <label 
             for="login-username"
             class="auth__label">
-            Usuario
+            <?= e(t('auth.login_username_label')) ?>
         </label>
 
         <input 
@@ -34,7 +34,7 @@ $old = $data['old'] ?? [];
         <label 
             for="login-password"
             class="auth__label">
-            Contraseña
+            <?= e(t('auth.login_password_label')) ?>
         </label>
 
         <input 
@@ -54,7 +54,7 @@ $old = $data['old'] ?? [];
         name="action"
         value="login"
         class="auth__submit">
-        Iniciar sesión
+        <?= e(t('auth.login_submit')) ?>
     </button>
 
 </form>

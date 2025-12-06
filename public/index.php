@@ -24,8 +24,10 @@ require_once __DIR__ . '/../src/Wishlist/services/WishlistService.php';
 require_once __DIR__ . '/../src/Wishlist/controllers/WishlistController.php';
 
 
-// Helpers de presentación (función e())
+// Helpers de presentación
 require_once __DIR__ . '/../src/Shared/html.php';
+require_once __DIR__ . '/../src/Shared/i18n.php';
+
 
 session_start_safe();
 
@@ -109,28 +111,28 @@ switch ($view) {
 
     case 'home':
         $viewFile = __DIR__ . '/../src/Home/views/home.php';
-        $pageTitle = 'Bookstore | Home';
+        $pageTitle = t('layout.page_title_home');
         break;
 
     case 'login':
         $viewFile = __DIR__ . '/../src/Auth/views/login.php';
-        $pageTitle = 'Bookstore | Login';
+        $pageTitle = t('layout.page_title_login');
         break;
 
     case 'cart':
         $viewFile = __DIR__ . '/../src/Cart/views/cart.php';
-        $pageTitle = 'Bookstore | Carrito';
+        $pageTitle = t('layout.page_title_cart');
         break;
 
     case 'wishlist':
         $viewFile = __DIR__ . '/../src/Wishlist/views/wishlist.php';
-        $pageTitle = 'Bookstore | Wishlist';
+        $pageTitle = t('layout.page_title_wishlist');
         break;
 
     default:
         $view = 'home';
         $viewFile = __DIR__ . '/../src/Home/views/home.php';
-        $pageTitle = 'Bookstore | Home';
+        $pageTitle = t('layout.page_title_home');
         break;
 
 }

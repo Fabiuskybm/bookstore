@@ -47,8 +47,8 @@ $currentView = $view ?? 'home';
         class="<?= e($wishlistBtnClass) ?>">
 
         <img 
-            src="assets/images/wishlist.svg" 
-            alt="Wishlist icon"
+            src="assets/images/icons/wishlist.svg" 
+            alt="<?= e(t('book.wishlist_icon_alt')) ?>"
             class="book-card__icon book-card__icon--wishlist"
         >
     </button>
@@ -61,10 +61,10 @@ $currentView = $view ?? 'home';
 
     <div class="book-card__btn-content">
         <img 
-            src="assets/images/shopping-bag.svg" 
-            alt="Añadir al carrito"
+            src="assets/images/icons/shopping-bag.svg" 
+            alt="<?= e(t('book.cart_icon_alt')) ?>"
             class="book-card__icon book-card__icon--cart"
         >
-        <span class="book-card__btn-label">Añadir al carrito</span>
+        <span class="book-card__btn-label"><?= e(t('book.add_to_cart_label')) ?></span>
     </div>
 </button>

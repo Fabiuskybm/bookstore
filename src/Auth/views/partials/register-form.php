@@ -13,7 +13,7 @@ declare(strict_types=1);
         <label 
             for="register-username"
             class="auth__label">
-            Nombre de usuario
+            <?= e(t('auth.register_username_label')) ?>
         </label>
 
         <input 
@@ -32,7 +32,7 @@ declare(strict_types=1);
         <label 
             for="register-email"
             class="auth__label">
-            Correo electrónico
+            <?= e(t('auth.register_email_label')) ?>
         </label>
 
         <input 
@@ -51,7 +51,7 @@ declare(strict_types=1);
         <label 
             for="register-password"
             class="auth__label">
-            Contraseña
+            <?= e(t('auth.register_password_label')) ?>
         </label>
 
         <input 
@@ -70,7 +70,7 @@ declare(strict_types=1);
         <label 
             for="register-password-confirm"
             class="auth__label">
-            Repetir contraseña
+            <?= e(t('auth.register_password_confirm_label')) ?>
         </label>
 
         <input 
@@ -90,7 +90,7 @@ declare(strict_types=1);
         name="action"
         value="register"
         class="auth__submit">
-        Crear cuenta
+        <?= e(t('auth.register_submit')) ?>
     </button>
 
 </form>
