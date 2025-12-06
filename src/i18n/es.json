@@ -1,14 +1,14 @@
 {
     "layout": {
-        "app_name": "Bookstore",
-        "page_title_home": "Bookstore | Inicio",
-        "page_title_login": "Bookstore | Iniciar sesión",
-        "page_title_cart": "Bookstore | Carrito",
-        "page_title_wishlist": "Bookstore | Lista de deseos",
-        "page_title_preferences": "Bookstore | Preferencias"
+        "app_name": "Editorial Blackrose",
+        "page_title_home": "Editorial Blackrose | Inicio",
+        "page_title_login": "Editorial Blackrose | Iniciar sesión",
+        "page_title_cart": "Editorial Blackrose | Carrito",
+        "page_title_wishlist": "Editorial Blackrose | Lista de deseos",
+        "page_title_preferences": "Editorial Blackrose | Preferencias"
     },
     "header": {
-        "logo_alt": "Logo de Bookstore",
+        "logo_alt": "Logo de Editorial Blackrose",
         "search_placeholder": "Buscar por título, autor...",
         "login_title": "Iniciar sesión",
         "user_icon_alt": "Icono de usuario",
@@ -45,7 +45,7 @@
         "register_submit": "Crear cuenta"
     },
     "home": {
-        "title": "Bienvenido a Bookstore",
+        "title": "Bienvenido a Editorial Blackrose",
         "subtitle": "Contenido principal",
         "empty": "No hay libros disponibles"
     },
@@ -100,6 +100,13 @@
         "compact_view_note": "Esta preferencia se guarda solo en tu navegador.",
 
         "save_button": "Guardar cambios"
+    },
+    "footer": {
+        "copyright": "© 2025 Editorial Blackrose. Todos los derechos reservados.",
+        "social_label": "Redes sociales",
+        "instagram_alt": "Instagram de Editorial Blackrose",
+        "tiktok_alt": "TikTok de Editorial Blackrose",
+        "x_alt": "Perfil de X de Editorial Blackrose"
     }
 
 }

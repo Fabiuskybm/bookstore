@@ -33,8 +33,7 @@ $currentUser = auth_user();
         ?>
     </main>
 
-    <footer class="page__footer footer"></footer>
-    
+    <?php require __DIR__ . '/partials/footer.php' ?>    
 
     <script src="assets/js/main.js"></script>
 </body>
