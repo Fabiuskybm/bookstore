@@ -1,0 +1,35 @@
+.cart {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    &__layout {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+    }
+
+    &__items-area {
+        flex: 3;
+    }
+
+    &__summary {
+        flex: 1;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__empty {
+        padding: 1rem 0;
+    }
+}

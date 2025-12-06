@@ -6,7 +6,6 @@ declare(strict_types=1);
 // ==============================
 
 
-
 // ------------------
 //   CARGAR MÓDULOS  
 // ------------------
@@ -18,7 +17,7 @@ require_once __DIR__ . '/../src/Shared/validation.php';
 require_once __DIR__ . '/../src/Auth/services/AuthService.php';
 require_once __DIR__ . '/../src/Auth/controllers/AuthController.php';
 
-require_once __DIR__ . '/../src/Book/services/BookService.php';
+require_once __DIR__ . '/../src/Home/controllers/HomeController.php';
 
 require_once __DIR__ . '/../src/Wishlist/services/WishlistService.php';
 require_once __DIR__ . '/../src/Wishlist/controllers/WishlistController.php';
@@ -35,6 +34,7 @@ session_start_safe();
 
 
 $auth = new AuthController();
+$home = new HomeController();
 $wishlist = new WishlistController();
 $preference = new PreferenceController();
 
@@ -81,6 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $preference->setLanguage();
             break;
 
+        case 'preferences_update':
+            $result = $preference->update();
+            break;
+
     }
 
     // Redirecciones
@@ -107,9 +111,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $view = $view ?? ($_GET['view'] ?? 'home');
 
 // Si es petición GET y la vista es login, preparar datos vacíos
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && $view === 'login') {
-    $result = $auth->showLogin();
-    $data = $result['data'] ?? [];
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+    switch ($view) {
+
+        case 'home':
+            $result = $home->show();
+            $data = $result['data'] ?? [];
+            break;
+        
+        case 'login':
+            $result = $auth->showLogin();
+            $data = $result['data'] ?? [];
+            break;
+
+        case 'wishlist':
+            $result = $wishlist->show();
+            $data = $result['data'] ?? [];
+            break;
+    }
 }
 
 
@@ -136,6 +156,11 @@ switch ($view) {
         $pageTitle = t('layout.page_title_wishlist');
         break;
 
+    case 'preferences':
+        $viewFile = __DIR__ . '/../src/Preference/views/preferences.php';
+        $pageTitle = t('layout.page_title_preferences');
+        break;
+
     default:
         $view = 'home';
         $viewFile = __DIR__ . '/../src/Home/views/home.php';
@@ -145,12 +170,5 @@ switch ($view) {
 }
 
 
-// 3. Cargar datos
-if ($view === 'home') {
-    $data['books'] = books_get_all();
-    $data['featuredBooks'] = books_get_featured();
-}
-
-
-// 4. Cargar layout común
+// 3. Cargar layout común
 require __DIR__ . '/../src/Shared/templates/layout.php';

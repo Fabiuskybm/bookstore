@@ -2,11 +2,32 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../services/WishlistService.php';
+require_once __DIR__ . '/../../Preference/services/PreferenceService.php';
 
 
 class WishlistController
 {
 
+    public function show(): array
+    {
+        $books = wishlist_get_books();
+        $books = apply_items_per_page($books);
+
+        $total = array_sum(array_map(
+            fn($book) => $book->getPrice(),
+            $books
+        ));
+
+        return [
+            'view' => 'wishlist',
+            'data' => [
+                'wishlistBooks' => $books,
+                'wishlistTotal' => $total
+            ],
+        ];
+    }
+
+    
     public function add(): array
     {
         return $this->handle('wishlist_add', true, 'home');

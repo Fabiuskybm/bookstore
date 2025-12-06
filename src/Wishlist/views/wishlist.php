@@ -1,13 +1,9 @@
 <?php
 declare(strict_types=1);
 
-$wishlistBooks = wishlist_get_books();
 
-$wishlistTotal = array_sum(array_map(
-    fn($book) => $book->getPrice(),
-    $wishlistBooks
-));
-
+$wishlistBooks = $data['wishlistBooks'] ?? [];
+$wishlistTotal = $data['wishlistTotal'] ?? 0.0;
 ?>
 
 

@@ -4,7 +4,8 @@
         "page_title_home": "Bookstore | Inicio",
         "page_title_login": "Bookstore | Iniciar sesión",
         "page_title_cart": "Bookstore | Carrito",
-        "page_title_wishlist": "Bookstore | Lista de deseos"
+        "page_title_wishlist": "Bookstore | Lista de deseos",
+        "page_title_preferences": "Bookstore | Preferencias"
     },
     "header": {
         "logo_alt": "Logo de Bookstore",
@@ -21,7 +22,8 @@
         "language_en_label": "Inglés"
     },
     "nav": {
-        "home": "Inicio"
+        "home": "Inicio",
+        "preferences": "Preferencias"
     },
     "user_menu": {
         "wishlist": "Lista de deseos",
@@ -80,6 +82,24 @@
         "wishlist_icon_alt": "Icono de lista de deseos",
         "cart_icon_alt": "Icono de añadir al carrito",
         "add_to_cart_label": "Añadir al carrito"
+    },
+    "preferences": {
+        "title": "Preferencias",
+        "theme": "Tema",
+        "theme_light": "Claro",
+        "theme_dark": "Oscuro",
+
+        "items_per_page": "Ítems por página",
+
+        "view_mode": "Modo de vista",
+        "view_normal": "Vista normal",
+        "view_compact": "Vista compacta",
+        "view_normal_alt": "Icono de vista normal",
+        "view_compact_alt": "Icono de vista compacta",
+
+        "compact_view_note": "Esta preferencia se guarda solo en tu navegador.",
+
+        "save_button": "Guardar cambios"
     }
 
 }
