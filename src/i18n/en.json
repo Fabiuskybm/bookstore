@@ -1,14 +1,14 @@
 {
     "layout": {
-        "app_name": "Bookstore",
-        "page_title_home": "Bookstore | Home",
-        "page_title_login": "Bookstore | Login",
-        "page_title_cart": "Bookstore | Cart",
-        "page_title_wishlist": "Bookstore | Wishlist",
-        "page_title_preferences": "Bookstore | Preferences"
+        "app_name": "Editorial Blackrose",
+        "page_title_home": "Editorial Blackrose | Home",
+        "page_title_login": "Editorial Blackrose | Login",
+        "page_title_cart": "Editorial Blackrose | Cart",
+        "page_title_wishlist": "Editorial Blackrose | Wishlist",
+        "page_title_preferences": "Editorial Blackrose | Preferences"
     },
     "header": {
-        "logo_alt": "Bookstore logo",
+        "logo_alt": "Editorial Blackrose logo",
         "search_placeholder": "Search by title, author...",
         "login_title": "Sign in",
         "user_icon_alt": "User icon",
@@ -45,7 +45,7 @@
         "register_submit": "Create account"
     },
     "home": {
-        "title": "Welcome to Bookstore",
+        "title": "Welcome to Editorial Blackrose",
         "subtitle": "Main content",
         "empty": "No books available"
     },
@@ -100,6 +100,13 @@
         "compact_view_note": "This preference is stored only in your browser.",
 
         "save_button": "Save changes"
+    },
+    "footer": {
+        "copyright": "© 2025 Editorial Blackrose. All rights reserved.",
+        "social_label": "Social networks",
+        "instagram_alt": "Editorial Blackrose on Instagram",
+        "tiktok_alt": "Editorial Blackrose on TikTok",
+        "x_alt": "Editorial Blackrose on X"
     }
 
 }
