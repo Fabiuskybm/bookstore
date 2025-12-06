@@ -14,7 +14,11 @@
         "cart_icon_alt": "Icono de carrito de la compra",
         "cart_title": "Carrito",
         "greeting_prefix": "Hola,",
-        "greeting_admin_label": "administrador"
+        "greeting_admin_label": "administrador",
+        "language_title": "Cambiar idioma",
+        "language_icon_alt": "Icono de idioma",
+        "language_es_label": "Español",
+        "language_en_label": "Inglés"
     },
     "nav": {
         "home": "Inicio"

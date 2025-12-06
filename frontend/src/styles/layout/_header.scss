@@ -2,7 +2,6 @@
 @use '../core/variables' as *;
 
 
-
 .header {
     display: flex;
     align-items: center;
@@ -20,13 +19,18 @@
         gap: 1rem;
     }
 
-    &__user {
+
+    // ===================================
+    //   Dropdown genérico (user + lang)
+    // ===================================
+
+    &__dropdown {
         position: relative;
         display: flex;
         align-items: center;
     }
 
-    &__user-trigger {
+    &__dropdown-trigger {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
@@ -48,7 +52,7 @@
         white-space: nowrap;
     }
 
-    &__user-menu {
+    &__dropdown-menu {
         position: absolute;
         top: 100%;
         right: 0;
@@ -64,21 +68,27 @@
         z-index: 20;
 
         overflow: hidden;
-
     }
 
-    &__user-menu-list {
+    // Lista genérica de items del menú
+    &__dropdown-menu-list,
+    &__user-menu-list, 
+    &__lang-menu-list {
         list-style: none;
         margin: 0;
         padding: 0;
     }
 
+    &__dropdown-menu-item,
     &__user-menu-item {
         padding: 0;
     }
 
+    &__dropdown-menu-link,
+    &__dropdown-menu-action,
     &__user-menu-link,
-    &__user-menu-action {
+    &__user-menu-action,
+    &__lang-menu-button {
         display: block;
         width: 100%;
         padding: 0.6rem 1rem;
@@ -97,7 +107,16 @@
         }
     }
 
-    &__user-menu-form {
+    &__dropdown-menu-form,
+    &__user-menu-form,
+    &__lang-menu-form {
         margin: 0;
+    }
+
+    // Etiqueta ES / EN junto al icono
+    &__lang-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
     }
 }

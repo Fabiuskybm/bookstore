@@ -23,6 +23,8 @@ require_once __DIR__ . '/../src/Book/services/BookService.php';
 require_once __DIR__ . '/../src/Wishlist/services/WishlistService.php';
 require_once __DIR__ . '/../src/Wishlist/controllers/WishlistController.php';
 
+require_once __DIR__ . '/../src/Preference/controllers/PreferenceController.php';
+
 
 // Helpers de presentación
 require_once __DIR__ . '/../src/Shared/html.php';
@@ -34,6 +36,7 @@ session_start_safe();
 
 $auth = new AuthController();
 $wishlist = new WishlistController();
+$preference = new PreferenceController();
 
 $data = [];
 
@@ -72,6 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'wishlist_clear':
             $result = $wishlist->clear();
+            break;
+
+        case 'set_language':
+            $result = $preference->setLanguage();
             break;
 
     }

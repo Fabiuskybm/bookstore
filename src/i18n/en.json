@@ -14,7 +14,11 @@
         "cart_icon_alt": "Shopping bag icon",
         "cart_title": "Cart",
         "greeting_prefix": "Hello,",
-        "greeting_admin_label": "admin"
+        "greeting_admin_label": "admin",
+        "language_title": "Change language",
+        "language_icon_alt": "Language icon",
+        "language_es_label": "Spanish",
+        "language_en_label": "English"
     },
     "nav": {
         "home": "Home"
