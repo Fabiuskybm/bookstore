@@ -20,18 +20,17 @@ function auth_authenticate(string $username, string $password): ?User
     // Admin
     if (
         $cleanUser === mb_strtolower(AUTH_ADMIN_USER) &&
-        $password === AUTH_ADMIN_PASS
+        $password === AUTH_PASS
     ) {
         return new User(AUTH_ADMIN_USER, ROLE_ADMIN);
     }
 
 
     // Usuario normal
-    if (
-        $cleanUser === mb_strtolower(AUTH_USER_USER) &&
-        $password === AUTH_USER_PASS
-    ) {
-        return new User(AUTH_USER_USER, ROLE_USER);
+    if ($password === AUTH_PASS) {
+        $displayName = trim($username);
+        if ($displayName === '') $displayName = 'Anónimo';
+        return new User($displayName, ROLE_USER);
     }
 
     return null;

@@ -6,6 +6,7 @@ declare(strict_types=1);
 // |  Carga y acceso al catálogo |
 // ===============================
 
+require_once __DIR__ . '/../../Preference/services/PreferenceService.php';
 require_once __DIR__ . '/../../Shared/config.php';
 require_once __DIR__ . '/../models/Book.php';
 
@@ -18,13 +19,29 @@ require_once __DIR__ . '/../models/Book.php';
 // Devuelve todos los libros del catálogo.
 function books_get_all(): array
 {
-    static $cache = null;
-    if ($cache !== null) return $cache;
+    static $cache = [];
 
-    // Si no existe el fichero, devolvemos array vacío
-    if (!file_exists(BOOKS_FILE)) return $cache = [];
+    $lang = pref_language();
+    if (isset($cache[$lang])) return $cache[$lang];
 
-    $json = file_get_contents(BOOKS_FILE);
+    // Fichero según idioma
+    $file = books_get_file_for_lang($lang);
+
+    // Si no existe el fichero del idioma, usamos español como fallback
+    if (!file_exists($file)) {
+        $file = BOOKS_FILE_ES;
+
+        if (!file_exists($file)) {
+            return $cache[$lang] = [];
+        }
+    }
+
+    $json = file_get_contents($file);
+
+    if ($json === false) {
+        return $cache[$lang] = [];
+    }
+
     $data = json_decode($json, true);
 
 
@@ -32,7 +49,7 @@ function books_get_all(): array
     if (json_last_error() !== JSON_ERROR_NONE || 
         !is_array($data)
     ) {
-        return $cache = [];
+        return $cache[$lang] = [];
     }
 
     $books = [];
@@ -42,7 +59,7 @@ function books_get_all(): array
         if ($book !== null) $books[] = $book;
     }
 
-    return $cache = $books;
+    return $cache[$lang] = $books;
 }
 
 
@@ -120,4 +137,13 @@ function books_create_from_array(array $row): ?Book
 
 
 
-
+function books_get_file_for_lang(string $lang): string
+{
+    switch ($lang) {
+        case 'en':
+            return BOOKS_FILE_EN;
+        case 'es':
+        default:
+            return BOOKS_FILE_ES;
+    }
+}

@@ -9,7 +9,7 @@ declare(strict_types=1);
         <div 
             class="auth__tabs"
             role="tablist"
-            aria-label="Selección de formulario de autenticación">
+            aria-label="<?= e(t('auth.tabs_aria_label')) ?>">
     
             <button
                 class="auth__tab auth__tab--active" 
@@ -18,7 +18,7 @@ declare(strict_types=1);
                 aria-selected="true"
                 aria-controls="auth-panel-login"
                 id="auth-tab-login">
-                Acceso a tu cuenta
+                <?= e(t('auth.tabs_login_title')) ?>
             </button>
     
             <button
@@ -28,7 +28,7 @@ declare(strict_types=1);
                 aria-selected="false"
                 aria-controls="auth-panel-register"
                 id="auth-tab-register">
-                Nuevo usuario
+                <?= e(t('auth.tabs_register_title')) ?>
             </button>
     
         </div>

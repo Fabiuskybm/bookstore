@@ -1,0 +1,92 @@
+[
+  {
+    "id": "B001",
+    "title": "Mistborn",
+    "author": "Brandon Sanderson",
+    "price": 16.30,
+    "coverImage": "assets/images/books/en/mistborn-limited-en.jpg",
+    "categories": ["fantasy", "cosmere"],
+    "format": "paperback",
+    "isFeatured": true
+  },
+  {
+    "id": "B002",
+    "title": "Isles of the Emberdark",
+    "author": "Brandon Sanderson",
+    "price": 25.87,
+    "coverImage": "assets/images/books/en/islas-ascuaoscura-en.jpg",
+    "categories": ["fantasy", "cosmere"],
+    "format": "hardcover",
+    "isFeatured": true
+  },
+  {
+    "id": "B003",
+    "title": "Yumi and the Nightmare Painter",
+    "author": "Brandon Sanderson",
+    "price": 14.38,
+    "coverImage": "assets/images/books/en/trenza-mar-esmeralda-en.jpg",
+    "categories": ["fantasy", "cosmere"],
+    "format": "paperback",
+    "isFeatured": false
+  },
+  {
+    "id": "B004",
+    "title": "The Devils",
+    "author": "Joe Abercrombie",
+    "price": 23.03,
+    "coverImage": "assets/images/books/en/los-diablos-en.jpg",
+    "categories": ["fantasy", "grimdark"],
+    "format": "hardcover",
+    "isFeatured": false
+  },
+  {
+    "id": "B005",
+    "title": "The Heroes",
+    "author": "Joe Abercrombie",
+    "price": 28.37,
+    "coverImage": "assets/images/books/en/los-heroes-en.jpg",
+    "categories": ["fantasy", "grimdark"],
+    "format": "hardcover",
+    "isFeatured": true
+  },
+  {
+    "id": "B006",
+    "title": "The Institute",
+    "author": "Stephen King",
+    "price": 14.38,
+    "coverImage": "assets/images/books/en/el-instituto-en.jpg",
+    "categories": ["horror", "thriller"],
+    "format": "paperback",
+    "isFeatured": true
+  },
+  {
+    "id": "B007",
+    "title": "La Bestia",
+    "author": "Carmen Mola",
+    "price": 12.45,
+    "coverImage": "assets/images/books/en/la-bestia.jpg",
+    "categories": ["thriller", "historical"],
+    "format": "paperback",
+    "isFeatured": false
+  },
+  {
+    "id": "B008",
+    "title": "Dungeon Crawler Carl",
+    "author": "Matt Dinniman",
+    "price": 22.02,
+    "coverImage": "assets/images/books/en/carl-mazmorrero-en.jpg",
+    "categories": ["science-fiction", "fantasy"],
+    "format": "paperback",
+    "isFeatured": true
+  },
+  {
+    "id": "B009",
+    "title": "Empire of Silence",
+    "author": "Christopher Ruocchio",
+    "price": 25.91,
+    "coverImage": "assets/images/books/en/el-imperio-del-silencio-en.jpg",
+    "categories": ["science-fiction", "space-opera"],
+    "format": "paperback",
+    "isFeatured": false
+  }
+]

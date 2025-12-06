@@ -9,6 +9,42 @@ import {
 
 
 
+function getCartTexts() {
+    const section = document.querySelector('.cart');
+
+    if (!section) {
+        return {
+            empty: 'Your cart is empty.',
+            ticketTitle: 'Order placed.',
+            alertEmpty: 'The cart is empty.',
+            coverAlt: 'Book cover.',
+            quantityLabel: 'Quantity.',
+            removeAlt: 'Remove.'
+        };
+    }
+
+    const {
+        cartEmptyText,
+        cartTicketTitle,
+        cartAlertEmpty,
+        cartCoverAlt,
+        cartQuantityLabel,
+        cartRemoveAlt
+
+    } = section.dataset;
+
+
+    return {
+        empty: cartEmptyText || 'Your cart is empty.',
+        ticketTitle: cartTicketTitle || 'Order placed.',
+        alertEmpty: cartAlertEmpty || 'The cart is empty.',
+        coverAlt: cartCoverAlt || 'Book cover.',
+        quantityLabel: cartQuantityLabel || 'Quantity.',
+        removeAlt: cartRemoveAlt || 'Remove.'
+    };
+}
+
+
 function formatPrice(price) {
     const num = Number(price) || 0;
     return num.toFixed(2).replace('.', ',') + ' €';
@@ -17,6 +53,7 @@ function formatPrice(price) {
 
 function buildTicketHtml(items, totals) {
     const date = new Date();
+    const texts = getCartTexts();
 
     const formattedDate =
         date.toLocaleDateString('es-ES') +
@@ -40,7 +77,7 @@ function buildTicketHtml(items, totals) {
 
     return `
         <div class="ticket">
-            <h3 class="ticket__title">Pedido realizado</h3>
+            <h3 class="ticket__title">${texts.ticketTitle}</h3>
             <p class="ticket__date">${formattedDate}</p>
 
             <div class="ticket__item">
@@ -124,10 +161,11 @@ function getCartDomRefs() {
  * Pinta el estado de carrito vacío.
  */
 function renderEmptyCart(dom) {
-    const { itemsContainer, totalQtyEl, totalPriceEl, checkoutBtn, ticketEl } = dom;
+    const { itemsContainer, totalQtyEl, totalPriceEl, checkoutBtn } = dom;
+    const texts = getCartTexts();
 
     itemsContainer.innerHTML = `
-        <p class="cart__empty">Tu carrito está vacío</p>
+        <p class="cart__empty">${texts.empty}</p>
     `;
 
     if (totalQtyEl) totalQtyEl.textContent = '0';
@@ -148,11 +186,13 @@ function createCartItemElement(item) {
 
     const lineTotal = item.price * item.quantity;
 
+    const texts = getCartTexts();
+
     article.innerHTML = `
         <div class="book-card__image-wrapper">
             <img
                 src="${item.coverImage}"
-                alt="Portada del libro"
+                alt="${texts.coverAlt}"
                 class="book-card__image"
             >
         </div>
@@ -170,7 +210,7 @@ function createCartItemElement(item) {
                 </p>
 
                 <label class="book-card__quantity">
-                    <span class="book-card__quantity-label">Cantidad</span>
+                    <span class="book-card__quantity-label">${texts.quantityLabel}</span>
                     <input 
                         type="number" 
                         min="1"
@@ -191,7 +231,7 @@ function createCartItemElement(item) {
                     type="button"
                     class="book-card__remove-btn"
                     data-cart-remove>
-                    <img src="assets/images/trash.svg" alt="Eliminar">
+                    <img src="assets/images/icons/trash.svg" alt="${texts.removeAlt}">
                 </button>
 
             </div>
@@ -252,9 +292,10 @@ function updateCartTotals(dom) {
 
 function handleCheckout(dom) {
     const items = getCartItems();
+    const texts = getCartTexts();
 
     if (!items.length) {
-        alert('El carrito está vacío.');
+        alert(texts.alertEmpty);
         return;
     }
 

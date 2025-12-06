@@ -3,8 +3,8 @@ declare(strict_types=1);
 ?>
 
 <section class="home">
-    <h1 class="home__title">Bienvenido a Bookstore</h1>
-    <p class="home__subtitle">Contenido principal</p>
+    <h1 class="home__title"><?= e(t('home.title')) ?></h1>
+    <p class="home__subtitle"><?= e(t('home.subtitle')) ?></p>
 
     <?php if (!empty($data['books'])): ?>
 
@@ -17,7 +17,7 @@ declare(strict_types=1);
         </div>
 
     <?php else: ?>
-        <p>No hay libros disponibles</p>
+        <p><?= e(t('home.empty')) ?></p>
     <?php endif; ?>
 
 </section>

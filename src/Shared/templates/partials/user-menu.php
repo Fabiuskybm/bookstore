@@ -22,7 +22,7 @@ $items = $currentUser ? get_user_menu_items($currentUser) : [];
                     <a 
                         href="index.php?view=<?= e($item['view']) ?>"
                         class="header__user-menu-link">
-                        <?= e($item['label']) ?>
+                        <?= e(t('user_menu.' . $item['key'])) ?>
                     </a>
 
                 <?php elseif ($item['type'] === 'logout'): ?>
@@ -37,7 +37,7 @@ $items = $currentUser ? get_user_menu_items($currentUser) : [];
                             name="action"
                             value="logout"
                             class="header__user-menu-action">
-                            <?= e($item['label']) ?>
+                            <?= e(t('user_menu.' . $item['key'])) ?>
                         </button>
                     </form>
 

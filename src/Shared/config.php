@@ -16,11 +16,11 @@ const ROLE_USER = 'user';
 
 // Credenciales de prueba
 const AUTH_ADMIN_USER = 'admin';
-const AUTH_ADMIN_PASS = '1234';
-
-const AUTH_USER_USER = 'fabio';
-const AUTH_USER_PASS = '1234';
+const AUTH_PASS = '1234';
 
 
-// Ruta al catálogo de libros (JSON).
-const BOOKS_FILE = __DIR__ . '/../Book/data/books.json';
+// Rutas al catálogo de libros (JSON) por idioma.
+const BOOKS_DATA_DIR = __DIR__ . '/../Book/data';
+
+const BOOKS_FILE_ES = BOOKS_DATA_DIR . '/books_es.json';
+const BOOKS_FILE_EN = BOOKS_DATA_DIR . '/books_en.json';
