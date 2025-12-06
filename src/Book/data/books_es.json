@@ -1,6 +1,6 @@
 [
   {
-    "id": "B001",
+    "id": "ES_B001",
     "title": "Nacidos de la bruma",
     "author": "Brandon Sanderson",
     "price": 16.30,
@@ -10,7 +10,7 @@
     "isFeatured": true
   },
   {
-    "id": "B002",
+    "id": "ES_B002",
     "title": "Islas de la ascuaoscura",
     "author": "Brandon Sanderson",
     "price": 25.87,
@@ -20,7 +20,7 @@
     "isFeatured": true
   },
   {
-    "id": "B003",
+    "id": "ES_B003",
     "title": "Trenza del mar esmeralda",
     "author": "Brandon Sanderson",
     "price": 14.38,
@@ -30,7 +30,7 @@
     "isFeatured": false
   },
   {
-    "id": "B004",
+    "id": "ES_B004",
     "title": "Los diablos",
     "author": "Joe Abercrombie",
     "price": 23.03,
@@ -40,7 +40,7 @@
     "isFeatured": false
   },
   {
-    "id": "B005",
+    "id": "ES_B005",
     "title": "Los héroes",
     "author": "Joe Abercrombie",
     "price": 28.37,
@@ -50,7 +50,7 @@
     "isFeatured": true
   },
   {
-    "id": "B006",
+    "id": "ES_B006",
     "title": "El instituto",
     "author": "Stephen King",
     "price": 14.38,
@@ -60,7 +60,7 @@
     "isFeatured": true
   },
   {
-    "id": "B007",
+    "id": "ES_B007",
     "title": "La bestia",
     "author": "Carmen Mola",
     "price": 12.45,
@@ -70,7 +70,7 @@
     "isFeatured": false
   },
   {
-    "id": "B008",
+    "id": "ES_B008",
     "title": "Carl el mazmorrero",
     "author": "Matt Dinniman",
     "price": 22.02,
@@ -80,7 +80,7 @@
     "isFeatured": true
   },
   {
-    "id": "B009",
+    "id": "ES_B009",
     "title": "El imperio del silencio",
     "author": "Christopher Ruocchio",
     "price": 25.91,

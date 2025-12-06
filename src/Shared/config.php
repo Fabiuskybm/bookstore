@@ -24,3 +24,8 @@ const BOOKS_DATA_DIR = __DIR__ . '/../Book/data';
 
 const BOOKS_FILE_ES = BOOKS_DATA_DIR . '/books_es.json';
 const BOOKS_FILE_EN = BOOKS_DATA_DIR . '/books_en.json';
+
+
+// Idiomas soportados por el catálogo y la interfaz
+const SUPPORTED_LANGUAGES = ['es', 'en'];
+

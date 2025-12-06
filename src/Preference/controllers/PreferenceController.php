@@ -11,7 +11,7 @@ class PreferenceController
     {
         $lang = $_POST['language'] ?? '';
 
-        if (in_array($lang, PREFERENCE_LANGUAGES, true)) {
+        if (in_array($lang, SUPPORTED_LANGUAGES, true)) {
             pref_set_language($lang);
         }
 

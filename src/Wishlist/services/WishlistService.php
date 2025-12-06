@@ -177,7 +177,7 @@ function wishlist_get_books(): array
     $books = [];
 
     foreach ($ctx['ids'] as $id) {
-        $book = books_find_by_id($id);
+        $book = books_find_by_id_any($id);
         if ($book !== null) $books[] = $book;
     }
 
