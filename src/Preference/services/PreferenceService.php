@@ -10,7 +10,6 @@ const PREF_DEFAULT_LANGUAGE = 'es';
 const PREF_DEFAULT_THEME = 'light';
 const PREF_COOKIE_PREFIX = 'preferences_';
 const PREF_GUEST_COOKIE_SUFFIX = 'guest';
-const PREFERENCE_LANGUAGES = ['es', 'en'];
 
 
 

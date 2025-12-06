@@ -1,6 +1,6 @@
 [
   {
-    "id": "B001",
+    "id": "EN_B001",
     "title": "Mistborn",
     "author": "Brandon Sanderson",
     "price": 16.30,
@@ -10,7 +10,7 @@
     "isFeatured": true
   },
   {
-    "id": "B002",
+    "id": "EN_B002",
     "title": "Isles of the Emberdark",
     "author": "Brandon Sanderson",
     "price": 25.87,
@@ -20,7 +20,7 @@
     "isFeatured": true
   },
   {
-    "id": "B003",
+    "id": "EN_B003",
     "title": "Yumi and the Nightmare Painter",
     "author": "Brandon Sanderson",
     "price": 14.38,
@@ -30,7 +30,7 @@
     "isFeatured": false
   },
   {
-    "id": "B004",
+    "id": "EN_B004",
     "title": "The Devils",
     "author": "Joe Abercrombie",
     "price": 23.03,
@@ -40,7 +40,7 @@
     "isFeatured": false
   },
   {
-    "id": "B005",
+    "id": "EN_B005",
     "title": "The Heroes",
     "author": "Joe Abercrombie",
     "price": 28.37,
@@ -50,7 +50,7 @@
     "isFeatured": true
   },
   {
-    "id": "B006",
+    "id": "EN_B006",
     "title": "The Institute",
     "author": "Stephen King",
     "price": 14.38,
@@ -60,7 +60,7 @@
     "isFeatured": true
   },
   {
-    "id": "B007",
+    "id": "EN_B007",
     "title": "La Bestia",
     "author": "Carmen Mola",
     "price": 12.45,
@@ -70,7 +70,7 @@
     "isFeatured": false
   },
   {
-    "id": "B008",
+    "id": "EN_B008",
     "title": "Dungeon Crawler Carl",
     "author": "Matt Dinniman",
     "price": 22.02,
@@ -80,7 +80,7 @@
     "isFeatured": true
   },
   {
-    "id": "B009",
+    "id": "EN_B009",
     "title": "Empire of Silence",
     "author": "Christopher Ruocchio",
     "price": 25.91,

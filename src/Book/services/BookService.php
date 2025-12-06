@@ -16,12 +16,11 @@ require_once __DIR__ . '/../models/Book.php';
 //  API pública del servicio
 // ---------------------------
 
-// Devuelve todos los libros del catálogo.
-function books_get_all(): array
+
+function books_get_all_for_lang(string $lang): array
 {
     static $cache = [];
 
-    $lang = pref_language();
     if (isset($cache[$lang])) return $cache[$lang];
 
     // Fichero según idioma
@@ -63,6 +62,14 @@ function books_get_all(): array
 }
 
 
+// Devuelve todos los libros del catálogo.
+function books_get_all(): array
+{
+    $lang = pref_language();
+    return books_get_all_for_lang($lang);
+}
+
+
 // Devuelve solo los libros destacados (isFeatured = true).
 function books_get_featured(): array {
     $allBooks = books_get_all();
@@ -83,6 +90,42 @@ function books_find_by_id(string $id): ?Book {
     foreach (books_get_all() as $book) 
     {
         if ($book->getId() === $id) return $book;
+    }
+
+    return null;
+}
+
+
+function books_find_by_id_in_lang(string $id, string $lang): ?Book
+{
+    $id = trim($id);
+    if ($id === '') return null;
+
+    foreach (books_get_all_for_lang($lang) as $book) {
+        if ($book->getId() === $id) {
+            return $book;
+        }
+    }
+
+    return null;
+}
+
+
+function books_find_by_id_any(string $id): ?Book
+{
+    $id = trim($id);
+    if ($id === '') return null;
+
+    $langFromId = books_lang_from_id($id);
+
+    if ($langFromId !== null) {
+        $book = books_find_by_id_in_lang($id, $langFromId);
+        if ($book !== null) return $book;
+    }
+
+    foreach (SUPPORTED_LANGUAGES as $lang) {
+        $book = books_find_by_id_in_lang($id, $lang);
+        if ($book !== null) return $book;
     }
 
     return null;
@@ -146,4 +189,16 @@ function books_get_file_for_lang(string $lang): string
         default:
             return BOOKS_FILE_ES;
     }
+}
+
+
+function books_lang_from_id(string $id): ?string
+{
+    $id = trim($id);
+    if ($id === '') return null;
+
+    if (strpos($id, 'ES_') === 0) return 'es';
+    if (strpos($id, 'EN_') === 0) return 'en';
+
+    return null;
 }
