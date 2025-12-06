@@ -52,7 +52,9 @@
         "empty": "Tu lista de deseos está vacía.",
         "select_all": "Seleccionar todo",
         "add_to_cart": "Añadir al carrito",
-        "remove_selected": "Eliminar"
+        "remove_selected": "Eliminar",
+        "total_label": "Total de la lista",
+        "clear_all": "Vaciar lista"
     },
     "cart": {
         "title": "Carrito",

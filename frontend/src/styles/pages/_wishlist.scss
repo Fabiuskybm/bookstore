@@ -9,6 +9,13 @@
         margin-bottom: 1rem;
     }
 
+    &__summary {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
     &__form {
         display: flex;
         flex-direction: column;
@@ -77,6 +84,18 @@
                 border-color: #E39A9A;
             }
         }
+
+        &--clear {
+            background: #FFF3CD;
+            border-color: #FFEC99;
+            color: #8A6D3B;
+
+            &:hover {
+                background: #FEE8A6;
+                border-color: #F7D87B;
+            }
+        }
+        
     }
 
     &__error {
