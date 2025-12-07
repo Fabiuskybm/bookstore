@@ -9,7 +9,6 @@ $wishlistTotal = $data['wishlistTotal'] ?? 0.0;
 
 <section class="wishlist">
     <h1 class="wishlist__title"><?= e(t('wishlist.title')) ?></h1>
-
     
     <?php if (empty($wishlistBooks)): ?>
         <p class="wishlist__empty"><?= e(t('wishlist.empty')) ?></p>
@@ -19,6 +18,8 @@ $wishlistTotal = $data['wishlistTotal'] ?? 0.0;
             <strong><?= e(t('wishlist.total_label')) ?>:</strong>
             <?= number_format($wishlistTotal, 2, ',', '.') ?> €
         </div>
+
+        <div class="wishlist__divider"></div>
 
         <form 
             method="post"
