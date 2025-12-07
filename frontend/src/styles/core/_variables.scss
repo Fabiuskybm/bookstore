@@ -24,6 +24,10 @@ $color-text-muted: rgba(245, 245, 247, 0.7);
 
 $color-accent: #8B5CF6;
 
+$color-like-heart: #EF4444;
+$color-like-bg: #3B1114;
+$color-like-bg-hover: #4C1519;
+
 // ICONS
 $icon-color: $color-text-main;
 $icon-color-hover: $color-accent;
@@ -110,8 +114,8 @@ $button-padding-y: 0.6rem;
 $button-padding-x: 1.2rem;
 $button-radius: $radius-md;
 
-$button-primary-bg: #2563EB;
-$button-primary-bg-hover: #1D4ED8;
+$button-primary-bg: $color-accent;
+$button-primary-bg-hover: #6D28D9;
 $button-primary-text: #FFFFFF;
 
 // Botón secundario (ghost / outline)
