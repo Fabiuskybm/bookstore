@@ -73,7 +73,7 @@
         color: $color-text-main;
     }
 
-    // ---------- Botones ----------
+    // ---------- Botones (home / wishlist) ----------
     &__actions {
         margin-top: $space-3;
         display: flex;
@@ -138,7 +138,7 @@
         white-space: nowrap;
     }
 
-    // ---------- Variante carrito (estructura JS) ----------
+    // ---------- Estructura común carrito ----------
     &__cart-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto auto auto;
@@ -162,12 +162,22 @@
         @include form-control-base(0.2rem, 0.4rem);
         width: 4rem;
         text-align: center;
+        margin-inline: auto;
+
+        appearance: textfield;
+        -moz-appearance: textfield;
+    }
+
+    &__quantity-input::-webkit-outer-spin-button,
+    &__quantity-input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 
     &__line-total {
         font-weight: 600;
         font-size: 0.9rem;
-        color: $color-accent;
+        color: $color-text-main;
     }
 
     &__remove-btn {
@@ -176,16 +186,32 @@
         cursor: pointer;
         padding: 0.25rem;
 
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        color: $color-text-muted;
+
+        border-radius: $radius-md;
+        
+        transition:
+            background-color 0.15s ease,
+            color 0.15s ease,
+            transform 0.05s ease;
+
         &:hover {
-            color: $color-accent;
+            background-color: rgba(239, 68, 68, 0.26);
+            color: #FCA5A5;
+            transform: translateY(-1px);
         }
     }
 
     &__remove-icon {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         display: block;
     }
+
 
     /* ================================================================= */
     /*                        WISHLIST VARIANT                           */
@@ -213,53 +239,134 @@
         }
     }
 
+
     /* ================================================================= */
     /*                         CART VARIANT                              */
     /* ================================================================= */
     &--cart {
-        @include card-base($padding: $space-3 $space-4);
+        background-color: transparent;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+
+        padding: $space-4 0;
+        padding-inline: $space-4;
 
         display: flex;
+        flex-direction: row;
+        align-items: center;
         gap: $space-4;
-        align-items: flex-start;
+
+        border-bottom: .75px solid $color-border-subtle;
+
+
+        &:hover {
+            border-color: $color-border-strong;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+            transform: translateY(-1px);
+        }
 
         .book-card__image-wrapper {
-            flex: 0 0 90px;
-            max-height: 130px;
+            flex: 0 0 80px;
+            width: 80px;
+            height: 110px;
+            max-height: none;
             aspect-ratio: auto;
+            background: transparent;
+            overflow: hidden;
             border-radius: $radius-md;
+        }
+
+        .book-card__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .book-card__body {
             flex: 1;
             margin-top: 0;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 2.5fr)
+                minmax(0, 1fr) 
+                auto 
+                auto 
+                auto;
+
+            column-gap: $space-9;
+            align-items: center;
         }
 
         .book-card__title {
-            margin-bottom: $space-2;
-        }
-
-        .book-card__price {
-            margin-top: 0;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: $color-text-muted;
+            margin: 0;
+            grid-column: 1;
+            text-align: left;
         }
 
         .book-card__cart-row {
-            margin-top: $space-3;
+            display: contents;
         }
 
-        .book-card__line-total {
-            font-size: 1rem;
-            font-weight: 700;
-            color: $color-accent;
+        .book-card__price {
+            grid-column: 2;
+            justify-self: center;
         }
 
-        .book-card__remove-btn {
+        .book-card__quantity {
+            grid-column: 3;
+            justify-self: center;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: $space-2;
+        }
+
+        .book-card__qty-btn {
+            width: 28px;
+            height: 28px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            border: none;
+            border-radius: $radius-md;
+
+            background-color: transparent;
+            color: $color-text-main;
+            font-size: 1rem;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                background-color 0.15s ease,
+                border-color 0.15s ease,
+                transform 0.1s ease;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.08); // 👈 ligero hover
+                border-color: $color-border-strong;
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: translateY(1px);
+            }
+        }
+
+        .book-card__line-total {
+            grid-column: 4;
+            justify-self: flex-end;
+        }
+
+        .book-card__remove-btn {
+            grid-column: 5;
+            justify-self: center;
         }
     }
 }
