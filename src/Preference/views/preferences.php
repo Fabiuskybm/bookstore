@@ -8,6 +8,7 @@ $currentItems = pref_items_per_page();
 
 <div class="preferences">
     <h1 class="preferences__title"><?= e(t('preferences.title')) ?></h1>
+    <div class="preferences__divider"></div>
 
     <form class="preferences__form" action="index.php" method="POST">
 
@@ -144,11 +145,11 @@ $currentItems = pref_items_per_page();
 
             </div>
 
-            <p class="preferences__note">
-                <?= e(t('preferences.compact_view_note')) ?>
-            </p>
         </div>
-
+        
+        <p class="preferences__note">
+            <?= e(t('preferences.compact_view_note')) ?>
+        </p>
 
         <button 
             class="preferences__submit" 
