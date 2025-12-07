@@ -4,6 +4,10 @@
 
 .nav {
     padding-inline: $spacing-page-x;
+    padding-block: $space-3;
+
+    border-bottom: 1px solid $color-border-subtle;
+    margin-bottom: $space-4;
 }
 
 .nav__list {
@@ -12,15 +16,25 @@
     padding: 0;
 
     display: flex;
-    gap: 1.5rem;
+    justify-content: center;
+    gap: $space-6;
 }
 
 .nav__link {
     text-decoration: none;
-    color: $color-text-main;
     font-weight: 500;
+    font-size: 0.95rem;
+
+    color: $color-text-muted;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid transparent;
+
+    transition:
+        color 0.15s ease-out,
+        border-color 0.15s ease-out;
 }
 
 .nav__link--active {
-    text-decoration: underline;
+    color: $color-text-main;
+    border-bottom-color: $color-accent;
 }

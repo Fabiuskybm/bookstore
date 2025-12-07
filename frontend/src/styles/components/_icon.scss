@@ -1,6 +1,32 @@
 
+@use '../core/variables' as *;
+
+
 .header__icon {
-    width: 24px;
-    height: 24px;
     display: block;
+    color: $icon-color;
+
+    path,
+    circle,
+    rect,
+    line,
+    polygon,
+    polyline {
+        fill: currentColor;
+    }
+
+    &--user {
+        width: 28px;
+        height: 28px;
+    }
+
+    &--cart {
+        width: 22px;
+        height: 22px;
+    }
+
+    &--lang {
+        width: 22px;
+        height: 22px;
+    }
 }

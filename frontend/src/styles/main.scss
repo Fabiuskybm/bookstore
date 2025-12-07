@@ -4,7 +4,9 @@
 
 @use 'layout/page';
 @use 'layout/header';
+@use 'layout/footer';
 
+@use 'components/header-dropdows';
 @use 'components/nav';
 @use 'components/icon';
 @use 'components/search-bar';
@@ -16,3 +18,5 @@
 @use 'pages/wishlist';
 @use 'pages/preferences';
 @use 'pages/cart';
+
+@use 'layout/themes';

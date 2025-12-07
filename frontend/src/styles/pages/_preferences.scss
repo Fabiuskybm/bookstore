@@ -1,75 +1,113 @@
+
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+
 .preferences {
-    max-width: 800px;
+    max-width: $page-max-width;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: $space-8 $space-6;
 
     &__title {
-        margin-bottom: 1.5rem;
-        font-size: 1.5rem;
-        font-weight: 600;
+        margin: 0;
+        font-size: $font-size-h1;
+        font-weight: $heading-font-weight;
+        color: $color-text-main;
+    }
+
+    &__divider {
+        margin-top: $space-3;
+        margin-bottom: $space-10;
+        height: 2px;
+        background-color: $color-border-subtle;
     }
 
     &__form {
+        @include card-base($space-6);
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: $space-6;
+
+        max-width: 500px;
+        margin: 0 auto;
+
+        align-items: center;
     }
 
     &__group {
         display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+        align-items: center;
+        justify-content: flex-start;
+        gap: $space-4;
+        width: 100%;
+
+        border-bottom: .75px solid $color-border-subtle;
+        padding-bottom: $space-8;
+    }
+
+    &__group:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
     }
 
     &__label {
         font-weight: 500;
+        font-size: 0.95rem;
+        color: $color-text-main;
+
+        min-width: 180px;
+        text-align: left;
     }
 
     &__select,
     &__input {
-        max-width: 200px;
-        padding: 0.35rem 0.5rem;
+        max-width: 220px;
+        @include form-control-base();
     }
 
     &__group--view {
-        align-items: flex-start;
+        align-items: center;
     }
 
     &__view-toggle {
         display: flex;
-        gap: 0.75rem;
+        gap: $space-3;
     }
 
     &__view-button {
-        border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        padding: 0.35rem;
-        background: #fff;
-        cursor: pointer;
+        @include button-secondary-base();
+        padding: $space-2;
+        border-radius: $radius-md;
 
-        &:hover {
-            background: #f3f3f3;
+        background-color: transparent;
+        border-color: $color-border-subtle;
+
+        &[aria-pressed='true'] {
+            background-color: $color-surface-input;
+            border-color: $color-accent;
+            color: $color-text-main;
         }
     }
 
     &__view-icon {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         display: block;
     }
 
     &__note {
-        font-size: 0.875rem;
-        color: #555;
+        font-size: 0.8rem;
+        color: $color-text-muted;
+        max-width: 420px;
+
+        text-align: center;
+        margin: 0 auto;
     }
 
     &__submit {
-        align-self: flex-start;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        border: 1px solid #333;
-        background: #333;
-        color: #fff;
-        cursor: pointer;
+        @include button-primary-base();
+        align-self: center;
+        margin-top: $space-4;
     }
+
 }

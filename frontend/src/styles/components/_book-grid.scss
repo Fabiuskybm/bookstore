@@ -1,16 +1,17 @@
 
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
 .book-grid {
     display: grid;
-    gap: 1.5rem 1.5rem;
+    gap: $space-6 $space-6;
     justify-items: stretch;
 }
-
 
 .book-grid--home,
 .book-grid--wishlist {
     grid-template-columns: 1fr;
 }
-
 
 @media (min-width: 768px) {
     .book-grid--home,
@@ -18,7 +19,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
-
 
 @media (min-width: 1200px) {
     .book-grid--home,

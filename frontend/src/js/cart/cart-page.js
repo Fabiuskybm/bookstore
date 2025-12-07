@@ -68,7 +68,12 @@ function buildTicketHtml(items, totals) {
         linesHtml += `
             <div class="ticket__item">
                 <span class="ticket__title">${item.title}</span>
-                <span class="ticket__qty">${item.quantity}</span>
+
+                <span class="ticket__qty">
+                    <span class="ticket__qty-x">x</span>
+                    ${item.quantity}
+                </span>
+                
                 <span class="ticket__total">${formatPrice(lineTotal)}</span>
             </div>
         `;
@@ -80,7 +85,7 @@ function buildTicketHtml(items, totals) {
             <h3 class="ticket__title">${texts.ticketTitle}</h3>
             <p class="ticket__date">${formattedDate}</p>
 
-            <div class="ticket__item">
+            <div class="ticket__items">
                 ${linesHtml}
             </div>
 
@@ -115,6 +120,11 @@ function renderCart() {
         const article = createCartItemElement(item);
         itemsContainer.appendChild(article);
     });
+
+    if (items.length) {
+        const header = document.querySelector('.cart__header');
+        if (header) header.style.display = '';
+    }
 
     updateCartTotals(dom);
 }
@@ -164,6 +174,9 @@ function renderEmptyCart(dom) {
     const { itemsContainer, totalQtyEl, totalPriceEl, checkoutBtn } = dom;
     const texts = getCartTexts();
 
+    const header = document.querySelector('.cart__header');
+    if (header) header.style.display = 'none';
+
     itemsContainer.innerHTML = `
         <p class="cart__empty">${texts.empty}</p>
     `;
@@ -209,16 +222,27 @@ function createCartItemElement(item) {
                     ${formatPrice(item.price)}
                 </p>
 
-                <label class="book-card__quantity">
-                    <span class="book-card__quantity-label">${texts.quantityLabel}</span>
-                    <input 
-                        type="number" 
+                <div class="book-card__quantity">
+                    <button 
+                        type="button" 
+                        class="book-card__qty-btn book-card__qty-btn--minus" 
+                        data-cart-decrease>
+                        -
+                    </button>
+
+                    <input type="number"
                         min="1"
                         class="book-card__quantity-input"
                         value="${item.quantity}"
-                        data-cart-quantity
-                    >
-                </label>
+                        data-cart-quantity>
+
+                    <button 
+                        type="button" 
+                        class="book-card__qty-btn book-card__qty-btn--plus" 
+                        data-cart-increase>
+                        +
+                    </button>
+                </div>
 
                 <p 
                     class="book-card__line-total"
@@ -231,7 +255,21 @@ function createCartItemElement(item) {
                     type="button"
                     class="book-card__remove-btn"
                     data-cart-remove>
-                    <img src="assets/images/icons/trash.svg" alt="${texts.removeAlt}">
+                    
+                    <svg
+                        class="book-card__remove-icon"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M10 2L9 3H4V5H5V20C5 20.5222 5.19133 21.0546 5.56836 21.4316C5.94539 21.8087 6.47778 22 7 22H17C17.5222 22 18.0546 21.8087 18.4316 21.4316C18.8087 21.0546 19 20.5222 19 20V5H20V3H15L14 2H10ZM7 5H17V20H7V5ZM9 7V18H11V7H9ZM13 7V18H15V7H13Z"
+                            fill="currentColor"
+                        />
+                    </svg>
+
                 </button>
 
             </div>
@@ -253,13 +291,16 @@ function createCartItemElement(item) {
 function attachCartItemEvents(article, itemId) {
     const qtyInput = article.querySelector('[data-cart-quantity]');
     const removeBtn = article.querySelector('[data-cart-remove]');
+    const minusBtn = article.querySelector('[data-cart-decrease]');
+    const plusBtn = article.querySelector('[data-cart-increase]');
 
+    // --- Input manual ---
     if (qtyInput) {
         qtyInput.addEventListener('change', (event) => {
             const value = Number(event.target.value);
             const safeValue =
                 Number.isInteger(value) && value > 0 ? value : 1;
-            
+
             event.target.value = String(safeValue);
 
             setQuantity(itemId, safeValue);
@@ -267,6 +308,31 @@ function attachCartItemEvents(article, itemId) {
         });
     }
 
+    // --- Botón "-" ---
+    if (minusBtn) {
+        minusBtn.addEventListener('click', () => {
+            const current = Number(qtyInput.value) || 1;
+            const newValue = Math.max(1, current - 1);
+
+            qtyInput.value = newValue;
+            setQuantity(itemId, newValue);
+            renderCart();
+        });
+    }
+
+    // --- Botón "+" ---
+    if (plusBtn) {
+        plusBtn.addEventListener('click', () => {
+            const current = Number(qtyInput.value) || 1;
+            const newValue = current + 1;
+
+            qtyInput.value = newValue;
+            setQuantity(itemId, newValue);
+            renderCart();
+        });
+    }
+
+    // --- Botón eliminar ---
     if (removeBtn) {
         removeBtn.addEventListener('click', () => {
             removeItem(itemId);

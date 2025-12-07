@@ -1,0 +1,455 @@
+
+@use '../core/variables' as *;
+
+
+// ================================================================
+//  LIGHT THEME (page--theme-light)
+//  Se aplica cuando el <body> tiene la clase .page--theme-light
+// ================================================================
+
+.page--theme-light {
+
+    // ----------------------------------------------
+    // Fondo general de la página
+    // ----------------------------------------------
+    background-color: #F5F5F7;
+    color: $color-text-dark;
+
+
+    // ----------------------------------------------
+    // HEADER / NAV / FOOTER
+    // ----------------------------------------------
+    .header,
+    .nav,
+    .footer {
+        background-color: $color-surface-light;
+        color: $color-text-dark;
+        border-color: rgba(0, 0, 0, 0.08);
+    }
+
+
+    // ----------------------------------------------
+    // Logo (es blanco, así que le damos fondo oscuro)
+    // ----------------------------------------------
+    .header__logo-img {
+        background-color: $color-text-dark;
+        border-radius: $radius-pill;
+        padding: 0.25rem;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+    }
+
+
+    // ----------------------------------------------
+    // Iconos de header y footer
+    // ----------------------------------------------
+    .header__icon,
+    .footer__social-icon {
+        color: $color-text-dark;
+    }
+
+    .header__icon:hover,
+    .footer__social-link:hover .footer__social-icon {
+        color: $color-accent;
+    }
+
+
+    // ----------------------------------------------
+    // Input de búsqueda (fondo claro + placeholder)
+    // ----------------------------------------------
+    .header__search-input {
+        background-color: #F3F3F3;
+        color: $color-text-dark;
+        border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .header__search-input::placeholder {
+        color: rgba(17, 17, 17, 0.55);
+    }
+
+
+    // ----------------------------------------------
+    // Texto de saludo del usuario
+    // ----------------------------------------------
+    .header__user-name {
+        color: $color-text-dark;
+    }
+
+
+    // ----------------------------------------------
+    // Enlaces del nav
+    // ----------------------------------------------
+    .nav__link {
+        color: $color-text-dark;
+
+        &--active {
+            border-color: $color-accent;
+            color: $color-accent;
+        }
+    }
+
+
+    // ----------------------------------------------
+    // DROPDOWNS (Light Theme)
+    // ----------------------------------------------
+    .header__dropdown-menu {
+        background-color: $color-surface-light;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        color: $color-text-dark;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .header__lang-menu-button,
+    .header__user-menu-link,
+    .header__user-menu-action {
+        color: $color-text-dark;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.06);
+            color: $color-text-dark;
+        }
+    }
+
+
+    // ----------------------------------------------
+    // FOOTER (LIGHT)
+    // ----------------------------------------------
+
+    .page__footer {
+        background-color: $color-text-main;
+        border-top: 1px solid RGBA(0, 0, 0, 0.08);
+    }
+
+    .footer__text {
+        color: $color-text-dark;
+    }
+
+
+    // ----------------------------------------------
+    // BOOK CARDS (LIGHT THEME)
+    // ----------------------------------------------
+
+    .book-card {
+        background-color: $color-surface-light;
+        border-color: RGBA(0, 0, 0, 0.06);
+        box-shadow: 0 18px 35px RGBA(15, 23, 42, 0.18);
+
+        &:hover {
+            border-color: RGBA(0, 0, 0, 0.16);
+            box-shadow: 0 22px 50px RGBA(15, 23, 42, 0.25);
+        }
+
+        &__image-wrapper {
+            background-color: #E5E7EB;
+        }
+
+        &__title,
+        &__price,
+        &__line-total {
+            color: $color-text-dark;
+        }
+
+        &__author,
+        &__quantity-label {
+            color: RGBA(17, 17, 17, 0.65);
+        }
+
+        &__btn {
+            color: $color-text-dark;
+
+            &--wishlist-active {
+                background-color: #FEE2E2;
+                color: #B91C1C;
+            }
+
+            &--cart {
+                background-color: #EDEDF0;
+                color: $color-text-dark;
+
+                &:hover {
+                    background-color: #D9D9DE;
+                    border-color: RGBA(0, 0, 0, 0.18);
+                }
+            }
+        }
+
+        &__remove-btn {
+            color: RGBA(17, 17, 17, 0.55);
+
+            &:hover {
+                background-color: RGBA(239, 68, 68, 0.12);
+                color: #B91C1C;
+            }
+        }
+
+        &--cart {
+            border-bottom: 0.75px solid RGBA(0, 0, 0, 0.08);
+
+            .book-card__quantity-input {
+                background-color: #FFFFFF;
+                color: $color-text-dark;
+                border: 1px solid rgba(0, 0, 0, 0.12);
+            }
+
+            .book-card__qty-btn {
+                background-color: transparent;
+                color: $color-text-dark;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.06);
+                }
+            }
+
+        }
+    }
+
+
+    // ----------------------------------------------
+    // BOOK-CARD — CART VARIANT (LIGHT THEME)
+    // ----------------------------------------------
+    .book-card--cart {
+        background-color: #F5F5F7;
+        box-shadow: none; // se mantiene limpio
+        border-bottom: 0.75px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .book-card--cart:hover {
+        background-color: #F5F5F7; // no oscurece al hacer hover
+        border-color: rgba(0, 0, 0, 0.16);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+
+    // ----------------------------------------------
+    // CART (LIGHT THEME)
+    // ----------------------------------------------
+
+    .cart__title {
+        color: $color-text-dark;
+    }
+
+    .cart__divider {
+        background-color: RGBA(0, 0, 0, 0.12);
+    }
+
+    .cart__header {
+        background-color: #F5F5F7;
+        border-top-color: RGBA(0, 0, 0, 0.08);
+        border-bottom-color: RGBA(0, 0, 0, 0.08);
+        color: RGBA(17, 17, 17, 0.65);
+    }
+
+    .cart__header-cell {
+        color: RGBA(17, 17, 17, 0.65);
+    }
+
+    .book-card--cart {
+        background-color: transparent;
+    }
+
+    // Panel resumen
+    .cart__summary {
+        background-color: #FFFFFF;
+        border-color: RGBA(0, 0, 0, 0.08);
+        box-shadow: 0 18px 35px RGBA(15, 23, 42, 0.16);
+    }
+
+    .cart__summary-title {
+        color: $color-text-dark;
+    }
+
+    .cart__summary-row {
+        color: RGBA(17, 17, 17, 0.70);
+
+        &--total {
+            border-top-color: RGBA(0, 0, 0, 0.10);
+            color: $color-text-dark;
+        }
+    }
+
+    .cart__summary-value--total {
+        color: $color-text-dark;
+    }
+
+    // Enlace "Continuar comprando"
+    .cart__continue-link {
+        background-color: #F3F3F3;
+        border-color: RGBA(0, 0, 0, 0.10);
+        color: RGBA(17, 17, 17, 0.70);
+
+        &:hover {
+            background-color: #E5E7EB;
+            border-color: RGBA(0, 0, 0, 0.18);
+            color: $color-text-dark;
+        }
+    }
+
+    // Ticket de compra
+    .cart__ticket .ticket {
+        background-color: #FFFFFF;
+        border-color: RGBA(0, 0, 0, 0.12);
+        color: $color-text-dark;
+        box-shadow: 0 10px 25px RGBA(15, 23, 42, 0.12);
+    }
+
+    .cart__ticket .ticket__date,
+    .cart__ticket .ticket__qty {
+        color: RGBA(17, 17, 17, 0.60);
+    }
+
+    .cart__ticket .ticket__grand-total {
+        border-top-color: RGBA(0, 0, 0, 0.10);
+        color: $color-text-dark;
+    }
+
+
+    // ===============================
+    // WISHLIST (LIGHT THEME)
+    // ===============================
+
+    .wishlist__title {
+        color: $color-text-dark;
+    }
+
+    .wishlist__summary {
+        color: rgba(17, 17, 17, 0.65);
+    }
+
+    .wishlist__divider {
+        background-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .wishlist__select-all-label {
+        color: rgba(17, 17, 17, 0.65);
+    }
+
+
+    .wishlist__btn--clear {
+        background-color: #E0E0E0;
+        border-color: rgba(0, 0, 0, 0.15);
+        color: $color-text-dark;
+
+        &:hover {
+            background-color: #E5E5E5;
+        }
+    }
+
+
+    // ----------------------------------------------
+    // AUTH / FORMULARIOS (LOGIN & REGISTER)
+    // ----------------------------------------------
+    .auth {
+        background-color: $color-surface-light;
+        border-color: RGBA(0, 0, 0, 0.08);
+        box-shadow: 0 18px 35px RGBA(15, 23, 42, 0.18);
+        color: $color-text-dark;
+
+        .auth__tabs {
+            background-color: #E5E7EB;
+        }
+
+        .auth__tab {
+            color: RGBA(17, 17, 17, 0.55);
+            background-color: transparent;
+            border-color: transparent;
+
+            &[aria-selected='true'],
+            &.auth__tab--active {
+                background-color: #FFFFFF;
+                border-color: RGBA(0, 0, 0, 0.12);
+                color: $color-text-dark;
+            }
+        }
+
+        .auth__label {
+            color: $color-text-dark;
+        }
+
+        .auth__input {
+            background-color: #FFFFFF;
+            color: $color-text-dark;
+            border-color: RGBA(0, 0, 0, 0.12);
+
+            &::placeholder {
+                color: RGBA(17, 17, 17, 0.55);
+            }
+        }
+
+        .auth__submit {
+            color: #FFFFFF;
+        }
+    }
+
+
+    // ----------------------------------------------
+    // PREFERENCIAS (LIGHT THEME)
+    // ----------------------------------------------
+    .preferences {
+
+        /* Título */
+        &__title {
+            color: $color-text-dark;
+        }
+
+        /* Divider */
+        &__divider {
+            background-color: RGBA(0, 0, 0, 0.10);
+        }
+
+        /* Card del formulario */
+        &__form {
+            background-color: $color-surface-light;
+            border-color: RGBA(0, 0, 0, 0.08);
+            box-shadow: 0 18px 35px RGBA(15, 23, 42, 0.18);
+        }
+
+        /* Grupos */
+        &__group {
+            border-bottom: 0.75px solid RGBA(0, 0, 0, 0.12);
+        }
+
+        &__group:last-of-type {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        &__label {
+            color: $color-text-dark;
+        }
+
+        /* Selects & inputs */
+        &__select,
+        &__input {
+            background-color: #FFFFFF;
+            color: $color-text-dark;
+            border-color: RGBA(0, 0, 0, 0.12);
+
+            &::placeholder {
+                color: RGBA(17, 17, 17, 0.55);
+            }
+        }
+
+        /* Toggle de vista */
+        &__view-button {
+            background-color: #F3F3F3;
+            border-color: RGBA(0, 0, 0, 0.12);
+            color: $color-text-dark;
+
+            &[aria-pressed='true'] {
+                background-color: #E5E7EB;
+                border-color: $color-accent;
+                color: $color-text-dark;
+            }
+        }
+
+        /* Nota final */
+        &__note {
+            color: RGBA(17, 17, 17, 0.65);
+        }
+
+        /* Botón guardar */
+        &__submit {
+            color: #FFFFFF;
+        }
+    }
+
+}

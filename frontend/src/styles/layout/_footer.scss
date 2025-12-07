@@ -1,0 +1,63 @@
+@use '../core/variables' as *;
+
+.page__footer {
+    margin-top: $space-8;
+    padding-inline: $spacing-page-x;
+    padding-block: $space-4;
+
+    border-top: 1px solid $color-border-subtle;
+    background-color: $color-surface-base;
+}
+
+.footer {
+    max-width: $page-max-width;
+    margin-inline: auto;
+    text-align: center;
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $space-3;
+    }
+
+    &__text {
+        margin: 0;
+    }
+
+    &__social {
+        margin-top: $space-2;
+    }
+
+    &__social-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: $space-3;
+    }
+
+    &__social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        color: $color-text-muted;
+        text-decoration: none;
+        transition: color 0.15s ease-out;
+
+        &:hover {
+            color: $color-accent;
+        }
+    }
+
+    &__social-icon {
+        width: 20px;
+        height: 20px;
+        display: block;
+    }
+}
+

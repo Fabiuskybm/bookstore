@@ -13,16 +13,19 @@ declare(strict_types=1);
     data-cart-remove-alt="<?= e(t('cart.remove_alt')) ?>">
 
     <h1 class="cart__title"><?= e(t('cart.title')) ?></h1>
+    <div class="cart__divider"></div>
 
     <div class="cart__layout">
 
         <section class="cart__items-area">
 
             <header class="cart__header">
+                <span class="cart__header-cell cart__header-cell--image"></span>
                 <span class="cart__header-cell cart__header-cell--title"><?= e(t('cart.header_title')) ?></span>
                 <span class="cart__header-cell cart__header-cell--price"><?= e(t('cart.header_price')) ?></span>
                 <span class="cart__header-cell cart__header-cell--quantity"><?= e(t('cart.header_quantity')) ?></span>
                 <span class="cart__header-cell cart__header-cell--total"><?= e(t('cart.header_total')) ?></span>
+                <span class="cart__header-cell cart__header-cell--actions"></span>
             </header>
 
             <div
@@ -35,7 +38,23 @@ declare(strict_types=1);
                 <a 
                     href="index.php?view=home"
                     class="cart__continue-link">
-                    <?= e(t('cart.continue_shopping')) ?>
+
+                    <svg
+                        class="cart__continue-icon"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z"
+                            fill="currentColor"
+                        />
+                    </svg>
+
+                    <span><?= e(t('cart.continue_shopping')) ?></span>
                 </a>
             </div>
 
@@ -81,6 +100,5 @@ declare(strict_types=1);
         </aside>
 
     </div>
-
 
 </section>

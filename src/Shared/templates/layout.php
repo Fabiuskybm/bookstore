@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 $currentUser = auth_user();
+$currentTheme = pref_theme();
 ?>
 
 
@@ -16,7 +17,7 @@ $currentUser = auth_user();
 </head>
 
 <body 
-    class="page"
+    class="page page--theme-<?= e($currentTheme) ?>"
     data-user="<?= $currentUser ? e($currentUser-> getUsername()) : 'guest' ?>"
 >
 

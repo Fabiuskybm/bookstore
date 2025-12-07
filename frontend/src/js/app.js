@@ -1,3 +1,5 @@
+
+import 'normalize.css';
 import '../styles/main.scss';
 
 import { initAuthTabs } from './auth/auth-tabs.js';

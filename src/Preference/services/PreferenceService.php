@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../Auth/services/AuthService.php';
 
 const PREF_COOKIE_LIFETIME = 60 * 60 * 24 * 30; // 30 días
 const PREF_DEFAULT_LANGUAGE = 'es';
-const PREF_DEFAULT_THEME = 'light';
+const PREF_DEFAULT_THEME = 'dark';
 const PREF_DEFAULT_ITEMS_PER_PAGE = 12;
 const PREF_COOKIE_PREFIX = 'preferences_';
 const PREF_GUEST_COOKIE_SUFFIX = 'guest';
