@@ -1,0 +1,102 @@
+
+@use '../core/variables' as *;
+
+
+.header {
+
+    &__dropdown {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    &__dropdown-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: $space-2;
+        padding: $space-1 $space-3;
+
+        border: 0;
+        background: none;
+        cursor: pointer;
+
+        font: inherit;
+        color: inherit;
+        text-decoration: none;
+        border-radius: $radius-pill;
+
+        transition: background-color 0.15s ease-out, transform 0.1s ease-out;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.04);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    &__user-name {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: $color-text-main;
+        white-space: nowrap;
+    }
+
+    &__dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: $space-3;
+
+        min-width: 230px;
+        padding: $space-3 0;
+
+        background-color: $dropdown-bg;
+        color: $dropdown-text;
+        border-radius: $radius-lg;
+        border: 1px solid $dropdown-border;
+        box-shadow: $dropdown-shadow;
+        z-index: 20;
+
+        overflow: hidden;
+    }
+
+    &__dropdown-menu-list,
+    &__user-menu-list,
+    &__lang-menu-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__dropdown-menu-link,
+    &__dropdown-menu-action,
+    &__user-menu-link,
+    &__user-menu-action,
+    &__lang-menu-button {
+        display: block;
+        width: 100%;
+        padding: $space-3 $space-4;
+
+        font-size: 0.9rem;
+        text-align: left;
+
+        background: none;
+        border: 0;
+        color: inherit;
+        text-decoration: none;
+        cursor: pointer;
+
+        transition: background-color 0.15s ease-out;
+
+        &:hover {
+            background-color: $dropdown-hover-bg;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $dropdown-border;
+            outline-offset: 0;
+        }
+    }
+}

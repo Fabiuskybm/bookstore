@@ -1,25 +1,28 @@
 
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
 
 .wishlist {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: $space-8 $space-6; // 2rem 1.5rem
 
     &__title {
-        margin-bottom: 1rem;
+        margin-bottom: $space-4; // 1rem
     }
 
     &__summary {
         font-size: 1rem;
         font-weight: 500;
-        margin-bottom: 1rem;
+        margin-bottom: $space-4; // 1rem
         color: #333;
     }
 
     &__form {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: $space-6; // 1.5rem
     }
 
     &__select-all {
@@ -29,7 +32,7 @@
     &__select-all-label {
         display: flex;
         align-items: center;
-        gap: .5rem;
+        gap: $space-2; // .5rem
     }
 
     &__select-all-input {
@@ -42,12 +45,12 @@
     &__actions {
         display: flex;
         justify-content: flex-start;
-        gap: .75rem;
+        gap: $space-3; // .75rem
     }
 
     &__btn {
-        padding: .5rem 1rem;
-        border-radius: .5rem;
+        padding: $space-2 $space-4; // .5rem 1rem
+        border-radius: $radius-md;
         border: 1px solid #CCC;
         background: #F5F5F5;
         font-size: .85rem;
@@ -95,7 +98,6 @@
                 border-color: #F7D87B;
             }
         }
-        
     }
 
     &__error {
@@ -104,3 +106,4 @@
         color: #C0392B;
     }
 }
+

@@ -1,0 +1,123 @@
+
+@use './variables' as *;
+
+
+// ==================================================
+//  FORM CONTROLS
+// ==================================================
+@mixin form-control-base(
+    $padding-y: $input-padding-y,
+    $padding-x: $input-padding-x
+) {
+    display: block;
+    width: 100%;
+
+    font: inherit;
+    font-size: $input-font-size;
+
+    padding: $padding-y $padding-x;
+    border-radius: $input-radius;
+
+    border: 1px solid $input-border;
+    background-color: $input-bg;
+    color: $input-text;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease-out,
+        box-shadow 0.15s ease-out,
+        background-color 0.15s ease-out;
+
+    &::placeholder {
+        color: $input-placeholder;
+    }
+
+    &:focus-visible {
+        border-color: $input-border-focus;
+        box-shadow: $input-shadow-focus;
+    }
+}
+
+
+
+// ==================================================
+//  BUTTONS
+// ==================================================
+@mixin button-base(
+    $bg,
+    $bg-hover,
+    $text-color,
+    $border: none,
+    $padding-y: $button-padding-y,
+    $padding-x: $button-padding-x
+) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    padding: $padding-y $padding-x;
+    border-radius: $button-radius;
+
+    border: $border;
+    background-color: $bg;
+    color: $text-color;
+
+    font: inherit;
+    font-size: $button-font-size;
+    font-weight: 600;
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.15s ease-out,
+        transform 0.05s ease-out;
+
+    &:hover {
+        background-color: $bg-hover;
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+
+// Botón primario
+@mixin button-primary-base() {
+    @include button-base(
+        $button-primary-bg,
+        $button-primary-bg-hover,
+        $button-primary-text
+    );
+}
+
+
+// Botón secundario (ghost / outline)
+@mixin button-secondary-base() {
+    @include button-base(
+        $button-secondary-bg,
+        $button-secondary-bg-hover,
+        $button-secondary-text,
+        $button-secondary-border
+    );
+}
+
+
+
+// ==================================================
+//  CARDS / PANELS
+// ==================================================
+@mixin card-base(
+    $padding: $card-padding,
+    $radius: $card-radius
+) {
+    background-color: $card-bg;
+    border-radius: $radius;
+    padding: $padding;
+
+    border: 1px solid $card-border;
+    box-shadow: $card-shadow;
+}

@@ -1,12 +1,13 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
 
 .home {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
-
+    padding: $space-8 $space-6;
 
     &__subtitle {
         color: #555;
     }
-
 }

@@ -1,10 +1,15 @@
+
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+
 .preferences {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: $space-8 $space-6;
 
     &__title {
-        margin-bottom: 1.5rem;
+        margin-bottom: $space-6;
         font-size: 1.5rem;
         font-weight: 600;
     }
@@ -12,13 +17,13 @@
     &__form {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: $space-6;
     }
 
     &__group {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: $space-2;
     }
 
     &__label {
@@ -28,7 +33,7 @@
     &__select,
     &__input {
         max-width: 200px;
-        padding: 0.35rem 0.5rem;
+        @include form-control-base();
     }
 
     &__group--view {
@@ -37,13 +42,13 @@
 
     &__view-toggle {
         display: flex;
-        gap: 0.75rem;
+        gap: $space-3;
     }
 
     &__view-button {
         border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        padding: 0.35rem;
+        border-radius: $radius-md;
+        padding: $space-2;
         background: #fff;
         cursor: pointer;
 
@@ -65,8 +70,8 @@
 
     &__submit {
         align-self: flex-start;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
+        padding: $space-2 $space-4;
+        border-radius: $radius-md;
         border: 1px solid #333;
         background: #333;
         color: #fff;
