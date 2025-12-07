@@ -6,9 +6,8 @@
 .header {
 
     &__search {
-        flex: 1 1 auto;
-        max-width: 40rem;
-        margin-inline: auto;
+        width: 100%;
+        justify-self: center;
     }
 
     &__search-form {
@@ -36,3 +35,4 @@
         }
     }
 }
+

@@ -60,6 +60,9 @@
         z-index: 20;
 
         overflow: hidden;
+
+        transform-origin: top right;
+        animation: header-dropdown-enter 0.14s ease-out;
     }
 
     &__dropdown-menu-list,
@@ -98,5 +101,18 @@
             outline: 2px solid $dropdown-border;
             outline-offset: 0;
         }
+    }
+}
+
+
+
+@keyframes header-dropdown-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
