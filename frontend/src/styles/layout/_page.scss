@@ -9,6 +9,17 @@
 }
 
 
+.page--theme-dark {
+    background-color: $color-bg-page;
+    color: $color-text-main;
+}
+
+.page--theme-light {
+    background-color: $color-surface-light;
+    color: $color-text-dark;
+}
+
+
 body {
     margin: 0;
     font-family: $font-family-base;
