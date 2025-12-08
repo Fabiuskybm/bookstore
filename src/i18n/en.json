@@ -6,7 +6,13 @@
         "page_title_cart": "Editorial Blackrose | Cart",
         "page_title_wishlist": "Editorial Blackrose | Wishlist",
         "page_title_preferences": "Editorial Blackrose | Preferences",
+        "page_title_admin": "Editorial Blackrose | Admin",
         "scroll_top_label": "Back to top"
+    },
+    "admin": {
+        "title": "Admin area",
+        "message": "This section is under construction.",
+        "under_construction_alt": "Admin page under construction"
     },
     "header": {
         "logo_alt": "Editorial Blackrose logo",
@@ -25,11 +31,13 @@
     "nav": {
         "home": "Home",
         "preferences": "Preferences",
-        "wishlist": "Wishlist"
+        "wishlist": "Wishlist",
+        "admin": "Admin area"
     },
     "user_menu": {
         "wishlist": "Wishlist",
         "preferences": "Preferences",
+        "admin": "Admin area",
         "logout": "Sign out"
     },
     "auth": {

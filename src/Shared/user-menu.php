@@ -29,6 +29,11 @@ function get_user_menu_items(User $user): array
             'key'  => 'preferences',
         ],
         [
+            'type' => 'link',
+            'view' => 'admin',
+            'key'  => 'admin',
+        ],
+        [
             'type' => 'logout',
             'key'  => 'logout',
         ],

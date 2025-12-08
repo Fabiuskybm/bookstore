@@ -6,7 +6,13 @@
         "page_title_cart": "Editorial Blackrose | Carrito",
         "page_title_wishlist": "Editorial Blackrose | Lista de deseos",
         "page_title_preferences": "Editorial Blackrose | Preferencias",
+        "page_title_admin": "Editorial Blackrose | Administración",
         "scroll_top_label": "Volver arriba"
+    },
+    "admin": {
+        "title": "Zona administrativa",
+        "message": "Esta sección está en construcción.",
+        "under_construction_alt": "Página de administración en construcción"
     },
     "header": {
         "logo_alt": "Logo de Editorial Blackrose",
@@ -25,11 +31,13 @@
     "nav": {
         "home": "Inicio",
         "preferences": "Preferencias",
-        "wishlist": "Lista de deseos"
+        "wishlist": "Lista de deseos",
+        "admin": "Zona administrativa"
     },
     "user_menu": {
         "wishlist": "Lista de deseos",
         "preferences": "Preferencias",
+        "admin": "Zona administrativa",
         "logout": "Cerrar sesión"
     },
     "auth": {
