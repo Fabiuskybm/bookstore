@@ -1,11 +1,11 @@
 [
   {
     "id": "ES_B001",
-    "title": "Nacidos de la bruma",
-    "author": "Brandon Sanderson",
-    "price": 16.30,
-    "coverImage": "assets/images/books/es/mistborn-limited.jpg",
-    "categories": ["fantasy", "cosmere"],
+    "title": "La Academia Lyndale: Saga Linaje",
+    "author": "T.J.M Seyton",
+    "price": 18.90,
+    "coverImage": "assets/images/books/es/academia-lyndale.jpg",
+    "categories": ["fantasy"],
     "format": "paperback",
     "isFeatured": true
   },
@@ -88,5 +88,116 @@
     "categories": ["science-fiction", "space-opera"],
     "format": "paperback",
     "isFeatured": false
+  },
+  {
+    "id": "ES_B010",
+    "title": "Nacidos de la bruma",
+    "author": "Brandon Sanderson",
+    "price": 16.30,
+    "coverImage": "assets/images/books/es/mistborn-limited.jpg",
+    "categories": ["fantasy", "cosmere"],
+    "format": "paperback",
+    "isFeatured": true
+  },
+  {
+    "id": "ES_B011",
+    "title": "El nombre del viento",
+    "author": "Patrick Rothfuss",
+    "price": 14.95,
+    "coverImage": "assets/images/books/es/nombre-del-viento.jpg",
+    "categories": ["fantasy"],
+    "format": "hardcover",
+    "isFeatured": true
+  },
+  {
+    "id": "ES_B012",
+    "title": "El temor de un hombre sabio",
+    "author": "Patrick Rothfuss",
+    "price": 15.95,
+    "coverImage": "assets/images/books/es/temor-de-hombre-sabio.jpg",
+    "categories": ["fantasy"],
+    "format": "hardcover",
+    "isFeatured": true
+  },
+  {
+    "id": "ES_B013",
+    "title": "El estrecho sendero entre deseos",
+    "author": "Patrick Rothfuss",
+    "price": 21.90,
+    "coverImage": "assets/images/books/es/estrecho-sendero.png",
+    "categories": ["fantasy"],
+    "format": "hardcover",
+    "isFeatured": false
+  },
+  {
+    "id": "ES_B014",
+    "title": "La música del silencio",
+    "author": "Patrick Rothfuss",
+    "price": 18.90,
+    "coverImage": "assets/images/books/es/musica-del-silencio.jpg",
+    "categories": ["fantasy"],
+    "format": "hardcover",
+    "isFeatured": false
+  },
+  {
+    "id": "ES_B015",
+    "title": "Juego de tronos",
+    "author": "George R.R. Martin",
+    "price": 27.90,
+    "coverImage": "assets/images/books/es/juego-de-tronos.jpg",
+    "categories": ["fantasy", "epic"],
+    "format": "hardcover",
+    "isFeatured": true
+  },
+  {
+    "id": "ES_B016",
+    "title": "Choque de reyes",
+    "author": "George R.R. Martin",
+    "price": 27.90,
+    "coverImage": "assets/images/books/es/choque-de-reyes.jpg",
+    "categories": ["fantasy", "epic"],
+    "format": "hardcover",
+    "isFeatured": false
+  },
+  {
+    "id": "ES_B017",
+    "title": "Tormenta de espadas",
+    "author": "George R.R. Martin",
+    "price": 29.90,
+    "coverImage": "assets/images/books/es/tormenta-de-espadas.jpg",
+    "categories": ["fantasy", "epic"],
+    "format": "hardcover",
+    "isFeatured": true
+  },
+  {
+    "id": "ES_B018",
+    "title": "Festín de cuervos",
+    "author": "George R.R. Martin",
+    "price": 27.90,
+    "coverImage": "assets/images/books/es/festin-de-cuervos.jpg",
+    "categories": ["fantasy", "epic"],
+    "format": "hardcover",
+    "isFeatured": false
+  },
+  {
+    "id": "ES_B019",
+    "title": "Danza de dragones",
+    "author": "George R.R. Martin",
+    "price": 29.90,
+    "coverImage": "assets/images/books/es/danza-de-dragones.jpg",
+    "categories": ["fantasy", "epic"],
+    "format": "hardcover",
+    "isFeatured": true
+  },
+  {
+    "id": "ES_B020",
+    "title": "El imperio del silencio",
+    "author": "Christopher Ruocchio",
+    "price": 25.91,
+    "coverImage": "assets/images/books/es/el-imperio-del-silencio.jpg",
+    "categories": ["science-fiction", "space-opera"],
+    "format": "paperback",
+    "isFeatured": false
   }
+
 ]
