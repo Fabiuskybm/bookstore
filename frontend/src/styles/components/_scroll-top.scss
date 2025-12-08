@@ -1,0 +1,41 @@
+
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+
+.scroll-top {
+    position: fixed;
+    inset-block-end: $space-6;
+    inset-inline-end: $space-4;
+    z-index: 60;
+
+    @include button-primary-base();
+
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border-radius: $radius-pill;
+
+    color: $button-primary-text;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.75);
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.15s ease-out,
+        transform 0.15s ease-out;
+
+    &--visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    &__icon {
+        width: 1.6rem;
+        height: 1.6rem;
+        display: block;
+    }
+}

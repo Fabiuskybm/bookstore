@@ -5,7 +5,8 @@
         "page_title_login": "Editorial Blackrose | Iniciar sesión",
         "page_title_cart": "Editorial Blackrose | Carrito",
         "page_title_wishlist": "Editorial Blackrose | Lista de deseos",
-        "page_title_preferences": "Editorial Blackrose | Preferencias"
+        "page_title_preferences": "Editorial Blackrose | Preferencias",
+        "scroll_top_label": "Volver arriba"
     },
     "header": {
         "logo_alt": "Logo de Editorial Blackrose",

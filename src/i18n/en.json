@@ -5,7 +5,8 @@
         "page_title_login": "Editorial Blackrose | Login",
         "page_title_cart": "Editorial Blackrose | Cart",
         "page_title_wishlist": "Editorial Blackrose | Wishlist",
-        "page_title_preferences": "Editorial Blackrose | Preferences"
+        "page_title_preferences": "Editorial Blackrose | Preferences",
+        "scroll_top_label": "Back to top"
     },
     "header": {
         "logo_alt": "Editorial Blackrose logo",
