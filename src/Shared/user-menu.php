@@ -17,7 +17,7 @@ require_once __DIR__ . '/../Auth/models/User.php';
  */
 function get_user_menu_items(User $user): array
 {
-    return [
+    $items = [
         [
             'type' => 'link',
             'view' => 'wishlist',
@@ -28,15 +28,22 @@ function get_user_menu_items(User $user): array
             'view' => 'preferences',
             'key'  => 'preferences',
         ],
-        [
+    ];
+
+    if ($user->isAdmin()) {
+        $items[] = [
             'type' => 'link',
             'view' => 'admin',
             'key'  => 'admin',
-        ],
-        [
+        ];
+    }
+
+    $items[] = [
             'type' => 'logout',
             'key'  => 'logout',
-        ],
     ];
+
+    
+    return $items;
 }
 

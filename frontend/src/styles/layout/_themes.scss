@@ -38,6 +38,10 @@
         box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
     }
 
+    .header__brand {
+        color: $color-text-dark;
+    }
+
 
     // ----------------------------------------------
     // Iconos de header y footer
@@ -112,6 +116,20 @@
             background-color: rgba(0, 0, 0, 0.06);
             color: $color-text-dark;
         }
+    }
+
+
+    // ----------------------------------------------
+    // HOME (LIGHT)
+    // ----------------------------------------------
+
+    .home__title,
+    .home__subtitle {
+        color: $color-text-dark;
+    }
+
+    .home__divider {
+        background-color: rgba(0, 0, 0, 0.12);
     }
 
 
