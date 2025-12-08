@@ -56,9 +56,13 @@
         "register_submit": "Crear cuenta"
     },
     "home": {
-        "title": "Editorial Blackrose",
+        "title": "Descubre tu próxima lectura",
         "subtitle": "Contenido principal",
-        "empty": "No hay libros disponibles"
+        "empty": "No hay libros disponibles",
+        "featured_title": "Libros destacados",
+        "featured_prev_label": "Ver libros anteriores",
+        "featured_next_label": "Ver más libros",
+        "catalog_title": "Todos los libros"
     },
     "wishlist": {
         "title": "Lista de deseos",

@@ -38,6 +38,21 @@
         display: block;
     }
 
+    &__logo-link {
+        display: flex;
+        align-items: center;
+        gap: $space-3;
+        text-decoration: none;
+    }
+
+    &__brand {
+        font-family: 'Bodoni Moda', serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        color: $color-text-main;
+    }
+
     &__actions {
         justify-self: end;
         flex: 0 0 auto;

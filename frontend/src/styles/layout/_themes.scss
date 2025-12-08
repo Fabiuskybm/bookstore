@@ -479,4 +479,29 @@
         filter: brightness(0.9);
     }
 
+
+    .book-carousel__control {
+        background-color: $color-surface-light;
+        border-color: rgba(0, 0, 0, 0.12);
+        color: $color-text-dark;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.06);
+        }
+    }
+
+    .book-carousel__icon {
+        color: $color-text-dark;
+    }
+
+    .book-carousel__dot {
+        background-color: rgba(0, 0, 0, 0.25);
+        opacity: 0.7;
+    }
+
+    .book-carousel__dot--active {
+        background-color: $color-text-dark;
+        opacity: 1;
+    }
+
 }

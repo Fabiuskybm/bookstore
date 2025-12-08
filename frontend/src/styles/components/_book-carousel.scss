@@ -1,0 +1,134 @@
+
+@use '../core/variables' as *;
+
+
+.book-carousel {
+    max-width: $page-max-width;
+    margin: 0 auto $space-6;
+    padding-inline: 0;
+    position: relative;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $space-3;
+    }
+
+    &__title {
+        font-size: $font-size-h2;
+        font-weight: $heading-font-weight;
+    }
+
+    &__viewport {
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+
+        max-width: calc(3 * 220px + 2 * $space-4);
+        margin-inline: auto;
+        padding-inline: 0;
+    }
+
+    &__track {
+        display: flex;
+        gap: $space-4;
+        padding-block: $space-2;
+    }
+
+    &__control {
+        width: 2rem;
+        height: 2rem;
+
+        border-radius: 999px;
+        border: 1px solid $color-border-subtle;
+        background-color: $color-surface-elevated;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+        color: $color-text-main;
+
+        transition:
+            background-color 0.15s ease-out,
+            transform 0.05s ease-out,
+            opacity 0.15s ease-out;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+
+    &__controls {
+        margin-top: $space-3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $space-4;
+    }
+
+    &__icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    &__control--next .book-carousel__icon {
+        transform: rotate(180deg);
+    }
+
+
+    &__dots {
+        display: flex;
+        align-items: center;
+        gap: $space-2;
+    }
+
+    &__dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 999px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+        background-color: rgba(255, 255, 255, 0.25);
+        opacity: 0.7;
+
+        transition:
+            width 0.15s ease-out,
+            background-color 0.15s ease-out,
+            opacity 0.15s ease-out;
+
+        &--active {
+            width: 1.4rem;
+            background-color: $color-text-main;
+            opacity: 1;
+        }
+    }
+}
+
+
+
+.book-carousel {
+
+    .book-card {
+        flex: 0 0 220px;
+    }
+
+    .book-card__image-wrapper {
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .book-card__image {
+        max-height: 100%;
+        width: auto;
+    }
+}
