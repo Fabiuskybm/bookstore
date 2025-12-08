@@ -1,14 +1,21 @@
 {
     "layout": {
-        "app_name": "Editorial Blackrose",
-        "page_title_home": "Editorial Blackrose | Home",
-        "page_title_login": "Editorial Blackrose | Login",
-        "page_title_cart": "Editorial Blackrose | Cart",
-        "page_title_wishlist": "Editorial Blackrose | Wishlist",
-        "page_title_preferences": "Editorial Blackrose | Preferences"
+        "app_name": "Blackrose Press",
+        "page_title_home": "Blackrose Press | Home",
+        "page_title_login": "Blackrose Press | Login",
+        "page_title_cart": "Blackrose Press | Cart",
+        "page_title_wishlist": "Blackrose Press | Wishlist",
+        "page_title_preferences": "Blackrose Press | Preferences",
+        "page_title_admin": "Blackrose Press | Admin",
+        "scroll_top_label": "Back to top"
+    },
+    "admin": {
+        "title": "Admin area",
+        "message": "This section is under construction.",
+        "under_construction_alt": "Admin page under construction"
     },
     "header": {
-        "logo_alt": "Editorial Blackrose logo",
+        "logo_alt": "Blackrose Press logo",
         "search_placeholder": "Search by title, author...",
         "login_title": "Sign in",
         "user_icon_alt": "User icon",
@@ -23,10 +30,14 @@
     },
     "nav": {
         "home": "Home",
-        "preferences": "Preferences"
+        "preferences": "Preferences",
+        "wishlist": "Wishlist",
+        "admin": "Admin area"
     },
     "user_menu": {
         "wishlist": "Wishlist",
+        "preferences": "Preferences",
+        "admin": "Admin area",
         "logout": "Sign out"
     },
     "auth": {
@@ -45,9 +56,13 @@
         "register_submit": "Create account"
     },
     "home": {
-        "title": "Editorial Blackrose",
+        "title": "Discover your next read",
         "subtitle": "Main content",
-        "empty": "No books available"
+        "empty": "No books available",
+        "featured_title": "Featured books",
+        "featured_prev_label": "View previous books",
+        "featured_next_label": "View more books",
+        "catalog_title": "All books"
     },
     "wishlist": {
         "title": "Wishlist",
@@ -102,11 +117,11 @@
         "save_button": "Save changes"
     },
     "footer": {
-        "copyright": "© 2025 Editorial Blackrose. All rights reserved.",
+        "copyright": "© 2025 Blackrose Press. All rights reserved.",
         "social_label": "Social networks",
-        "instagram_alt": "Editorial Blackrose on Instagram",
-        "tiktok_alt": "Editorial Blackrose on TikTok",
-        "x_alt": "Editorial Blackrose on X"
+        "instagram_alt": "Blackrose Press on Instagram",
+        "tiktok_alt": "Blackrose Press on TikTok",
+        "x_alt": "Blackrose Press on X"
     }
 
 }

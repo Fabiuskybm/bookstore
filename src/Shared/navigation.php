@@ -10,8 +10,24 @@ declare(strict_types=1);
  *  - label: texto que se muestra en el menú
  */
 function get_navigation_items(): array {
-    return [
+
+    $user = auth_user();
+    $isLogged = $user !== null;
+
+    $items = [
         [ 'view' => 'home' ],
-        [ 'view' => 'preferences' ],
     ];
+
+    // Si hay usuario logueado se ve la wishlist en el menú
+    if ($isLogged) {
+        $items[] = [ 'view' => 'wishlist' ];
+    }
+
+    $items[] = [ 'view' => 'preferences' ];
+    
+    if ($isLogged && $user->isAdmin()) {
+        $items[] = [ 'view' => 'admin' ];
+    }
+
+    return $items;
 }

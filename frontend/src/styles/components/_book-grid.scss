@@ -13,6 +13,10 @@
     grid-template-columns: 1fr;
 }
 
+.book-grid--home {
+    margin-top: $space-4;
+}
+
 @media (min-width: 768px) {
     .book-grid--home,
     .book-grid--wishlist {

@@ -17,6 +17,8 @@ require_once __DIR__ . '/../src/Shared/validation.php';
 require_once __DIR__ . '/../src/Auth/services/AuthService.php';
 require_once __DIR__ . '/../src/Auth/controllers/AuthController.php';
 
+require_once __DIR__ . '/../src/Admin/controllers/AdminController.php';
+
 require_once __DIR__ . '/../src/Home/controllers/HomeController.php';
 
 require_once __DIR__ . '/../src/Wishlist/services/WishlistService.php';
@@ -34,6 +36,7 @@ session_start_safe();
 
 
 $auth = new AuthController();
+$admin = new AdminController();
 $home = new HomeController();
 $wishlist = new WishlistController();
 $preference = new PreferenceController();
@@ -129,6 +132,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $result = $wishlist->show();
             $data = $result['data'] ?? [];
             break;
+
+        case 'admin':
+            $result = $admin->show();
+            $data = $result['data'] ?? [];
+            break;
     }
 }
 
@@ -159,6 +167,11 @@ switch ($view) {
     case 'preferences':
         $viewFile = __DIR__ . '/../src/Preference/views/preferences.php';
         $pageTitle = t('layout.page_title_preferences');
+        break;
+
+    case 'admin':
+        $viewFile = __DIR__ . '/../src/Admin/views/admin.php';
+        $pageTitle = t('layout.page_title_admin');
         break;
 
     default:

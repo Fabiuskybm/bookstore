@@ -15,6 +15,10 @@ $currentView = $_GET['view'] ?? 'home';
                 src="assets/images/logo.png" 
                 alt="<?= e(t('header.logo_alt')) ?>"
                 class="header__logo-img">
+
+            <span class="header__brand">
+                <?= e(t('layout.app_name')) ?>
+            </span>
         </a>
     </div>
 
@@ -211,6 +215,11 @@ $currentView = $_GET['view'] ?? 'home';
                     fill="currentColor"
                 />
             </svg>
+
+            <span 
+                class="header__cart-badge"
+                data-cart-badge
+            ></span>
 
         </a>
 

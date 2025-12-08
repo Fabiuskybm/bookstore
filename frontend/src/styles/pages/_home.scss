@@ -1,3 +1,4 @@
+
 @use '../core/variables' as *;
 @use '../core/mixins' as *;
 
@@ -7,7 +8,24 @@
     margin: 0 auto;
     padding: $space-8 $space-6;
 
-    &__subtitle {
-        color: #555;
+    &__title {
+        font-size: $font-size-h1;
+        font-weight: $heading-font-weight;
+        margin-bottom: $space-4;
+    }
+
+    &__divider {
+        margin-top: $space-3;
+        margin-bottom: $space-6;
+        height: 2px;
+        background-color: $color-border-subtle;
+    }
+
+    &__subtitle--catalog {
+        margin-top: $space-9;
+        margin-bottom: $space-3;
+        font-size: $font-size-h2;
+        font-weight: $heading-font-weight;
+        color: $color-text-main;
     }
 }

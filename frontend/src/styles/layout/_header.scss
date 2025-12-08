@@ -2,6 +2,14 @@
 @use '../core/variables' as *;
 
 
+// Animación para carrito.
+@keyframes header-cart-bounce {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.25); }
+    100% { transform: scale(1); }
+}
+
+
 .page__header {
     background-color: $color-surface-base;
     padding-inline: $spacing-page-x;
@@ -28,6 +36,21 @@
     &__logo-img {
         max-height: 60px;
         display: block;
+    }
+
+    &__logo-link {
+        display: flex;
+        align-items: center;
+        gap: $space-3;
+        text-decoration: none;
+    }
+
+    &__brand {
+        font-family: 'Bodoni Moda', serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        color: $color-text-main;
     }
 
     &__actions {
@@ -64,10 +87,43 @@
         }
     }
 
+    &__action--cart--animating {
+        animation: header-cart-bounce 0.45s ease-out;
+    }
+
     &__lang-label {
         font-size: 0.8rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
     }
 
+    &__action--cart {
+        position: relative;
+    }
+
+    &__cart-badge {
+        position: absolute;
+        inset-block-start: -0.35rem;
+        inset-inline-end: -0.35rem;
+
+        min-width: 1.25rem;
+        height: 1.25rem;
+        padding-inline: 0.25rem;
+
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: $radius-pill;
+        background-color: $color-like-heart;
+        color: #ffffff;
+
+        font-size: 0.7rem;
+        font-weight: 600;
+        line-height: 1;
+
+        &--visible {
+            display: inline-flex;
+        }
+    }
 }

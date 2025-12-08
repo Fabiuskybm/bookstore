@@ -1,0 +1,43 @@
+
+@use '../core/variables' as *;
+
+
+.admin {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: $space-6;
+    text-align: center;
+
+    &__title {
+        font-size: $font-size-h1;
+        font-weight: $heading-font-weight;
+        margin-bottom: $space-4;
+    }
+
+    &__divider {
+        margin-top: $space-3;
+        margin-bottom: $space-6;
+        height: 2px;
+        background-color: $color-border-subtle;
+    }
+
+    &__card {
+        background-color: $color-surface-elevated;
+        padding: $space-6;
+        border-radius: $radius-lg;
+        box-shadow: $card-shadow;
+        text-align: center;
+    }
+
+    &__image {
+        max-width: 220px;
+        width: 100%;
+        display: block;
+        margin: 0 auto $space-4;
+    }
+
+    &__text {
+        color: $color-text-muted;
+        font-size: 1rem;
+    }
+}

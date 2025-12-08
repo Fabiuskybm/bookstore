@@ -14,6 +14,7 @@ $currentTheme = pref_theme();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($pageTitle ?? 'Bookstore') ?></title>
     <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body 
@@ -34,7 +35,28 @@ $currentTheme = pref_theme();
         ?>
     </main>
 
-    <?php require __DIR__ . '/partials/footer.php' ?>    
+    <?php require __DIR__ . '/partials/footer.php' ?>
+
+    <button 
+        class="scroll-top"
+        type="button"
+        aria-label="<?= e(t('layout.scroll_top_label')) ?>"
+        data-scroll-top
+    >
+        <svg 
+            class="scroll-top__icon"
+            width="24"
+            height="24"
+            viewBox="0 0 1024 1024"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M509.928 387.16c7.24-7.991 17.58-7.898 24.782 0.333l270.568 309.222c7.759 8.867 21.237 9.765 30.103 2.007 8.867-7.759 9.766-21.237 2.007-30.103L566.82 359.397c-24-27.429-64.127-27.792-88.507-0.89L197.526 668.342c-7.912 8.73-7.249 22.221 1.482 30.133 8.73 7.912 22.221 7.249 30.133-1.482L509.928 387.16z"
+                fill="currentColor"
+            />
+        </svg>
+    </button>
 
     <script src="assets/js/main.js"></script>
 </body>
