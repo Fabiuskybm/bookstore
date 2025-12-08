@@ -188,16 +188,6 @@
     "categories": ["fantasy", "epic"],
     "format": "hardcover",
     "isFeatured": true
-  },
-  {
-    "id": "ES_B020",
-    "title": "El imperio del silencio",
-    "author": "Christopher Ruocchio",
-    "price": 25.91,
-    "coverImage": "assets/images/books/es/el-imperio-del-silencio.jpg",
-    "categories": ["science-fiction", "space-opera"],
-    "format": "paperback",
-    "isFeatured": false
   }
 
 ]
