@@ -2,6 +2,11 @@
 const CART_PREFIX = 'cart_';
 
 
+function notifyCartUpdated() {
+    window.dispatchEvent(new CustomEvent('cart:updated'));
+}
+
+
 /**
  * Devuelve la clave de LocalStorage para el carrito
  * del usuario actual.
@@ -119,6 +124,7 @@ function addItem(itemData) {
     if (existing) {
         existing.quantity += 1;
         saveCart(items);
+        notifyCartUpdated();
         return;
     }
 
@@ -132,6 +138,7 @@ function addItem(itemData) {
 
     items.push(newItem);
     saveCart(items);
+    notifyCartUpdated();
 }
 
 
@@ -146,6 +153,7 @@ function removeItem(id) {
     const filtered = items.filter((item) => item.id !== id);
 
     saveCart(filtered);
+    notifyCartUpdated();
 }
 
 
@@ -165,13 +173,17 @@ function setQuantity(id, quantity) {
 
     item.quantity = qty;
     saveCart(items);
+    notifyCartUpdated();
 }
 
 
 /**
  * Vacía completamente el carrito.
  */
-function clearCart() { saveCart([]); }
+function clearCart() { 
+    saveCart([]);
+    notifyCartUpdated();
+}
 
 
 /**

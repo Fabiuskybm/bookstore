@@ -7,6 +7,7 @@ import { initViewModePreference } from './preferences/preferences.js';
 import { initHeaderDropdowns } from './header/header-dropdown.js';
 import { initCartFromCards } from './cart/cart-from-cards.js';
 import { initCartPage } from './cart/cart-page.js';
+import { initCartBadge } from './cart/cart-badge.js';
 import { initScrollTop } from './Shared/scroll-top.js';
 import './wishlist/wishlist-select-all.js';
 
@@ -21,4 +22,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCartFromCards();
     initCartPage();
     initScrollTop();
+    initCartBadge();
 });

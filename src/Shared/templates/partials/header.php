@@ -212,6 +212,11 @@ $currentView = $_GET['view'] ?? 'home';
                 />
             </svg>
 
+            <span 
+                class="header__cart-badge"
+                data-cart-badge
+            ></span>
+
         </a>
 
     </div>
