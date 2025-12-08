@@ -24,10 +24,12 @@
     },
     "nav": {
         "home": "Inicio",
-        "preferences": "Preferencias"
+        "preferences": "Preferencias",
+        "wishlist": "Lista de deseos"
     },
     "user_menu": {
         "wishlist": "Lista de deseos",
+        "preferences": "Preferencias",
         "logout": "Cerrar sesión"
     },
     "auth": {

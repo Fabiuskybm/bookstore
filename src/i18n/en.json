@@ -24,10 +24,12 @@
     },
     "nav": {
         "home": "Home",
-        "preferences": "Preferences"
+        "preferences": "Preferences",
+        "wishlist": "Wishlist"
     },
     "user_menu": {
         "wishlist": "Wishlist",
+        "preferences": "Preferences",
         "logout": "Sign out"
     },
     "auth": {

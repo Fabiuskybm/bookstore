@@ -32,6 +32,11 @@
     transition:
         color 0.15s ease-out,
         border-color 0.15s ease-out;
+
+    &:hover {
+        color: $color-text-main;
+        border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
 }
 
 .nav__link--active {

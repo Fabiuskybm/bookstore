@@ -24,6 +24,11 @@ function get_user_menu_items(User $user): array
             'key'  => 'wishlist',
         ],
         [
+            'type' => 'link',
+            'view' => 'preferences',
+            'key'  => 'preferences',
+        ],
+        [
             'type' => 'logout',
             'key'  => 'logout',
         ],
