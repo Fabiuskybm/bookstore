@@ -1,95 +1,110 @@
-# Bookstore
+# 📚 Bookstore — Proyecto Full Stack (2º DAW)
 
-Proyecto conjunto de 1ª Evaluación (DSW + DEW + DOR) para 2º DAW.  
-Este repositorio contiene la base del proyecto, incluyendo:
-- Servidor PHP con Apache (Docker)
-- Entorno frontend con Webpack (JS + SASS)
+Proyecto conjunto de la **1ª Evaluación (DSW + DEW + DOR)**.
+Incluye backend en **PHP 8 + Apache (Docker)** y frontend modular con **Webpack, ES Modules y SASS**.
 
 ---
 
-## 🚀 Ejecutar servidor PHP (Apache)
+## 🚀 Puesta en marcha
 
-Desde la raíz del proyecto:
+### Backend (Docker)
 
-```bash
+```
 docker-compose up
 ```
 
-Una vez levantado, acceder en el navegador:
+Abrir en el navegador:  
+👉 **http://localhost:8080**
 
-👉 http://localhost:8080
+```yml
+services:
+  web:
+    image: php:8.2-apache
+    container_name: bookstore-web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html
+      - ./src:/var/www/src
+    working_dir: /var/www/html
+```
 
 ---
 
-## 🎨 Configurar y compilar el frontend (Webpack + SASS)
+## 🎨 Frontend (Webpack + SASS)
 
-Antes de compilar, es necesario instalar las dependencias necesarias.
+### Instalar dependencias
 
-### 1. Instalar dependencias (solo la primera vez)
-
-Desde la carpeta `frontend`:
-
-```bash
+```
 cd frontend
 npm install
 ```
 
-Esto instalará:
-- Webpack
-- Webpack CLI
-- SASS
-- Cargadores necesarios para procesar SASS y CSS
+### Modo desarrollo (watch)
 
----
-
-### 2. Compilación en modo desarrollo (watch)
-
-Desde la carpeta `frontend`:
-
-```bash
+```
 npm run dev
 ```
 
-Webpack quedará escuchando cambios y generando automáticamente los assets en:
+### Build final
 
-- `public/assets/js/`
-- `public/assets/css/` *(cuando más adelante extraigamos el CSS físico)*
+```
+npm run build
+```
 
----
+Genera los assets en:
 
-## 📦 Dependencias incluidas
-
-Tras ejecutar los comandos anteriores, `package.json` contendrá automáticamente:
-
-- webpack  
-- webpack-cli  
-- sass  
-- sass-loader  
-- css-loader  
-- style-loader  
+- `public/assets/js/main.js`
 
 ---
 
-## 📂 Estructura inicial del proyecto
+## 🗂️ Estructura del proyecto
 
 ```
 bookstore/
+├── compose.yml
 ├── public/
-│   └── index.php
 ├── frontend/
-│   ├── src/
-│   │   ├── js/app.js
-│   │   └── styles/main.scss
-│   ├── package.json
-│   └── webpack.config.js
-├── docker-compose.yml
-├── .gitignore
-└── README.md
+│   ├── src/js/...
+│   └── src/styles/...
+└── src/ (PHP)
+    ├── Auth/
+    ├── Book/
+    ├── Cart/
+    ├── Home/
+    ├── Preference/
+    ├── Wishlist/
+    ├── Admin/
+    └── Shared/
 ```
 
 ---
 
-## ✔️ Estado actual
+## 🔧 Funcionalidades principales
 
-Proyecto inicial configurado y funcional.  
-Listo para comenzar a desarrollar la parte frontend y backend del proyecto.
+### Frontend
+- Webpack + ES Modules
+- SASS modular (ITCSS + BEM)
+- Carrusel de libros destacados
+- Badge dinámico del carrito
+- Dropdowns
+- Botón scroll-to-top
+- Preferencias (tema + items por página)
+- Wishlist con selección múltiple
+
+### Backend
+- Carga de libros desde JSON (ES/EN)
+- Wishlist almacenada en cookie
+- Preferencias guardadas en cookie
+- Sistema básico de plantillas
+- Traducciones (`i18n/es.json` + `i18n/en.json`)
+- Carrito gestionado en frontend
+- Módulo de autenticación **incluido pero sin registro funcional**
+- Área de administración con página *Under Construction*
+
+---
+
+## 📌 Estado del proyecto
+
+La aplicación es **navegable y funcional** a nivel de home, carrito, wishlist, preferencias, y estructura general.  
+Pendiente: completar registro/login y contenido real en la sección de administración.
