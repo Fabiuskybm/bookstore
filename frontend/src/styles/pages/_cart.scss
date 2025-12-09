@@ -211,6 +211,60 @@
     }
 
 
+     /* ---------- Código promocional ---------- */
+    &__promo {
+        margin-top: $space-3;
+        padding-top: $space-3;
+        border-top: 1px solid $color-border-subtle;
+
+        display: flex;
+        flex-direction: column;
+        gap: $space-2;
+    }
+
+    &__promo-label {
+        font-size: 0.8rem;
+        color: $color-text-muted;
+    }
+
+    &__promo-row {
+        display: flex;
+        align-items: center;
+        gap: $space-2;
+    }
+
+    &__promo-input {
+        @include form-control-base();
+        flex: 1;
+        font-size: 0.85rem;
+    }
+
+    &__promo-button {
+        @include button-secondary-base();
+        white-space: nowrap;
+        font-size: 0.85rem;
+        padding-inline: $space-3;
+        padding-block: 0.55rem;
+    }
+
+    &__promo-message {
+        min-height: 1rem;
+        font-size: 0.75rem;
+        color: $color-text-muted;
+    }
+
+    // Estados de validación visual (usa las clases del validador)
+    &__promo-input.input--invalid {
+        border-color: rgba($color-like-heart, 0.9);
+        box-shadow: 0 0 0 1px rgba($color-like-heart, 0.45);
+    }
+
+    &__promo-input.input--valid {
+        border-color: $color-accent;
+        box-shadow: 0 0 0 1px rgba($color-accent, 0.4);
+    }
+
+
     /* ---------- Ticket de compra ---------- */
     &__ticket {
         margin-top: $space-4;

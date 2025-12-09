@@ -95,7 +95,9 @@
         "promo_apply": "Aplicar",
         "ticket_subtotal_label": "Subtotal",
         "ticket_discount_label": "Descuento",
-        "ticket_total_label": "Total"
+        "ticket_total_label": "Total",
+        "promo_invalid": "Código no válido.",
+        "promo_applied": "Código aplicado: {percent}% de descuento."
     },
     "book": {
         "cover_alt_prefix": "Portada de",

@@ -13,7 +13,9 @@ declare(strict_types=1);
     data-cart-remove-alt="<?= e(t('cart.remove_alt')) ?>"
     data-cart-ticket-subtotal-label="<?= e(t('cart.ticket_subtotal_label')) ?>"
     data-cart-ticket-discount-label="<?= e(t('cart.ticket_discount_label')) ?>"
-    data-cart-ticket-total-label="<?= e(t('cart.ticket_total_label')) ?>">
+    data-cart-ticket-total-label="<?= e(t('cart.ticket_total_label')) ?>"
+    data-cart-promo-invalid="<?= e(t('cart.promo_invalid')) ?>"
+    data-cart-promo-applied="<?= e(t('cart.promo_applied')) ?>">
 
     <h1 class="cart__title"><?= e(t('cart.title')) ?></h1>
     <div class="cart__divider"></div>
