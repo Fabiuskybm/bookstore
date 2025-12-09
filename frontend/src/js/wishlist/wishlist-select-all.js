@@ -1,6 +1,18 @@
 
+// ==================================================
+//  WISHLIST SELECT & BULK ACTIONS
+//  - Seleccionar todos los libros de la wishlist
+//  - Validación de acciones masivas
+//  - Añadir múltiples libros al carrito
+// ==================================================
+
 import { addItem, getCartItems } from "../cart/cart-storage.js";
 
+
+
+// ==================================================
+//  DOM READY
+// ==================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -12,13 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorBox = form.querySelector('[data-wishlist-error]');
     const addToCartBtn = form.querySelector('.wishlist__btn--cart');
 
-
     if (!selectAllCheckbox || itemCheckboxes.length === 0) return;
 
+
+    // ==================================================
+    //  HELPERS
+    // ==================================================
+
+    /**
+     * Elimina el mensaje de error visible (si existe).
+     */
     const clearError = () => {
         if (errorBox) errorBox.textContent = '';
-    }
+    };
 
+    /**
+     * Muestra un mensaje de error temporal en la interfaz.
+     * Si no hay errorBox → usa alert().
+     */
     const showError = (msg) => {
         if (!errorBox) {
             alert(msg);
@@ -30,15 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             errorBox.textContent = '';
         }, 3000);
-    }
+    };
 
+    /**
+     * Devuelve true si hay alguna casilla marcada.
+     */
     const anyChecked = () =>
         Array.from(itemCheckboxes).some((item) => item.checked);
 
 
-    // ======================
-    // |  Seleccionar todo  |
-    // ======================
+
+    // ==================================================
+    //  "SELECCIONAR TODO"
+    // ==================================================
 
     selectAllCheckbox.addEventListener('change', () => {
         const checked = selectAllCheckbox.checked;
@@ -50,43 +77,48 @@ document.addEventListener('DOMContentLoaded', () => {
         if (checked) clearError();
     });
 
-
+    // Sync: si el usuario marca/desmarca individualmente → actualizar select-all
     itemCheckboxes.forEach((checkbox) => {
         checkbox.addEventListener('change', () => {
 
             const allChecked = Array
                 .from(itemCheckboxes)
                 .every((item) => item.checked);
-            
+
             selectAllCheckbox.checked = allChecked;
-            
+
             if (anyChecked()) clearError();
         });
     });
 
 
-    // =================================
-    // |  Validación botón "Eliminar"  |
-    // =================================
 
+    // ==================================================
+    //  VALIDACIÓN DEL SUBMIT (ELIMINAR)
+    // ==================================================
+
+    /**
+     * Evita enviar el formulario si no hay libros seleccionados,
+     * excepto cuando la acción es "wishlist_clear".
+     */
     form.addEventListener('submit', (event) => {
 
         const submitter = event.submitter;
         const action = submitter?.value ?? '';
 
         if (action === 'wishlist_clear') return;
-            
+
         if (!anyChecked()) {
             event.preventDefault();
             showError('Debes seleccionar al menos un libro.');
         }
-
     });
 
 
-    // ===============================
-    // |  Botón "Añadir al carrito"  |
-    // ===============================
+
+    // ==================================================
+    //  AÑADIR SELECCIONADOS AL CARRITO
+    // ==================================================
 
     if (addToCartBtn) {
         addToCartBtn.addEventListener('click', () => {
@@ -100,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Obtener IDs ya en el carrito para evitar duplicados
             const cartItems = getCartItems();
             const cartIds = new Set(cartItems.map((item) => item.id));
 
@@ -110,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!card) return;
 
                 const bookId = card.dataset.bookId;
-                if (!bookId ||cartIds.has(bookId)) return;
+                if (!bookId || cartIds.has(bookId)) return;
 
                 const img = card.querySelector('.book-card__image');
 
@@ -130,10 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Reset checkboxes
             selectAllCheckbox.checked = false;
             itemCheckboxes.forEach((c) => { c.checked = false; });
             clearError();
 
+            // Navegar al carrito
             window.location.href = 'index.php?view=cart';
         });
     }

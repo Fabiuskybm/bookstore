@@ -324,6 +324,46 @@
         color: $color-text-dark;
     }
 
+    // Código promocional (LIGHT THEME)
+    .cart__promo-label {
+        color: rgba(17, 17, 17, 0.65);
+    }
+
+    .cart__promo-input {
+        background-color: #FFFFFF;
+        color: $color-text-dark;
+        border-color: rgba(0, 0, 0, 0.12);
+
+        &::placeholder {
+            color: rgba(17, 17, 17, 0.55);
+        }
+    }
+
+    .cart__promo-button {
+        background-color: #E5E5E5;
+        border-color: rgba(0, 0, 0, 0.15);
+        color: $color-text-dark;
+
+        &:hover {
+            background-color: #D4D4D8;
+            border-color: rgba(0, 0, 0, 0.25);
+        }
+    }
+
+    .cart__promo-message {
+        color: rgba(17, 17, 17, 0.65);
+    }
+
+    .cart__promo-input.input--invalid {
+        border-color: rgba(239, 68, 68, 0.9);
+        box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.35);
+    }
+
+    .cart__promo-input.input--valid {
+        border-color: $color-accent;
+        box-shadow: 0 0 0 1px rgba($color-accent, 0.35);
+    }
+
 
     // ===============================
     // WISHLIST (LIGHT THEME)

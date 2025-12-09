@@ -1,4 +1,26 @@
 
+// ==================================================
+//  BOOK CAROUSEL
+//  - Carrusel de tarjetas de libro
+//  - Navegación por páginas (prev/next + dots)
+// ==================================================
+
+
+// ==================================================
+//  SETUP DE UN CARRUSEL INDIVIDUAL
+// ==================================================
+
+/**
+ * Configura el carrusel.
+ *
+ * Estructura esperada:
+ * - root [data-book-carousel]
+ *   - .book-carousel__viewport
+ *   - [data-book-carousel-track] (contiene .book-card)
+//   - [data-book-carousel-prev]
+//   - [data-book-carousel-next]
+//   - [data-book-carousel-dots]
+ */
 function setupCarousel(root) {
     const viewport = root.querySelector('.book-carousel__viewport');
     const track = root.querySelector('[data-book-carousel-track]');
@@ -11,13 +33,19 @@ function setupCarousel(root) {
     const cards = track.querySelectorAll('.book-card');
     if (!cards.length) return;
 
-    // ---- CONFIGURACIÓN ----
-    const cardsPerPage = 3; // puedes ajustar esto
+
+    // ==================================================
+    //  CONFIGURACIÓN
+    // ==================================================
+    const cardsPerPage = 3;
     const totalPages = Math.ceil(cards.length / cardsPerPage);
 
     let currentPage = 0;
 
-    // ---- CREAR DOTS ----
+
+    // ==================================================
+    //  CREACIÓN DE DOTS
+    // ==================================================
     const dots = [];
     dotsContainer.innerHTML = '';
 
@@ -35,14 +63,28 @@ function setupCarousel(root) {
         });
     }
 
-    // ---- ACTUALIZAR DOTS ----
+
+    // ==================================================
+    //  ACTUALIZACIÓN DE DOTS
+    // ==================================================
+
+    /**
+     * Marca visualmente el dot activo según currentPage.
+     */
     function updateDots() {
         dots.forEach((dot, i) => {
             dot.classList.toggle('book-carousel__dot--active', i === currentPage);
         });
     }
 
-    // ---- IR A UNA PÁGINA ----
+
+    // ==================================================
+    //  NAVEGACIÓN POR PÁGINAS
+    // ==================================================
+
+    /**
+     * Desplaza el carrusel a la página indicada.
+     */
     function goToPage(pageIndex) {
         currentPage = Math.max(0, Math.min(pageIndex, totalPages - 1));
 
@@ -60,7 +102,10 @@ function setupCarousel(root) {
         updateDots();
     }
 
-    // ---- BOTONES PREV/NEXT ----
+
+    // ==================================================
+    //  BOTONES PREV / NEXT
+    // ==================================================
     prevBtn.addEventListener('click', () => {
         goToPage(currentPage - 1);
     });
@@ -69,11 +114,22 @@ function setupCarousel(root) {
         goToPage(currentPage + 1);
     });
 
-    // ---- INICIAR ----
+
+    // ==================================================
+    //  INICIALIZACIÓN DEL CARRUSEL
+    // ==================================================
     goToPage(0);
 }
 
 
+
+// ==================================================
+//  INICIALIZACIÓN GLOBAL
+// ==================================================
+
+/**
+ * Busca todos los carruseles en la página y los inicializa.
+ */
 export function initBookCarousel() {
     const carousels = document.querySelectorAll('[data-book-carousel]');
     if (!carousels.length) return;

@@ -1,16 +1,37 @@
+// ==================================================
+//  CART STORAGE (LocalStorage)
+//  - Clave por usuario
+//  - Normalización de items
+//  - Operaciones de dominio del carrito
+// ==================================================
+
 
 const CART_PREFIX = 'cart_';
 
 
+
+// ==================================================
+//  NOTIFICACIONES GLOBALS
+// ==================================================
+
+/**
+ * Lanza un evento global cuando el carrito cambia.
+ * Permite que otros módulos (badge, etc.) reaccionen.
+ */
 function notifyCartUpdated() {
     window.dispatchEvent(new CustomEvent('cart:updated'));
 }
 
 
+
+// ==================================================
+//  CLAVE DE LOCALSTORAGE POR USUARIO
+// ==================================================
+
 /**
  * Devuelve la clave de LocalStorage para el carrito
  * del usuario actual.
- * 
+ *
  * Usa data-user en <body>, o 'guest' si no existe.
  */
 function getCartKey() {
@@ -20,6 +41,11 @@ function getCartKey() {
     return `${CART_PREFIX}${username}`;
 }
 
+
+
+// ==================================================
+//  NORMALIZACIÓN DE ITEMS
+// ==================================================
 
 /**
  * Normaliza un item del carrito.
@@ -38,7 +64,7 @@ function normalizeCartItem(item) {
         Number.isInteger(quantityNumber) && quantityNumber > 0
             ? quantityNumber
             : 1;
-    
+
     return {
         id,
         title: String(item.title ?? ''),
@@ -49,8 +75,14 @@ function normalizeCartItem(item) {
 }
 
 
+
+// ==================================================
+//  LECTURA / ESCRITURA EN LOCALSTORAGE
+// ==================================================
+
 /**
  * Lee el carrito de LocalStorage.
+ * Devuelve un array de items normalizados.
  */
 function loadCart() {
     const key = getCartKey();
@@ -67,6 +99,7 @@ function loadCart() {
             .filter((item) => item !== null);
 
     } catch {
+        // Si hay error al parsear, se considera carrito vacío
         return [];
     }
 }
@@ -98,16 +131,16 @@ function saveCart(items) {
 
 
 
-
-// ==========================
-// |  Funciones de Dominio  |
-// ==========================
-
+// ==================================================
+//  FUNCIONES DE DOMINIO DEL CARRITO
+// ==================================================
 
 /**
  * Devuelve los items del carrito.
  */
-function getCartItems() { return loadCart(); }
+function getCartItems() {
+    return loadCart();
+}
 
 
 /**
@@ -115,12 +148,12 @@ function getCartItems() { return loadCart(); }
  * itemData = { id, title, price, coverImage }
  */
 function addItem(itemData) {
-    if (!itemData || typeof itemData.id !== 'string' ) return;
+    if (!itemData || typeof itemData.id !== 'string') return;
 
     const items = loadCart();
     const existing = items.find((i) => i.id === itemData.id);
 
-    // Si existe, aumenta la cantidad.
+    // Si existe, aumenta la cantidad
     if (existing) {
         existing.quantity += 1;
         saveCart(items);
@@ -142,7 +175,6 @@ function addItem(itemData) {
 }
 
 
-
 /**
  * Elimina un producto del carrito por id.
  */
@@ -159,7 +191,7 @@ function removeItem(id) {
 
 /**
  * Cambia la cantidad de un producto.
- * cantidad mínima: 1
+ * Cantidad mínima: 1
  */
 function setQuantity(id, quantity) {
     if (!id) return;
@@ -180,7 +212,7 @@ function setQuantity(id, quantity) {
 /**
  * Vacía completamente el carrito.
  */
-function clearCart() { 
+function clearCart() {
     saveCart([]);
     notifyCartUpdated();
 }
@@ -188,7 +220,7 @@ function clearCart() {
 
 /**
  * Calcula los totales del carrito.
- * Devuelve { totalQuantity, totalPrice }
+ * Devuelve { totalQuantity, totalPrice }.
  */
 function getTotals() {
     const items = loadCart();
@@ -205,8 +237,7 @@ function getTotals() {
 }
 
 
-
-export { 
+export {
     loadCart,
     saveCart,
     getCartItems,

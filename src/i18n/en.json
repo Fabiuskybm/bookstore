@@ -89,8 +89,15 @@
         "alert_empty": "The cart is empty.",
         "quantity_label": "Quantity",
         "cover_alt": "Book cover",
-        "remove_alt": "Remove"
-
+        "remove_alt": "Remove",
+        "promo_label": "Promo code",
+        "promo_placeholder": "Enter your code",
+        "promo_apply": "Apply",
+        "ticket_subtotal_label": "Subtotal",
+        "ticket_discount_label": "Discount",
+        "ticket_total_label": "Total",
+        "promo_invalid": "Invalid code.",
+        "promo_applied": "Code applied: {percent}% discount."
     },
     "book": {
         "cover_alt_prefix": "Cover of",

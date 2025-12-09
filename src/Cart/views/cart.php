@@ -10,7 +10,12 @@ declare(strict_types=1);
     data-cart-alert-empty="<?= e(t('cart.alert_empty')) ?>"
     data-cart-cover-alt="<?= e(t('cart.cover_alt')) ?>"
     data-cart-quantity-label="<?= e(t('cart.quantity_label')) ?>"
-    data-cart-remove-alt="<?= e(t('cart.remove_alt')) ?>">
+    data-cart-remove-alt="<?= e(t('cart.remove_alt')) ?>"
+    data-cart-ticket-subtotal-label="<?= e(t('cart.ticket_subtotal_label')) ?>"
+    data-cart-ticket-discount-label="<?= e(t('cart.ticket_discount_label')) ?>"
+    data-cart-ticket-total-label="<?= e(t('cart.ticket_total_label')) ?>"
+    data-cart-promo-invalid="<?= e(t('cart.promo_invalid')) ?>"
+    data-cart-promo-applied="<?= e(t('cart.promo_applied')) ?>">
 
     <h1 class="cart__title"><?= e(t('cart.title')) ?></h1>
     <div class="cart__divider"></div>
@@ -83,6 +88,38 @@ declare(strict_types=1);
                     </dd>
                 </div>
             </dl>
+
+            <div class="cart__promo">
+                <label 
+                    for="cart-promo-code"
+                    class="cart__promo-label">
+                    <?= e(t('cart.promo_label')) ?>
+                </label>
+
+                <div class="cart__promo-row">
+                    <input
+                        type="text"
+                        id="cart-promo-code"
+                        name="promo_code"
+                        class="cart__promo-input"
+                        placeholder="<?= e(t('cart.promo_placeholder')) ?>"
+                        data-cart-promo-input
+                    >
+
+                    <button
+                        type="button"
+                        class="cart__promo-button"
+                        data-cart-promo-apply>
+                        <?= e(t('cart.promo_apply')) ?>
+                    </button>
+                </div>
+
+                <p 
+                    class="cart__promo-message"
+                    data-cart-promo-message
+                    hidden>
+                </p>
+            </div>
 
             <button 
                 type="button"
