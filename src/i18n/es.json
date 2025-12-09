@@ -89,8 +89,13 @@
         "alert_empty": "El carrito está vacío.",
         "quantity_label": "Cantidad",
         "cover_alt": "Portada del libro",
-        "remove_alt": "Eliminar"
-
+        "remove_alt": "Eliminar",
+        "promo_label": "Código promocional",
+        "promo_placeholder": "Introduce tu código",
+        "promo_apply": "Aplicar",
+        "ticket_subtotal_label": "Subtotal",
+        "ticket_discount_label": "Descuento",
+        "ticket_total_label": "Total"
     },
     "book": {
         "cover_alt_prefix": "Portada de",

@@ -7,6 +7,8 @@ import {
     clearCart
 } from './cart-storage.js';
 
+import { Product } from './Product.js';
+
 
 
 function getCartTexts() {
@@ -29,7 +31,10 @@ function getCartTexts() {
         cartAlertEmpty,
         cartCoverAlt,
         cartQuantityLabel,
-        cartRemoveAlt
+        cartRemoveAlt,
+        cartTicketSubtotalLabel,
+        cartTicketDiscountLabel,
+        cartTicketTotalLabel
 
     } = section.dataset;
 
@@ -40,7 +45,10 @@ function getCartTexts() {
         alertEmpty: cartAlertEmpty || 'The cart is empty.',
         coverAlt: cartCoverAlt || 'Book cover.',
         quantityLabel: cartQuantityLabel || 'Quantity.',
-        removeAlt: cartRemoveAlt || 'Remove.'
+        removeAlt: cartRemoveAlt || 'Remove.',
+        subtotalLabel: cartTicketSubtotalLabel || 'Subtotal',
+        discountLabel: cartTicketDiscountLabel || 'Discount',
+        totalLabel: cartTicketTotalLabel || 'Total'
     };
 }
 
@@ -51,7 +59,17 @@ function formatPrice(price) {
 }
 
 
-function buildTicketHtml(items, totals) {
+function mapCartItemsToProducts(items) {
+    return items.map((item) => new Product({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        quantity: item.quantity
+    }));
+}
+
+
+function buildTicketHtml(items) {
     const date = new Date();
     const texts = getCartTexts();
 
@@ -62,16 +80,21 @@ function buildTicketHtml(items, totals) {
     
     let linesHtml = '';
 
-    items.forEach((item) => {
-        const lineTotal = item.price * item.quantity;
+    const products = mapCartItemsToProducts(items);
+
+    let grandTotal = 0;
+
+    products.forEach((product) => {
+        const lineTotal = product.lineTotal;
+        grandTotal += lineTotal;
 
         linesHtml += `
             <div class="ticket__item">
-                <span class="ticket__title">${item.title}</span>
+                <span class="ticket__title">${product.title}</span>
 
                 <span class="ticket__qty">
                     <span class="ticket__qty-x">x</span>
-                    ${item.quantity}
+                    ${product.quantity}
                 </span>
                 
                 <span class="ticket__total">${formatPrice(lineTotal)}</span>
@@ -89,9 +112,19 @@ function buildTicketHtml(items, totals) {
                 ${linesHtml}
             </div>
 
-            <p class="ticket__grand-total">
-                Total: ${formatPrice(totals.totalPrice)}
-            </p>
+            <div class="ticket__totals">
+                <p class="ticket__subtotal">
+                    ${texts.subtotalLabel}: <span data-ticket-subtotal>${formatPrice(grandTotal)}</span>
+                </p>
+
+                <p class="ticket__discount" hidden>
+                    ${texts.discountLabel}: <span data-ticket-discount>0,00 €</span>
+                </p>
+
+                <p class="ticket__grand-total">
+                    ${texts.totalLabel}: <span data-ticket-total>${formatPrice(grandTotal)}</span>
+                </p>
+            </div>
         </div>
     `;
 }
@@ -141,6 +174,13 @@ export function initCartPage() {
             handleCheckout(dom);
         });
     }
+
+    if (dom.promoApplyBtn && dom.promoInput) {
+        dom.promoApplyBtn.addEventListener('click', () => {
+            const code = dom.promoInput.value.trim();
+            handlePromoCode(dom, code);
+        });
+    }
 }
 
 
@@ -157,12 +197,19 @@ function getCartDomRefs() {
     const checkoutBtn = document.querySelector('[data-cart-checkout]');
     const ticketEl = document.querySelector('[data-cart-ticket]');
 
+    const promoInput = document.querySelector('[data-cart-promo-input]');
+    const promoApplyBtn = document.querySelector('[data-cart-promo-apply]');
+    const promoMessage = document.querySelector('[data-cart-promo-message]');
+
     return {
         itemsContainer,
         totalQtyEl,
         totalPriceEl,
         checkoutBtn,
-        ticketEl
+        ticketEl,
+        promoInput,
+        promoApplyBtn,
+        promoMessage
     };
 }
 
@@ -377,6 +424,27 @@ function handleCheckout(dom) {
     renderCart();
 
     sendWishlistCleanup(purchasedIds);
+}
+
+
+function handlePromoCode(dom, code) {
+    const trimmed = (code || '').trim();
+
+    if (!trimmed) {
+        if (dom.promoMessage) {
+            dom.promoMessage.hidden = true;
+            dom.promoMessage.textContent = '';
+        }
+        return;
+    }
+
+    console.log('Promo code entered:', trimmed);
+
+    // Más adelante aquí:
+    // - validaremos el código
+    // - calcularemos el descuento
+    // - actualizaremos subtotal / descuento / total
+    // - mostraremos el mensaje al usuario
 }
 
 
