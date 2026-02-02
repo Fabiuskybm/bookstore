@@ -29,3 +29,13 @@ const BOOKS_FILE_EN = BOOKS_DATA_DIR . '/books_en.json';
 // Idiomas soportados por el catálogo y la interfaz
 const SUPPORTED_LANGUAGES = ['es', 'en'];
 
+
+// ------------------
+//  Database (MySQL)
+// ------------------
+const DB_HOST = 'db';
+const DB_PORT = 3306;
+const DB_NAME = 'bookstore';
+const DB_USER = 'root';
+const DB_PASSWORD = '1234';
+const DB_CHARSET = 'utf8mb4';
