@@ -100,6 +100,8 @@ CREATE TABLE IF NOT EXISTS users (
   UNIQUE KEY uq_user_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO users (username, email, password_hash) VALUES 
+    ('admin', 'admin@bookstore.com', '$2y$10$zDxPE70zzgjacD28GutAKOLds5lApOHhFr7evsTi.pK5wl4D7dwJi');
 
 
 -- ===========================
@@ -275,6 +277,8 @@ CREATE TABLE IF NOT EXISTS user_roles (
     ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+INSERT INTO user_roles VALUES (1, 2);
 
 
 -- ==============================

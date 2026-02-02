@@ -9,16 +9,6 @@
 const NAME_PATTERN = '/^[\p{L}\p{M}\s\'-]{2,50}$/u';
 
 
-// Roles
-const ROLE_ADMIN = 'admin';
-const ROLE_USER = 'user';
-
-
-// Credenciales de prueba
-const AUTH_ADMIN_USER = 'admin';
-const AUTH_PASS = '1234';
-
-
 // Idiomas soportados por el catálogo y la interfaz
 const SUPPORTED_LANGUAGES = ['es', 'en'];
 

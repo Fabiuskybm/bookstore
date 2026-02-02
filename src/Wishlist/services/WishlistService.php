@@ -177,7 +177,7 @@ function wishlist_get_books(): array
     $books = [];
 
     foreach ($ctx['ids'] as $id) {
-        $book = books_find_by_id_any($id);
+        $book = books_find_by_id($id);
         if ($book !== null) $books[] = $book;
     }
 
@@ -188,9 +188,9 @@ function wishlist_get_books(): array
 /**
  * Indica si un libro está en la wishlist del usuario actual
  */
-function wishlist_has(string $bookId): bool
+function wishlist_has(int|string $bookId): bool
 {
-    $cleanId = trim($bookId);
+    $cleanId = trim((string)$bookId);
     if ($cleanId === '') return false;
 
     $ctx = wishlist_context();

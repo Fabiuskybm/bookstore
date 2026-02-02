@@ -63,7 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'logout':
             $result = $auth->logout();
             break;
-        
+
+        case 'register':
+            $result = $auth->processRegister();
+            break;
+
         case 'wishlist_add':
             $result = $wishlist->add();
             break;
