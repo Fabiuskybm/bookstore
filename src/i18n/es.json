@@ -62,7 +62,7 @@
         "featured_title": "Libros destacados",
         "featured_prev_label": "Ver libros anteriores",
         "featured_next_label": "Ver más libros",
-        "catalog_title": "Todos los libros"
+        "catalog_title": "Catálogo"
     },
     "wishlist": {
         "title": "Lista de deseos",
@@ -103,7 +103,21 @@
         "cover_alt_prefix": "Portada de",
         "wishlist_icon_alt": "Icono de lista de deseos",
         "cart_icon_alt": "Icono de añadir al carrito",
-        "add_to_cart_label": "Añadir al carrito"
+        "add_to_cart_label": "Añadir al carrito",
+        "format_paperback": "Tapa blanda",
+        "format_hardcover": "Tapa dura",
+        "format_ebook": "Ebook"
+    },
+    "categories": {
+        "fantasy": "Fantasía",
+        "epic": "Épica",
+        "science-fiction": "Ciencia ficción",
+        "space-opera": "Space opera",
+        "thriller": "Thriller",
+        "horror": "Terror",
+        "cosmere": "Cosmere",
+        "grimdark": "Grimdark",
+        "historical": "Histórica"
     },
     "preferences": {
         "title": "Preferencias",

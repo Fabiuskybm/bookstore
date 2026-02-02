@@ -1,17 +1,22 @@
 <?php
 declare(strict_types=1);
 
-
-class User {
-
+final class User
+{
     public function __construct(
+        private int $id,
         private string $username,
-        private string $role
+        private string $email,
+        private array $roles = [ROLE_USER]
     ) {}
 
-
+    public function getId(): int { return $this->id; }
     public function getUsername(): string { return $this->username; }
-    public function getRole(): string { return $this->role; }
-    public function isAdmin(): bool { return $this->role === ROLE_ADMIN; }
+    public function getEmail(): string { return $this->email; }
+    public function getRoles(): array { return $this->roles; }
 
+    public function isAdmin(): bool
+    {
+        return in_array(ROLE_ADMIN, $this->roles, true);
+    }
 }

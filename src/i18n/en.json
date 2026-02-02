@@ -103,7 +103,21 @@
         "cover_alt_prefix": "Cover of",
         "wishlist_icon_alt": "Wishlist icon",
         "cart_icon_alt": "Add to cart icon",
-        "add_to_cart_label": "Add to cart"
+        "add_to_cart_label": "Add to cart",
+        "format_paperback": "Paperback",
+        "format_hardcover": "Hardcover",
+        "format_ebook": "Ebook"
+    },
+    "categories": {
+        "fantasy": "Fantasy",
+        "epic": "Epic",
+        "science-fiction": "Science fiction",
+        "space-opera": "Space opera",
+        "thriller": "Thriller",
+        "horror": "Horror",
+        "cosmere": "Cosmere",
+        "grimdark": "Grimdark",
+        "historical": "Historical"
     },
     "preferences": {
         "title": "Preferences",
