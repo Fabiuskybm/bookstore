@@ -35,6 +35,8 @@ import { initBookCarousel } from './home/book-carousel.js';
 
 // Wishlist (side effects init)
 import './wishlist/wishlist-select-all.js';
+import { initWishlistToggle } from './wishlist/wishlist-toggle.js';
+import { initWishlistActions } from './wishlist/wishlist-actions.js';
 
 
 // ==================================================
@@ -83,4 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Carrusel de inicio (libros destacados)
     initBookCarousel();
+
+    initWishlistToggle();
+
+    initWishlistActions();
 });

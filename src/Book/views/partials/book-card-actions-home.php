@@ -39,7 +39,7 @@ $currentView = $view ?? 'home';
     class="book-card__wishlist-form">
 
     <input type="hidden" name="action" value="<?= e($wishlistAction) ?>">
-    <input type="hidden" name="book_id" value="<?= e($book->getId()) ?>">
+    <input type="hidden" name="product_id" value="<?= e((string) $book->getId()) ?>">
     <input type="hidden" name="_return" value="<?= e($currentView) ?>">
 
     <button 

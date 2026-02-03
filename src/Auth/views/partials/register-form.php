@@ -1,5 +1,8 @@
 <?php
 declare(strict_types=1);
+
+$errs = $data['errs'] ?? [];
+$old  = $data['old'] ?? [];
 ?>
 
 
@@ -8,6 +11,14 @@ declare(strict_types=1);
     method="post"
     autocomplete="off"
     class="auth__form auth__form--register">
+
+    <?php if (!empty($errs) && (($data['activeTab'] ?? 'login') === 'register')): ?>
+        <ul class="auth__errors" aria-live="polite">
+            <?php foreach ($errs as $err): ?>
+                <li class="auth__errors-item"><?= e((string)$err) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 
     <div class="auth__field">
         <label 
@@ -21,7 +32,7 @@ declare(strict_types=1);
             name="register_username" 
             id="register-username"
             class="auth__input"
-            value=""
+            value="<?= e($old['register_username'] ?? '') ?>"
             autocomplete="off"
             required>
 
@@ -40,7 +51,7 @@ declare(strict_types=1);
             name="register_email" 
             id="register-email"
             class="auth__input"
-            value=""
+            value="<?= e($old['register_email'] ?? '') ?>"
             autocomplete="off"
             required>
 

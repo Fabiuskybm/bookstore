@@ -63,7 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'logout':
             $result = $auth->logout();
             break;
-        
+
+        case 'register':
+            $result = $auth->processRegister();
+            break;
+
         case 'wishlist_add':
             $result = $wishlist->add();
             break;
@@ -80,6 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $wishlist->clear();
             break;
 
+        case 'wishlist_toggle':
+            $result = $wishlist->toggle();
+            break;
+
         case 'set_language':
             $result = $preference->setLanguage();
             break;
@@ -88,6 +96,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $preference->update();
             break;
 
+    }
+
+
+
+    $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+        && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+
+
+    if ($isAjax && $result !== null) {
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        exit;
     }
 
     // Redirecciones

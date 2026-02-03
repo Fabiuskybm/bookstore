@@ -1,37 +1,33 @@
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/../../Product/models/Product.php';
 
-class Book {
 
+final class Book extends Product
+{
     public function __construct(
-        private string $id,
-        private string $title,
+        int $id,
+        string $name,
+        string $slug,
+        float $price,
+        int $stock,
+        string $imagePath,
         private string $author,
-        private float $price,
-        private string $coverImage,
         private array $categories,
         private string $format,
-        private bool $isFeatured
-    ) {}
-
-
-    public function getId(): string { return $this->id; }
-    public function getTitle(): string { return $this->title; }
-    public function getAuthor(): string { return $this->author; }
-    public function getPrice(): float { return $this->price; }
-    public function getCoverImage(): string { return $this->coverImage; }
-    public function getCategories(): array { return $this->categories; }
-    public function getFormat(): string { return $this->format; }
-    public function isFeatured(): bool { return $this->isFeatured; }
-
-
-    /*----------------
-    |     HELPERS     
-    |----------------*/
-
-    public function hasCategory(string $category): bool {
-        return in_array($category, $this->categories, true);
+        bool $isActive = true,
+        bool $isFeatured = false
+    ) {
+        parent::__construct($id, $name, $slug, $price, $stock, $imagePath, $isActive, $isFeatured);
     }
 
+    public function getAuthor(): string { return $this->author; }
+    public function getCategories(): array { return $this->categories; }
+    public function getFormat(): string { return $this->format; }
+
+    public function hasCategory(string $category): bool
+    {
+        return in_array($category, $this->categories, true);
+    }
 }

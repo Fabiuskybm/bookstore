@@ -3,27 +3,9 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../Auth/services/AuthService.php';
 require_once __DIR__ . '/../../Book/services/BookService.php';
-require_once __DIR__ . '/../../Shared/CookieService.php';
+require_once __DIR__ . '/../../Shared/Database.php';
+require_once __DIR__ . '/../repositories/WishlistRepository.php';
 
-
-const WISHLIST_LIFETIME = 60 * 60 * 24 * 30;
-
-
-
-/**
- * Devuelve el nombre de la cookie de wishlist
- * para el usuario actual o null si no hay usuario.
- */
-function wishlist_cookie_name(): ?string 
-{
-    $user = auth_user();
-    if($user === null) return null;
-
-    $username = trim(mb_strtolower($user->getUsername()));
-    if ($username === '') return null;
-
-    return 'wishlist_' . $username;
-}
 
 
 /**
@@ -31,125 +13,62 @@ function wishlist_cookie_name(): ?string
  */
 function wishlist_get_ids(): array 
 {
-    $cookieName = wishlist_cookie_name();
-    if ($cookieName === null) return [];
+    $userId = wishlist_user_id();
+    if ($userId === null) return [];
 
-    $raw = get_cookie_value($cookieName);
-    if ($raw === null || $raw === '') return [];
-
-    $decoded = json_decode($raw, true);
-    if (!is_array($decoded)) return [];
-
-
-    $ids = [];
-
-    foreach($decoded as $value) {
-        if (is_string($value)) $ids[] = $value;
-    }
-
-    $ids = array_values(array_unique($ids));
-
-    return $ids;
-}
-
-
-/**
- * Guarda los IDs de la wishlist del usuario actual.
- */
-function wishlist_save_ids(array $ids): void
-{
-    $cookieName = wishlist_cookie_name();
-    if ($cookieName === null) return;
-
-    $clean = [];
-
-    foreach ($ids as $value) {
-        if (is_string($value) && trim($value) !== '') {
-            $clean[] = trim($value);
-        }
-    }
-
-    $clean = array_values(array_unique($clean));
-    
-    if (empty($clean)) {
-        delete_cookie($cookieName);
-        return;
-    }
-
-    $json = json_encode($clean, JSON_UNESCAPED_UNICODE);
-
-    if ($json !== false) {
-        set_cookie_value($cookieName, $json, WISHLIST_LIFETIME);
-    }
+    $repo = wishlist_repo();
+    return $repo->getIdsByUserId($userId);
 }
 
 
 /**
  * Añade un libro a la wishlist del usuario actual.
  */
-function wishlist_add(string $bookId): void 
+function wishlist_add(string $productId): void 
 {
-    $prep = wishlist_prepare($bookId);
+    $prep = wishlist_prepare($productId);
     if ($prep === null) return;
 
-    $cleanId = $prep['id'];
-    $ids = $prep['ids'];
-
-    if (!in_array($cleanId, $ids, true)) {
-        $ids[] = $cleanId;
-        wishlist_save_ids($ids);
-    }
+    $repo = wishlist_repo();
+    $repo->add($prep['userId'], $prep['id']);
 }
 
 
 /**
  * Elimina un libro de la wishlist del usuario actual.
  */
-function wishlist_remove(string $bookId): void 
+function wishlist_remove(string $productId): void 
 {
-    $prep = wishlist_prepare($bookId);
+    $prep = wishlist_prepare($productId);
     if ($prep === null) return;
 
-    $cleanId = $prep['id'];
-    $ids = $prep['ids'];
-
-    $filtered = array_values(array_filter(
-        $ids,
-        static fn (string $id): bool => $id !== $cleanId
-    ));
-
-    wishlist_save_ids($filtered);
+    $repo = wishlist_repo();
+    $repo->remove($prep['userId'], $prep['id']);
 }
 
 
 /**
  * Elimina varios libros de la wishlist del usuario actual
  */
-function wishlist_bulk_remove(array $bookIds): void
+function wishlist_bulk_remove(array $productIds): void
 {
-    if (empty($bookIds)) return;
+    if (empty($productIds)) return;
 
-    $ctx = wishlist_context();
-    if ($ctx === null) return;
+    $userId = wishlist_user_id();
+    if ($userId === null) return;
 
     $toRemove = [];
 
-    foreach ($bookIds as $id) {
-        if (!is_string($id)) continue;
-        $cleanId = trim($id);
-        if ($cleanId !== '') $toRemove[] = $cleanId;
+    foreach ($productIds as $id) {
+        $cleanId = wishlist_normalize_product_id($id);
+        if ($cleanId !== null) $toRemove[] = $cleanId;
     }
 
     if (empty($toRemove)) return;
 
-    $toRemove = array_unique($toRemove);
-
-    $remaining = array_values(array_filter(
-        $ctx['ids'],
-        static fn (string $id): bool => !in_array($id, $toRemove, true)
-    ));
-
-    wishlist_save_ids($remaining);
+    $toRemove = array_values(array_unique($toRemove));
+    $repo = wishlist_repo();
+    $repo->bulkRemove($userId, $toRemove);
 }
 
 
@@ -159,10 +78,11 @@ function wishlist_bulk_remove(array $bookIds): void
  */
 function wishlist_clear(): void
 {
-    $ctx = wishlist_context();
-    if ($ctx === null) return;
+    $userId = wishlist_user_id();
+    if ($userId === null) return;
 
-    wishlist_save_ids([]);
+    $repo = wishlist_repo();
+    $repo->clear($userId);
 }
 
 
@@ -171,13 +91,13 @@ function wishlist_clear(): void
  */
 function wishlist_get_books(): array
 {
-    $ctx = wishlist_context();
-    if ($ctx === null) return [];
+    $ids = wishlist_get_ids();
+    if (empty($ids)) return [];
 
     $books = [];
 
-    foreach ($ctx['ids'] as $id) {
-        $book = books_find_by_id_any($id);
+    foreach ($ids as $id) {
+        $book = books_find_by_id($id);
         if ($book !== null) $books[] = $book;
     }
 
@@ -188,15 +108,16 @@ function wishlist_get_books(): array
 /**
  * Indica si un libro está en la wishlist del usuario actual
  */
-function wishlist_has(string $bookId): bool
+function wishlist_has(int|string $productId): bool
 {
-    $cleanId = trim($bookId);
-    if ($cleanId === '') return false;
+    $cleanId = wishlist_normalize_product_id($productId);
+    if ($cleanId === null) return false;
 
-    $ctx = wishlist_context();
-    if ($ctx === null) return false;
+    $userId = wishlist_user_id();
+    if ($userId === null) return false;
 
-    return in_array($cleanId, $ctx['ids'], true);
+    $repo = wishlist_repo();
+    return $repo->has($userId, $cleanId);
 }
 
 
@@ -206,49 +127,56 @@ function wishlist_has(string $bookId): bool
 |     HELPERS     
 |----------------*/
 
-/**
- * Devuelve el contexto de wishlist del usuario actual
- * (cookieName e ids actuales) o null si no hay usuario.
- */
-function wishlist_context(): ?array 
+function wishlist_user_id(): ?int
 {
-    $cookieName = wishlist_cookie_name();
-    if ($cookieName === null) return null;
+    $user = auth_user();
+    if ($user === null) return null;
 
-    $ids = wishlist_get_ids();
+    $userId = $user->getId();
+    return $userId > 0 ? $userId : null;
+}
 
-    return [
-        'cookieName' => $cookieName,
-        'ids' => $ids
-    ];
+
+function wishlist_repo(): WishlistRepository
+{
+    $pdo = Database::getInstance()->pdo();
+    return new WishlistRepository($pdo);
 }
 
 
 /**
  * Prepara los datos necesarios para modificar la wishlist
- * - Normaliza el bookId
- * - Obtiene el contexto del usuario (cookieName + ids)
- * 
+ * - Normaliza el productId
+ * - Obtiene el userId actual
+ *
  * Devuelve:
  *  [
- *    'id' => string,
- *    'ids' => array,
- *    'cookieName' => string,
+ *    'id' => int,
+ *    'userId' => int,
  *  ]
  * 
  * Si algo falla -> null
  */
-function wishlist_prepare(string $bookId): ?array
+function wishlist_prepare(string $productId): ?array
 {
-    $cleanId = trim($bookId);
-    if ($cleanId === '') return null;
+    $cleanId = wishlist_normalize_product_id($productId);
+    if ($cleanId === null) return null;
 
-    $ctx= wishlist_context();
-    if ($ctx === null) return null;
+    $userId = wishlist_user_id();
+    if ($userId === null) return null;
 
     return [
         'id' => $cleanId,
-        'ids' => $ctx['ids'],
-        'cookieName' => $ctx['cookieName']
+        'userId' => $userId
     ];
+}
+
+
+function wishlist_normalize_product_id(int|string $productId): ?int
+{
+    $cleanId = trim((string) $productId);
+    if ($cleanId === '') return null;
+
+    $cleanId = (int) $cleanId;
+    return $cleanId > 0 ? $cleanId : null;
 }

@@ -42,7 +42,7 @@ $currentItems = pref_items_per_page();
                 
                 <?php 
                     // Valores permitidos (modifícalos si quieres)
-                    $options = [4, 8, 12, 16, 20];
+                    $options = [4, 8, 12, 16, 20, 50, 100];
                 ?>
 
                 <?php foreach ($options as $opt): ?>
