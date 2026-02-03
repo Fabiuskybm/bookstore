@@ -93,13 +93,13 @@ bookstore/
 - Wishlist con selección múltiple
 
 ### Backend
-- Carga de libros desde JSON (ES/EN)
-- Wishlist almacenada en cookie
+- Carga de libros desde base de datos
+- Wishlist almacenada en base de datos
 - Preferencias guardadas en cookie
 - Sistema básico de plantillas
 - Traducciones (`i18n/es.json` + `i18n/en.json`)
 - Carrito gestionado en frontend
-- Módulo de autenticación **incluido pero sin registro funcional**
+- Módulo de autenticación
 - Área de administración con página *Under Construction*
 
 ---
