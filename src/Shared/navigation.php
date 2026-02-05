@@ -16,6 +16,7 @@ function get_navigation_items(): array {
 
     $items = [
         [ 'view' => 'home' ],
+        [ 'view' => 'packs' ],
     ];
 
     // Si hay usuario logueado se ve la wishlist en el menú

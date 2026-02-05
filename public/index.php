@@ -26,6 +26,8 @@ require_once __DIR__ . '/../src/Wishlist/controllers/WishlistController.php';
 
 require_once __DIR__ . '/../src/Preference/controllers/PreferenceController.php';
 
+require_once __DIR__ . '/../src/Pack/controllers/PackController.php';
+
 
 // Helpers de presentación
 require_once __DIR__ . '/../src/Shared/html.php';
@@ -40,6 +42,7 @@ $admin = new AdminController();
 $home = new HomeController();
 $wishlist = new WishlistController();
 $preference = new PreferenceController();
+$pack = new PackController();
 
 $data = [];
 
@@ -96,6 +99,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $preference->update();
             break;
 
+        case 'pack_add':
+            $result = $pack->add();
+            break;
+
+        case 'pack_clear':
+            $result = $pack->clear();
+            break;
+
+        case 'pack_item_add':
+            $result = $pack->addItem();
+            break;
+
+        case 'pack_remove':
+            $result = $pack->remove();
+            break;
+
     }
 
 
@@ -103,6 +122,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])
         && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
 
+
+    $packActions = ['pack_add', 'pack_item_add', 'pack_remove', 'pack_clear'];
+
+    if ($isAjax && $result !== null && in_array($action, $packActions, true)) {
+        if (isset($result['view'])) {
+            $view  = $result['view'];
+            $data  = $result['data'] ?? [];
+        } else {
+            $view = 'packs';
+            $fallback = $pack->show();
+            $data = $fallback['data'] ?? [];
+        }
+
+        $viewFile = __DIR__ . '/../src/Pack/views/packs.php';
+        $pageTitle = t('layout.page_title_packs');
+
+        ob_start();
+        require __DIR__ . '/../src/Shared/templates/layout.php';
+        $html = ob_get_clean();
+
+        header('Content-Type: text/html; charset=utf-8');
+        echo $html;
+        exit;
+    }
 
     if ($isAjax && $result !== null) {
         header('Content-Type: application/json; charset=utf-8');
@@ -157,6 +200,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $result = $admin->show();
             $data = $result['data'] ?? [];
             break;
+
+        case 'packs':
+            $result = $pack->show();
+            $data = $result['data'] ?? [];
+            break;
     }
 }
 
@@ -192,6 +240,11 @@ switch ($view) {
     case 'admin':
         $viewFile = __DIR__ . '/../src/Admin/views/admin.php';
         $pageTitle = t('layout.page_title_admin');
+        break;
+
+    case 'packs':
+        $viewFile = __DIR__ . '/../src/Pack/views/packs.php';
+        $pageTitle = t('layout.page_title_packs');
         break;
 
     default:
