@@ -7,6 +7,7 @@
         "page_title_wishlist": "Editorial Blackrose | Lista de deseos",
         "page_title_preferences": "Editorial Blackrose | Preferencias",
         "page_title_admin": "Editorial Blackrose | Administración",
+        "page_title_packs": "Editorial Blackrose | Packs",
         "scroll_top_label": "Volver arriba"
     },
     "admin": {
@@ -30,6 +31,7 @@
     },
     "nav": {
         "home": "Inicio",
+        "packs": "Packs",
         "preferences": "Preferencias",
         "wishlist": "Lista de deseos",
         "admin": "Zona administrativa"
@@ -72,6 +74,53 @@
         "remove_selected": "Eliminar",
         "total_label": "Total de la lista",
         "clear_all": "Vaciar lista"
+    },
+    "packs": {
+        "title": "Packs",
+        "form": {
+            "pack_name_label": "Nombre del pack",
+            "pack_category_label": "Categoría",
+            "pack_category_placeholder": "Selecciona una categoría",
+            "pack_category_empty": "No hay categorías disponibles.",
+            "pack_submit": "Crear pack"
+        },
+        "list": {
+            "title": "Historial de packs",
+            "empty": "No hay packs creados todavía.",
+            "remove_pack": "Eliminar pack"
+        },
+        "items": {
+            "book_label": "Libro",
+            "book_placeholder": "Selecciona un libro",
+            "book_empty": "No hay libros disponibles para esta categoría.",
+            "stock_label": "Stock",
+            "quantity_label": "Cantidad",
+            "add_button": "Añadir libro",
+            "empty": "Este pack no tiene libros añadidos.",
+            "table_book": "Libro",
+            "table_quantity": "Cantidad",
+            "table_price": "Precio unitario",
+            "table_total": "Total",
+            "pack_total": "Total pack:"
+        },
+        "totals": {
+            "title": "Totales",
+            "grand_total": "Total general:",
+            "by_category": "Total por categoría"
+        },
+        "actions": {
+            "clear": "Vaciar packs"
+        },
+        "errors": {
+            "pack_name": "El nombre del pack es obligatorio.",
+            "pack_category": "La categoría seleccionada no es válida.",
+            "categories_unavailable": "No hay categorías disponibles.",
+            "pack_invalid": "El pack seleccionado no es válido.",
+            "book_invalid": "El libro seleccionado no es válido.",
+            "book_category": "El libro no pertenece a la categoría del pack.",
+            "quantity_min": "La cantidad debe ser mayor o igual a 1.",
+            "quantity_stock": "No hay stock suficiente para la cantidad solicitada."
+        }
     },
     "cart": {
         "title": "Carrito",

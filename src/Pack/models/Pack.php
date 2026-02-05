@@ -16,6 +16,7 @@ final class Pack extends Product
         float $price,
         int $stock,
         string $imagePath,
+        private string $category = '',
         private ?string $description = null,
         bool $isActive = true,
         bool $isFeatured = false
@@ -25,8 +26,12 @@ final class Pack extends Product
 
 
     public function getDescription(): ?string { return $this->description; }
+    public function getCategory(): string { return $this->category; }
 
 
+    /*
+    * Añade items al pack agrupando cantidades del mismo libro.
+    */
     public function addItem(PackItem $item): void
     {
         foreach ($this->items as $i => $existing) {
@@ -45,18 +50,29 @@ final class Pack extends Product
     }
 
 
+    /*
+     * Devuelve los items del pack.
+     */
     public function getItems(): array
     {
         return $this->items;
     }
 
     
+    
+    /*
+     * Indica si el pack contiene items.
+     */
     public function hasItems(): bool
     {
         return !empty($this->items);
     }
 
+
     
+    /*
+     * Suma el total de todos los items del pack.
+     */
     public function getTotal(): float
     {
         $total = 0.0;
@@ -64,5 +80,61 @@ final class Pack extends Product
             $total += $item->getTotal();
         }
         return $total;
+    }
+
+
+
+    /*
+     * Serializa el pack para la sesión o la vista.
+     */
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->getName(),
+            'category' => $this->category,
+            'items' => array_map(static fn(PackItem $item) => $item->toArray(), $this->items),
+        ];
+    }
+
+
+
+    /*
+     * Reconstruye un pack desde arrays de sesión.
+     */
+    public static function fromArray(array $data, callable $bookResolver): self
+    {
+        $name = (string) ($data['name'] ?? '');
+        $category = (string) ($data['category'] ?? '');
+
+        $pack = new self(0, $name, '', 0.0, 0, '', $category);
+
+        $items = $data['items'] ?? [];
+
+        if (is_array($items)) {
+
+            foreach ($items as $itemData) {
+                $bookId = (int) ($itemData['book_id'] ?? 0);
+
+                if ($bookId <= 0) {
+                    continue;
+                }
+
+                $book = $bookResolver($bookId);
+
+                if ($book === null) {
+                    continue;
+                }
+
+                $quantity = (int) ($itemData['quantity'] ?? 0);
+                
+                if ($quantity <= 0) {
+                    continue;
+                }
+
+                $pack->addItem(new PackItem($book, $quantity));
+            }
+        }
+
+        return $pack;
     }
 }

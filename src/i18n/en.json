@@ -7,6 +7,7 @@
         "page_title_wishlist": "Blackrose Press | Wishlist",
         "page_title_preferences": "Blackrose Press | Preferences",
         "page_title_admin": "Blackrose Press | Admin",
+        "page_title_packs": "Blackrose Press | Packs",
         "scroll_top_label": "Back to top"
     },
     "admin": {
@@ -30,6 +31,7 @@
     },
     "nav": {
         "home": "Home",
+        "packs": "Packs",
         "preferences": "Preferences",
         "wishlist": "Wishlist",
         "admin": "Admin area"
@@ -72,6 +74,53 @@
         "remove_selected": "Remove",
         "total_label": "Wishlist total",
         "clear_all": "Clear wishlist"
+    },
+    "packs": {
+        "title": "Packs",
+        "form": {
+            "pack_name_label": "Pack name",
+            "pack_category_label": "Category",
+            "pack_category_placeholder": "Select a category",
+            "pack_category_empty": "No categories available.",
+            "pack_submit": "Create pack"
+        },
+        "list": {
+            "title": "Pack history",
+            "empty": "No packs created yet.",
+            "remove_pack": "Remove pack"
+        },
+        "items": {
+            "book_label": "Book",
+            "book_placeholder": "Select a book",
+            "book_empty": "No books available for this category.",
+            "stock_label": "Stock",
+            "quantity_label": "Quantity",
+            "add_button": "Add book",
+            "empty": "This pack has no books yet.",
+            "table_book": "Book",
+            "table_quantity": "Quantity",
+            "table_price": "Unit price",
+            "table_total": "Total",
+            "pack_total": "Pack total:"
+        },
+        "totals": {
+            "title": "Totals",
+            "grand_total": "Grand total:",
+            "by_category": "Total by category"
+        },
+        "actions": {
+            "clear": "Clear packs"
+        },
+        "errors": {
+            "pack_name": "Pack name is required.",
+            "pack_category": "Selected category is not valid.",
+            "categories_unavailable": "No categories available.",
+            "pack_invalid": "Selected pack is not valid.",
+            "book_invalid": "Selected book is not valid.",
+            "book_category": "The book does not belong to the pack category.",
+            "quantity_min": "Quantity must be at least 1.",
+            "quantity_stock": "Not enough stock for the requested quantity."
+        }
     },
     "cart": {
         "title": "Cart",

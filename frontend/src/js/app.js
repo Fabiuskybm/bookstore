@@ -38,6 +38,10 @@ import './wishlist/wishlist-select-all.js';
 import { initWishlistToggle } from './wishlist/wishlist-toggle.js';
 import { initWishlistActions } from './wishlist/wishlist-actions.js';
 
+// Packs
+import { initPacksSelects } from './packs/packs-select.js';
+import { initPacksAsync } from './packs/packs-async.js';
+
 
 // ==================================================
 //  DEBUG / LOADING INDICATOR
@@ -89,4 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initWishlistToggle();
 
     initWishlistActions();
+
+    initPacksSelects();
+    initPacksAsync();
 });
