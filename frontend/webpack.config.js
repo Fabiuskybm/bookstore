@@ -15,8 +15,27 @@ export default {
   },
   module: {
     rules: [
+      // JS / JSX (React)
+      {
+        test: /\.(js|jsx)$/i,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: 'defaults' }],
+              ['@babel/preset-react', { runtime: 'automatic' }],
+            ],
+          },
+        },
+      },
+
+      // Styles
       { test: /\.scss$/i, use: ['style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
 };

@@ -84,6 +84,27 @@ final class RatingService
         ];
     }
 
+
+    public function statsWithUserVote(int $productId, ?int $userId): array
+    {
+        $stats = $this->stats($productId);
+
+        $payload = [
+            'ok' => true,
+            'stats' => $stats,
+        ];
+
+        if ($userId !== null && $userId > 0) {
+            $userVote = $this->repository->getUserVote($userId, $productId);
+            if ($userVote !== null) {
+                $payload['userVote'] = $userVote;
+            }
+        }
+
+        return $payload;
+    }
+
+
     
     private function buildStarPaintData(float $average): array
     {

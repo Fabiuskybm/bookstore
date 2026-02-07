@@ -204,5 +204,23 @@
         "metadata_aria_label": "Book details",
         "stock_prefix": "In stock",
         "out_of_stock": "Out of stock"
+    },
+    "rating": {
+        "title": "Customer reviews",
+        "vote_title": "Rate this product",
+        "loading": "Loading reviews...",
+        "error_load": "Could not load reviews.",
+        "error_html": "Error: the server returned HTML instead of JSON.",
+        "error_json": "Error: invalid response (not JSON).",
+        "error_network_load": "Network error while loading reviews.",
+        "error_auth_required": "Sign in to rate this product.",
+        "error_vote": "Your rating could not be saved.",
+        "error_network_vote": "Network error while sending your rating.",
+        "stars_label_avg": "Average rating {value} out of 5",
+        "stars_label_vote": "Rate with stars",
+        "dist_aria": "Rating distribution",
+        "dist_stars": "{stars} stars",
+        "vote_aria": "Rate {stars} stars"
     }
+
 }

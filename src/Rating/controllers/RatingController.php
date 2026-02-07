@@ -33,6 +33,7 @@ final class RatingController
         return $result;
     }
 
+    
     public function stats(): array
     {
         $productId = isset($_POST['product_id']) ? (int) $_POST['product_id'] : 0;
@@ -45,9 +46,10 @@ final class RatingController
             ];
         }
 
-        return [
-            'ok' => true,
-            'stats' => $this->service->stats($productId),
-        ];
+        $user = auth_user();
+        $userId = $user ? $user->getId() : null;
+
+        return $this->service->statsWithUserVote($productId, $userId);
     }
+
 }
