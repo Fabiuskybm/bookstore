@@ -15,9 +15,14 @@ class PreferenceController
             pref_set_language($lang);
         }
 
+        $returnQuery = $_POST['_return_query'] ?? '';
+        if (is_string($returnQuery) && $returnQuery !== '') {
+            return ['redirect' => $this->sanitizeReturnQuery($returnQuery)];
+        }
+
         $return = $_POST['_return'] ?? ($_GET['view'] ?? 'home');
 
-        return [ 'redirect' => $return ];
+        return ['redirect' => $return];
     }
 
 
@@ -49,6 +54,41 @@ class PreferenceController
         $return = $_POST['_return'] ?? 'preferences';
 
         return ['redirect' => $return];
+    }
+
+
+    private function sanitizeReturnQuery(string $raw): string
+    {
+        $raw = ltrim(trim($raw), '?');
+
+        if ($raw === '') {
+            return 'view=home';
+        }
+
+        parse_str($raw, $params);
+        if (!is_array($params)) {
+            return 'view=home';
+        }
+
+        $safe = [];
+        
+        foreach ($params as $key => $value) {
+            if (!is_string($key) || !is_scalar($value) || $value === '') {
+                continue;
+            }
+
+            if (!preg_match('/^[a-zA-Z0-9_\-]+$/', $key)) {
+                continue;
+            }
+
+            $safe[$key] = (string) $value;
+        }
+
+        if (!isset($safe['view'])) {
+            $safe['view'] = 'home';
+        }
+
+        return http_build_query($safe);
     }
 
 }

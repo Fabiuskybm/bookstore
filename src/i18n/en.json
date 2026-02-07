@@ -8,7 +8,8 @@
         "page_title_preferences": "Blackrose Press | Preferences",
         "page_title_admin": "Blackrose Press | Admin",
         "page_title_packs": "Blackrose Press | Packs",
-        "scroll_top_label": "Back to top"
+        "scroll_top_label": "Back to top",
+        "page_title_product": "Blackrose Press | Product details"
     },
     "admin": {
         "title": "Admin area",
@@ -46,11 +47,9 @@
         "tabs_aria_label": "Authentication form selection",
         "tabs_login_title": "Access your account",
         "tabs_register_title": "New user",
-
         "login_username_label": "Username",
         "login_password_label": "Password",
         "login_submit": "Sign in",
-
         "register_username_label": "Username",
         "register_email_label": "Email address",
         "register_password_label": "Password",
@@ -173,17 +172,13 @@
         "theme": "Theme",
         "theme_light": "Light",
         "theme_dark": "Dark",
-
         "items_per_page": "Items per page",
-
         "view_mode": "View mode",
         "view_normal": "Normal view",
         "view_compact": "Compact view",
         "view_normal_alt": "Normal view icon",
         "view_compact_alt": "Compact view icon",
-
         "compact_view_note": "This preference is stored only in your browser.",
-
         "save_button": "Save changes"
     },
     "footer": {
@@ -192,6 +187,22 @@
         "instagram_alt": "Blackrose Press on Instagram",
         "tiktok_alt": "Blackrose Press on TikTok",
         "x_alt": "Blackrose Press on X"
+    },
+    "product": {
+        "metadata_title": "Book information",
+        "author_label": "Author",
+        "format_label": "Format",
+        "published_year_label": "Published year",
+        "pages_label": "Pages",
+        "categories_label": "Categories",
+        "synopsis_title": "Synopsis",
+        "synopsis_empty": "This book does not have a synopsis yet.",
+        "rating_placeholder": "The rating widget will be mounted here in the next phase.",
+        "purchase_panel_aria": "Product purchase panel",
+        "stock_available_now": "Available now",
+        "add_to_wishlist": "Add to wishlist",
+        "metadata_aria_label": "Book details",
+        "stock_prefix": "In stock",
+        "out_of_stock": "Out of stock"
     }
-
 }

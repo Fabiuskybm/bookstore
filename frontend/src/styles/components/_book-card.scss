@@ -60,6 +60,28 @@
         cursor: pointer;
     }
 
+
+    &__title-link {
+        color: inherit;
+        text-decoration: none;
+        border-radius: $radius-sm;
+
+        transition:
+            color 0.15s ease,
+            text-decoration-color 0.15s ease;
+
+        &:hover {
+            color: $color-accent;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $color-accent;
+            outline-offset: 2px;
+        }
+    }
+
     &__author {
         font-size: 0.85rem;
         color: $color-text-muted;

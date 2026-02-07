@@ -27,6 +27,8 @@ require_once __DIR__ . '/../src/Wishlist/controllers/WishlistController.php';
 require_once __DIR__ . '/../src/Preference/controllers/PreferenceController.php';
 
 require_once __DIR__ . '/../src/Pack/controllers/PackController.php';
+require_once __DIR__ . '/../src/Product/controllers/ProductController.php';
+require_once __DIR__ . '/../src/Rating/controllers/RatingController.php';
 
 
 // Helpers de presentación
@@ -43,6 +45,8 @@ $home = new HomeController();
 $wishlist = new WishlistController();
 $preference = new PreferenceController();
 $pack = new PackController();
+$product = new ProductController();
+$rating = new RatingController();
 
 $data = [];
 
@@ -115,6 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $pack->remove();
             break;
 
+        case 'rating_vote':
+            $result = $rating->vote();
+            break;
+
+        case 'rating_stats':
+            $result = $rating->stats();
+            break;
+
     }
 
 
@@ -155,7 +167,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirecciones
     if ($result !== null && isset($result['redirect'])) {
-        header('Location: index.php?view=' . urlencode($result['redirect']));
+        $redirect = (string) $result['redirect'];
+
+        // Compatibilidad: si llega una query completa (view=product&id=1), la respetamos.
+        if (str_contains($redirect, '=')) {
+            $redirectQuery = ltrim($redirect, '?');
+
+            if (preg_match('/^[a-zA-Z0-9_\-=&%\.]*$/', $redirectQuery) !== 1) {
+                $redirectQuery = 'view=home';
+            }
+
+            header('Location: index.php?' . $redirectQuery);
+            exit;
+        }
+
+        header('Location: index.php?view=' . urlencode($redirect));
         exit;
     }
 
@@ -196,6 +222,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $result['data'] ?? [];
             break;
 
+
+        case 'product':
+            $result = $product->show();
+            if (isset($result['redirect'])) {
+                $redirect = (string) $result['redirect'];
+
+                if (str_contains($redirect, '=')) {
+                    $redirectQuery = ltrim($redirect, '?');
+                    header('Location: index.php?' . $redirectQuery);
+                    exit;
+                }
+
+                header('Location: index.php?view=' . urlencode($redirect));
+                exit;
+            }
+            $data = $result['data'] ?? [];
+            break;
+
         case 'admin':
             $result = $admin->show();
             $data = $result['data'] ?? [];
@@ -230,6 +274,12 @@ switch ($view) {
     case 'wishlist':
         $viewFile = __DIR__ . '/../src/Wishlist/views/wishlist.php';
         $pageTitle = t('layout.page_title_wishlist');
+        break;
+
+
+    case 'product':
+        $viewFile = __DIR__ . '/../src/Product/views/product-detail.php';
+        $pageTitle = t('layout.page_title_product');
         break;
 
     case 'preferences':

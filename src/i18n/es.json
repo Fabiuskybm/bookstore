@@ -8,7 +8,8 @@
         "page_title_preferences": "Editorial Blackrose | Preferencias",
         "page_title_admin": "Editorial Blackrose | Administración",
         "page_title_packs": "Editorial Blackrose | Packs",
-        "scroll_top_label": "Volver arriba"
+        "scroll_top_label": "Volver arriba",
+        "page_title_product": "Editorial Blackrose | Detalle de producto"
     },
     "admin": {
         "title": "Zona administrativa",
@@ -46,11 +47,9 @@
         "tabs_aria_label": "Selección de formulario de autenticación",
         "tabs_login_title": "Acceso a tu cuenta",
         "tabs_register_title": "Nuevo usuario",
-
         "login_username_label": "Usuario",
         "login_password_label": "Contraseña",
         "login_submit": "Iniciar sesión",
-
         "register_username_label": "Nombre de usuario",
         "register_email_label": "Correo electrónico",
         "register_password_label": "Contraseña",
@@ -173,17 +172,13 @@
         "theme": "Tema",
         "theme_light": "Claro",
         "theme_dark": "Oscuro",
-
         "items_per_page": "Ítems por página",
-
         "view_mode": "Modo de vista",
         "view_normal": "Vista normal",
         "view_compact": "Vista compacta",
         "view_normal_alt": "Icono de vista normal",
         "view_compact_alt": "Icono de vista compacta",
-
         "compact_view_note": "Esta preferencia se guarda solo en tu navegador.",
-
         "save_button": "Guardar cambios"
     },
     "footer": {
@@ -192,6 +187,22 @@
         "instagram_alt": "Instagram de Editorial Blackrose",
         "tiktok_alt": "TikTok de Editorial Blackrose",
         "x_alt": "Perfil de X de Editorial Blackrose"
+    },
+    "product": {
+        "metadata_title": "Información del libro",
+        "author_label": "Autor",
+        "format_label": "Formato",
+        "published_year_label": "Año de publicación",
+        "pages_label": "Páginas",
+        "categories_label": "Categorías",
+        "synopsis_title": "Sinopsis",
+        "synopsis_empty": "Este libro todavía no tiene sinopsis disponible.",
+        "rating_placeholder": "Aquí se montará el widget de valoración en la próxima fase.",
+        "purchase_panel_aria": "Panel de compra del producto",
+        "stock_available_now": "Disponibilidad inmediata",
+        "add_to_wishlist": "Añadir a favoritos",
+        "metadata_aria_label": "Datos del libro",
+        "stock_prefix": "En stock",
+        "out_of_stock": "Sin stock"
     }
-
 }
