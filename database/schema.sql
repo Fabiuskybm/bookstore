@@ -349,24 +349,24 @@ CREATE TABLE IF NOT EXISTS wishlist_items (
 CREATE TABLE IF NOT EXISTS ratings (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   user_id BIGINT UNSIGNED NOT NULL,
-  product_id BIGINT UNSIGNED NOT NULL,
+  work_id BIGINT UNSIGNED NOT NULL,
   value TINYINT NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
   PRIMARY KEY (id),
-  UNIQUE KEY uq_rating_once (user_id, product_id),
+  UNIQUE KEY uq_rating_once (user_id, work_id),
 
   KEY idx_ratings_user_id (user_id),
-  KEY idx_ratings_product_id (product_id),
+  KEY idx_ratings_work_id (work_id),
 
   CONSTRAINT fk_rating_user
     FOREIGN KEY (user_id) REFERENCES users(id)
     ON DELETE CASCADE ON UPDATE CASCADE,
 
-  CONSTRAINT fk_rating_product
-    FOREIGN KEY (product_id) REFERENCES products(id)
-    ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT fk_rating_work
+    FOREIGN KEY (work_id) REFERENCES book_works(id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
 
   CONSTRAINT chk_rating_value CHECK (value BETWEEN 1 AND 5)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

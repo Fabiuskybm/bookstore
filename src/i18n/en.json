@@ -68,6 +68,7 @@
     "wishlist": {
         "title": "Wishlist",
         "empty": "Your wishlist is empty.",
+        "select_item": "Select book",
         "select_all": "Select all",
         "add_to_cart": "Add to cart",
         "remove_selected": "Remove",

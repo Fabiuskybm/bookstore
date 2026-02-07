@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../../Shared/Database.php';
 require_once __DIR__ . '/../repositories/RatingRepository.php';
 
+
 final class RatingService
 {
     private RatingRepository $repository;
@@ -11,7 +12,6 @@ final class RatingService
 
     public function __construct(?RatingRepository $repository = null)
     {
-        // Si no se inyecta repositorio, usamos la conexión compartida.
         if ($repository === null) {
             $pdo = Database::getInstance()->pdo();
             $repository = new RatingRepository($pdo);
@@ -19,7 +19,6 @@ final class RatingService
 
         $this->repository = $repository;
     }
-
 
 
     public function vote(int $userId, int $productId, int $value): array
@@ -92,6 +91,7 @@ final class RatingService
         $payload = [
             'ok' => true,
             'stats' => $stats,
+            'canVote' => ($userId !== null && $userId > 0),
         ];
 
         if ($userId !== null && $userId > 0) {
@@ -105,7 +105,6 @@ final class RatingService
     }
 
 
-    
     private function buildStarPaintData(float $average): array
     {
         $fullStars = (int) floor($average);
