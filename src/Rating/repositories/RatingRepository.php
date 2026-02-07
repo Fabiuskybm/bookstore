@@ -66,4 +66,27 @@ final class RatingRepository
             'distribution' => $distribution,
         ];
     }
+
+
+    public function getUserVote(int $userId, int $productId): ?int
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT value
+            FROM ratings
+            WHERE user_id = :user_id AND product_id = :product_id
+            LIMIT 1'
+        );
+
+        $stmt->execute([
+            'user_id' => $userId,
+            'product_id' => $productId,
+        ]);
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$row) return null;
+
+        return (int) $row['value'];
+    }
+
+
 }

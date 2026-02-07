@@ -306,17 +306,16 @@
 
 
     // ----------------------------------------------
-    // ----------------------------------------------
     // BOOK-CARD — CART VARIANT (LIGHT THEME)
     // ----------------------------------------------
     .book-card--cart {
         background-color: #F5F5F7;
-        box-shadow: none; // se mantiene limpio
+        box-shadow: none;
         border-bottom: 0.75px solid rgba(0, 0, 0, 0.08);
     }
 
     .book-card--cart:hover {
-        background-color: #F5F5F7; // no oscurece al hacer hover
+        background-color: #F5F5F7;
         border-color: rgba(0, 0, 0, 0.16);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }

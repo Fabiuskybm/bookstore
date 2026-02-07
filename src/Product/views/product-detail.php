@@ -131,6 +131,22 @@ $stock = $book->getStock();
                 class="product-detail__rating-shell"
                 id="rating-root"
                 data-product-id="<?= e((string) $book->getId()) ?>"
+
+                data-i18n-title="<?= e(t('rating.title')) ?>"
+                data-i18n-vote-title="<?= e(t('rating.vote_title')) ?>"
+                data-i18n-loading="<?= e(t('rating.loading')) ?>"
+                data-i18n-error-load="<?= e(t('rating.error_load')) ?>"
+                data-i18n-error-html="<?= e(t('rating.error_html')) ?>"
+                data-i18n-error-json="<?= e(t('rating.error_json')) ?>"
+                data-i18n-error-network-load="<?= e(t('rating.error_network_load')) ?>"
+                data-i18n-error-auth-required="<?= e(t('rating.error_auth_required')) ?>"
+                data-i18n-error-vote="<?= e(t('rating.error_vote')) ?>"
+                data-i18n-error-network-vote="<?= e(t('rating.error_network_vote')) ?>"
+                data-i18n-stars-label-avg="<?= e(t('rating.stars_label_avg')) ?>"
+                data-i18n-stars-label-vote="<?= e(t('rating.stars_label_vote')) ?>"
+                data-i18n-dist-aria="<?= e(t('rating.dist_aria')) ?>"
+                data-i18n-dist-stars="<?= e(t('rating.dist_stars')) ?>"
+                data-i18n-vote-aria="<?= e(t('rating.vote_aria')) ?>"
             >
                 <p class="product-detail__rating-placeholder"><?= e(t('product.rating_placeholder')) ?></p>
             </section>

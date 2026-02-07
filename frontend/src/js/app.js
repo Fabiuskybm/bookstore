@@ -33,14 +33,17 @@ import { initScrollTop } from './Shared/scroll-top.js';
 // Home page
 import { initBookCarousel } from './home/book-carousel.js';
 
-// Wishlist (side effects init)
-import './wishlist/wishlist-select-all.js';
+// Wishlist
+import './wishlist/wishlist-select-all.js'; // listeners pasivos (no init explícito)
 import { initWishlistToggle } from './wishlist/wishlist-toggle.js';
 import { initWishlistActions } from './wishlist/wishlist-actions.js';
 
 // Packs
 import { initPacksSelects } from './packs/packs-select.js';
 import { initPacksAsync } from './packs/packs-async.js';
+
+// Rating (React island)
+import { initRatingIsland } from './rating/rating-mount.jsx';
 
 
 // ==================================================
@@ -50,7 +53,6 @@ import { initPacksAsync } from './packs/packs-async.js';
 console.log('Frontend ready');
 
 
-
 // ==================================================
 //  ROOT INITIALIZATION
 // ==================================================
@@ -58,42 +60,50 @@ console.log('Frontend ready');
 /**
  * Inicializa todos los módulos cuando el DOM está listo.
  *
- * Cada módulo es responsable de:
- * - Detectar si su vista está presente.
- * - Auto-silenciarse si no aplica.
+ * Cada módulo:
+ * - Comprueba si su vista existe.
+ * - No hace nada si no aplica.
  *
- * Esto permite cargar un único bundle global sin problemas.
+ * Permite usar un único bundle global.
  */
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Auth (login/register tabs)
+    // Auth: tabs de login / registro
     initAuthTabs();
 
-    // Preferencias de usuario
+    // Preferencias: tema, modo de vista, etc.
     initViewModePreference();
 
-    // Header (dropdown menus)
+    // Header: dropdowns de usuario e idioma
     initHeaderDropdowns();
 
-    // Añadir libros al carrito desde cards
+    // Cart: añadir productos desde cards
     initCartFromCards();
 
-    // Vista del carrito + promo + checkout
+    // Cart: vista completa (cantidades, promo, checkout)
     initCartPage();
 
-    // Scroll-to-top button
+    // Utilidad global: botón scroll-to-top
     initScrollTop();
 
-    // Badge del carrito en el header
+    // Header: badge dinámico del carrito
     initCartBadge();
 
-    // Carrusel de inicio (libros destacados)
+    // Home: carrusel de libros destacados
     initBookCarousel();
 
+    // Wishlist: toggle añadir / quitar producto
     initWishlistToggle();
 
+    // Wishlist: acciones masivas (eliminar, añadir al carrito)
     initWishlistActions();
 
+    // Packs: selects dependientes (categoría → libros)
     initPacksSelects();
+
+    // Packs: operaciones async (añadir, eliminar, refrescar vista)
     initPacksAsync();
+
+    // Rating: monta el island React de valoraciones
+    initRatingIsland();
 });

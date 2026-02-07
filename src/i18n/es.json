@@ -204,5 +204,24 @@
         "metadata_aria_label": "Datos del libro",
         "stock_prefix": "En stock",
         "out_of_stock": "Sin stock"
+    },
+    "rating": {
+        "title": "Opinión de los clientes",
+        "vote_title": "Valorar producto",
+        "loading": "Cargando valoraciones...",
+        "error_load": "No se pudieron cargar las valoraciones.",
+        "error_html": "Error: el servidor devolvió HTML en vez de JSON.",
+        "error_json": "Error: respuesta inválida (no es JSON).",
+        "error_network_load": "Error de red al cargar valoraciones.",
+        "error_auth_required": "Inicia sesión para poder votar.",
+        "error_vote": "No se pudo registrar tu voto.",
+        "error_network_vote": "Error de red al enviar tu voto.",
+        "stars_label_avg": "Valoración media {value} sobre 5",
+        "stars_label_vote": "Votar con estrellas",
+        "dist_aria": "Distribución de valoraciones",
+        "dist_stars": "{stars} estrellas",
+        "vote_aria": "Votar {stars} estrellas"
     }
+
+    
 }
