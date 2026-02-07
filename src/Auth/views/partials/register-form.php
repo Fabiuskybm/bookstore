@@ -12,13 +12,13 @@ $old  = $data['old'] ?? [];
     autocomplete="off"
     class="auth__form auth__form--register">
 
-    <?php if (!empty($errs) && (($data['activeTab'] ?? 'login') === 'register')): ?>
-        <ul class="auth__errors" aria-live="polite">
+    <ul class="auth__errors" aria-live="polite">
+        <?php if (!empty($errs) && (($data['activeTab'] ?? 'login') === 'register')): ?>
             <?php foreach ($errs as $err): ?>
                 <li class="auth__errors-item"><?= e((string)$err) ?></li>
             <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
+        <?php endif; ?>
+    </ul>
 
     <div class="auth__field">
         <label 
@@ -33,8 +33,7 @@ $old  = $data['old'] ?? [];
             id="register-username"
             class="auth__input"
             value="<?= e($old['register_username'] ?? '') ?>"
-            autocomplete="off"
-            required>
+            autocomplete="off">
 
         <p class="auth__error-message" aria-live="polite"></p>
     </div>
@@ -52,8 +51,7 @@ $old  = $data['old'] ?? [];
             id="register-email"
             class="auth__input"
             value="<?= e($old['register_email'] ?? '') ?>"
-            autocomplete="off"
-            required>
+            autocomplete="off">
 
         <p class="auth__error-message" aria-live="polite"></p>
     </div>
@@ -71,8 +69,7 @@ $old  = $data['old'] ?? [];
             id="register-password"
             class="auth__input"
             value=""
-            autocomplete="off"
-            required>
+            autocomplete="off">
 
         <p class="auth__error-message" aria-live="polite"></p>
     </div>
@@ -90,8 +87,7 @@ $old  = $data['old'] ?? [];
             id="register-password-confirm"
             class="auth__input"
             value=""
-            autocomplete="off"
-            required>
+            autocomplete="off">
 
         <p class="auth__error-message" aria-live="polite"></p>
     </div>

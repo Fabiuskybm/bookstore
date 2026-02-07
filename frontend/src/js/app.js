@@ -15,6 +15,7 @@ import '../styles/main.scss';
 
 // Auth
 import { initAuthTabs } from './auth/auth-tabs.js';
+import { initAuthAsync } from './auth/auth-async.js';
 
 // Preferences (view mode, etc.)
 import { initViewModePreference } from './preferences/preferences.js';
@@ -70,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auth: tabs de login / registro
     initAuthTabs();
+    initAuthAsync();
 
     // Preferencias: tema, modo de vista, etc.
     initViewModePreference();
