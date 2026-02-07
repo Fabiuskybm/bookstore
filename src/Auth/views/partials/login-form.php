@@ -1,7 +1,8 @@
 <?php
 declare(strict_types=1);
 
-$old = $data['old'] ?? [];
+$errs = $data['errs'] ?? [];
+$old  = $data['old'] ?? [];
 ?>
 
 
@@ -10,6 +11,15 @@ $old = $data['old'] ?? [];
     method="post"
     autocomplete="off"
     class="auth__form auth__form--login">
+
+    <ul class="auth__errors" aria-live="polite">
+        <?php if (!empty($errs) && (($data['activeTab'] ?? 'login') === 'login')): ?>
+            <?php foreach ($errs as $err): ?>
+                <li class="auth__errors-item"><?= e((string)$err) ?></li>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </ul>
+
 
     <div class="auth__field">
         <label 
