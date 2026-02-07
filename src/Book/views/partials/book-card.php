@@ -22,7 +22,12 @@ $cardContext = $cardContext ?? 'home';
     <div class="book-card__body">
 
         <h2 class="book-card__title">
-            <?= e($book->getName()) ?>
+            <a
+                href="index.php?view=product&id=<?= e((string) $book->getId()) ?>"
+                class="book-card__title-link"
+            >
+                <?= e($book->getName()) ?>
+            </a>
         </h2>
 
         <p class="book-card__author">

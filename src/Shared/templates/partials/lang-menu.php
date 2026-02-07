@@ -3,6 +3,11 @@ declare(strict_types=1);
 
 $currentLang  = pref_language();
 $currentView  = $_GET['view'] ?? 'home';
+$currentQuery = $_SERVER['QUERY_STRING'] ?? '';
+
+if ($currentQuery === '') {
+    $currentQuery = 'view=' . $currentView;
+}
 ?>
 
 <ul class="header__lang-menu-list">
@@ -15,6 +20,7 @@ $currentView  = $_GET['view'] ?? 'home';
         >
             <input type="hidden" name="action" value="set_language">
             <input type="hidden" name="_return" value="<?= e($currentView) ?>">
+            <input type="hidden" name="_return_query" value="<?= e($currentQuery) ?>">
 
             <button
                 type="submit"
@@ -36,6 +42,7 @@ $currentView  = $_GET['view'] ?? 'home';
         >
             <input type="hidden" name="action" value="set_language">
             <input type="hidden" name="_return" value="<?= e($currentView) ?>">
+            <input type="hidden" name="_return_query" value="<?= e($currentQuery) ?>">
 
             <button
                 type="submit"

@@ -1,9 +1,7 @@
-
-
 // ==================================================
 //  WISHLIST TOGGLE (AJAX)
-//  - Evita recarga al pulsar el corazón
-//  - Hace POST por fetch y actualiza el icono
+//  - Evita recarga al pulsar el corazón / botón wishlist
+//  - Hace POST por fetch y actualiza el estado visual
 // ==================================================
 
 export function initWishlistToggle() {
@@ -11,16 +9,18 @@ export function initWishlistToggle() {
         const form = event.target;
         if (!(form instanceof HTMLFormElement)) return;
 
-        // Solo formularios del corazón
-        if (!form.classList.contains('book-card__wishlist-form')) return;
+        // Permitimos tanto cards como la nueva vista de detalle.
+        const isCardForm = form.classList.contains('book-card__wishlist-form');
+        const isDetailForm = form.classList.contains('product-detail__wishlist-form');
+        if (!isCardForm && !isDetailForm) return;
 
         event.preventDefault();
 
-        const btn = form.querySelector('.book-card__btn--wishlist');
+        const btn = form.querySelector('.book-card__btn--wishlist, .product-detail__wishlist-btn');
         const errorBox = document.querySelector('[data-wishlist-error]');
         const formData = new FormData(form);
 
-        // Usamos una acción "toggle" única
+        // Usamos una acción "toggle" única.
         formData.set('action', 'wishlist_toggle');
 
         try {
@@ -34,7 +34,7 @@ export function initWishlistToggle() {
             });
 
             if (res.status === 401) {
-                // No autenticado → ir a login
+                // No autenticado → ir a login.
                 window.location.href = 'index.php?view=login';
                 return;
             }
@@ -46,11 +46,12 @@ export function initWishlistToggle() {
                 return;
             }
 
-            // Actualizar estado visual del corazón
+            // Actualizar estado visual reutilizando las clases existentes.
             if (btn) {
                 btn.classList.toggle('book-card__btn--wishlist-active', !!data.inWishlist);
+                btn.setAttribute('aria-pressed', data.inWishlist ? 'true' : 'false');
             }
-            
+
         } catch (e) {
             if (errorBox) errorBox.textContent = 'Error de red al actualizar la wishlist.';
         }
