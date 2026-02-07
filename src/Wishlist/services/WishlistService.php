@@ -2,48 +2,47 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../Auth/services/AuthService.php';
-require_once __DIR__ . '/../../Book/services/BookService.php';
 require_once __DIR__ . '/../../Shared/Database.php';
 require_once __DIR__ . '/../repositories/WishlistRepository.php';
+
+// Para poder cargar Books por IDs sin filtrar por idioma
+require_once __DIR__ . '/../../Book/repositories/BookRepository.php';
 
 
 
 /**
  * Devuelve los IDs de la wishlist del usuario actual.
  */
-function wishlist_get_ids(): array 
+function wishlist_get_ids(): array
 {
     $userId = wishlist_user_id();
     if ($userId === null) return [];
 
-    $repo = wishlist_repo();
-    return $repo->getIdsByUserId($userId);
+    return wishlist_repo()->getIdsByUserId($userId);
 }
 
 
 /**
  * Añade un libro a la wishlist del usuario actual.
  */
-function wishlist_add(string $productId): void 
+function wishlist_add(string $productId): void
 {
     $prep = wishlist_prepare($productId);
     if ($prep === null) return;
 
-    $repo = wishlist_repo();
-    $repo->add($prep['userId'], $prep['id']);
+    wishlist_repo()->add($prep['userId'], $prep['id']);
 }
 
 
 /**
  * Elimina un libro de la wishlist del usuario actual.
  */
-function wishlist_remove(string $productId): void 
+function wishlist_remove(string $productId): void
 {
     $prep = wishlist_prepare($productId);
     if ($prep === null) return;
 
-    $repo = wishlist_repo();
-    $repo->remove($prep['userId'], $prep['id']);
+    wishlist_repo()->remove($prep['userId'], $prep['id']);
 }
 
 
@@ -64,13 +63,11 @@ function wishlist_bulk_remove(array $productIds): void
         if ($cleanId !== null) $toRemove[] = $cleanId;
     }
 
+    $toRemove = array_values(array_unique($toRemove));
     if (empty($toRemove)) return;
 
-    $toRemove = array_values(array_unique($toRemove));
-    $repo = wishlist_repo();
-    $repo->bulkRemove($userId, $toRemove);
+    wishlist_repo()->bulkRemove($userId, $toRemove);
 }
-
 
 
 /**
@@ -81,8 +78,7 @@ function wishlist_clear(): void
     $userId = wishlist_user_id();
     if ($userId === null) return;
 
-    $repo = wishlist_repo();
-    $repo->clear($userId);
+    wishlist_repo()->clear($userId);
 }
 
 
@@ -94,14 +90,7 @@ function wishlist_get_books(): array
     $ids = wishlist_get_ids();
     if (empty($ids)) return [];
 
-    $books = [];
-
-    foreach ($ids as $id) {
-        $book = books_find_by_id($id);
-        if ($book !== null) $books[] = $book;
-    }
-
-    return $books;
+    return wishlist_book_repo()->findByProductIds($ids);
 }
 
 
@@ -116,16 +105,14 @@ function wishlist_has(int|string $productId): bool
     $userId = wishlist_user_id();
     if ($userId === null) return false;
 
-    $repo = wishlist_repo();
-    return $repo->has($userId, $cleanId);
+    return wishlist_repo()->has($userId, $cleanId);
 }
 
 
 
-
-/*----------------
-|     HELPERS     
-|----------------*/
+// ===================
+// |     HELPERS     |
+// ===================
 
 function wishlist_user_id(): ?int
 {
@@ -136,26 +123,27 @@ function wishlist_user_id(): ?int
     return $userId > 0 ? $userId : null;
 }
 
+function wishlist_pdo(): PDO
+{
+    return Database::getInstance()->pdo();
+}
 
 function wishlist_repo(): WishlistRepository
 {
-    $pdo = Database::getInstance()->pdo();
-    return new WishlistRepository($pdo);
+    return new WishlistRepository(wishlist_pdo());
+}
+
+/**
+ * Repo de libros para cargar por IDs sin depender del idioma.
+ */
+function wishlist_book_repo(): BookRepository
+{
+    return new BookRepository(wishlist_pdo());
 }
 
 
 /**
- * Prepara los datos necesarios para modificar la wishlist
- * - Normaliza el productId
- * - Obtiene el userId actual
- *
- * Devuelve:
- *  [
- *    'id' => int,
- *    'userId' => int,
- *  ]
- * 
- * Si algo falla -> null
+ * Prepara los datos necesarios para modificar la wishlist.
  */
 function wishlist_prepare(string $productId): ?array
 {
@@ -170,7 +158,6 @@ function wishlist_prepare(string $productId): ?array
         'userId' => $userId
     ];
 }
-
 
 function wishlist_normalize_product_id(int|string $productId): ?int
 {

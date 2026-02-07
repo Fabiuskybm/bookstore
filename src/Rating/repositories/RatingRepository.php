@@ -1,63 +1,85 @@
 <?php
 declare(strict_types=1);
 
+
 final class RatingRepository
 {
     public function __construct(private PDO $pdo) {}
 
+    
+    /**
+     * Convierte product_id (edición) -> work_id (obra).
+     */
+    private function getWorkIdByProductId(int $productId): ?int
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT work_id FROM books WHERE product_id = :product_id LIMIT 1'
+        );
+        $stmt->execute(['product_id' => $productId]);
+
+        $workId = $stmt->fetchColumn();
+        if ($workId === false) return null;
+
+        return (int) $workId;
+    }
 
 
     public function upsertVote(int $userId, int $productId, int $value): bool
     {
-        // Devuelve true si fue actualización, false si fue inserción.
+        $workId = $this->getWorkIdByProductId($productId);
+        if ($workId === null) return false;
+
+        // true si fue update, false si fue insert (en MySQL suele ser 2 vs 1)
         $stmt = $this->pdo->prepare(
-            'INSERT INTO ratings (user_id, product_id, value)
-             VALUES (:user_id, :product_id, :value)
+            'INSERT INTO ratings (user_id, work_id, value)
+             VALUES (:user_id, :work_id, :value)
              ON DUPLICATE KEY UPDATE value = VALUES(value)'
         );
 
         $stmt->execute([
             'user_id' => $userId,
-            'product_id' => $productId,
+            'work_id' => $workId,
             'value' => $value,
         ]);
 
-        $affected = (int) $stmt->rowCount();
-
-        return $affected === 2;
+        return ((int) $stmt->rowCount()) === 2;
     }
 
-    
+
     public function getStats(int $productId): array
     {
-        // Consulta principal de media y total de votos.
-        $summaryStmt = $this->pdo->prepare(
-            'SELECT AVG(value) AS avg_value, COUNT(*) AS total FROM ratings WHERE product_id = :product_id'
-        );
+        $workId = $this->getWorkIdByProductId($productId);
+        if ($workId === null) {
+            return [
+                'average' => 0.0,
+                'count' => 0,
+                'distribution' => [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0],
+            ];
+        }
 
-        $summaryStmt->execute(['product_id' => $productId]);
+        $summaryStmt = $this->pdo->prepare(
+            'SELECT AVG(value) AS avg_value, COUNT(*) AS total
+             FROM ratings
+             WHERE work_id = :work_id'
+        );
+        $summaryStmt->execute(['work_id' => $workId]);
         $summary = $summaryStmt->fetch(PDO::FETCH_ASSOC) ?: [];
 
-        // Consulta de distribución por valor (1..5).
         $distributionStmt = $this->pdo->prepare(
             'SELECT value, COUNT(*) AS votes
              FROM ratings
-             WHERE product_id = :product_id
+             WHERE work_id = :work_id
              GROUP BY value'
         );
-
-        $distributionStmt->execute(['product_id' => $productId]);
+        $distributionStmt->execute(['work_id' => $workId]);
         $rows = $distributionStmt->fetchAll(PDO::FETCH_ASSOC);
 
         $distribution = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
 
         foreach ($rows as $row) {
-            $value = (int) ($row['value'] ?? 0);
+            $v = (int) ($row['value'] ?? 0);
             $votes = (int) ($row['votes'] ?? 0);
-
-            if ($value >= 1 && $value <= 5) {
-                $distribution[$value] = $votes;
-            }
+            if ($v >= 1 && $v <= 5) $distribution[$v] = $votes;
         }
 
         return [
@@ -70,23 +92,24 @@ final class RatingRepository
 
     public function getUserVote(int $userId, int $productId): ?int
     {
+        $workId = $this->getWorkIdByProductId($productId);
+        if ($workId === null) return null;
+
         $stmt = $this->pdo->prepare(
             'SELECT value
-            FROM ratings
-            WHERE user_id = :user_id AND product_id = :product_id
-            LIMIT 1'
+             FROM ratings
+             WHERE user_id = :user_id AND work_id = :work_id
+             LIMIT 1'
         );
 
         $stmt->execute([
             'user_id' => $userId,
-            'product_id' => $productId,
+            'work_id' => $workId,
         ]);
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (!$row) return null;
+        $val = $stmt->fetchColumn();
+        if ($val === false) return null;
 
-        return (int) $row['value'];
+        return (int) $val;
     }
-
-
 }

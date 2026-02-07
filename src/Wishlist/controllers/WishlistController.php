@@ -7,9 +7,9 @@ require_once __DIR__ . '/../../Preference/services/PreferenceService.php';
 
 final class WishlistController
 {
-	// ==========================
-	// |        VISTAS (GET)     |
-	// ==========================
+	// ========================
+	// |     VISTAS (GET)     |
+	// ========================
 
 	public function show(): array
 	{
@@ -32,9 +32,9 @@ final class WishlistController
 	}
 
 
-	// ==========================
+	// ===========================
 	// |     ACCIONES (POST)     |
-	// ==========================
+	// ===========================
 
 	public function add(): array
 	{
@@ -127,9 +127,9 @@ final class WishlistController
 	}
 
 
-	// ==========================
-	// |        HELPERS          |
-	// ==========================
+	// ===================
+	// |     HELPERS     |
+	// ===================
 
 	/**
 	 * Para acciones que, de momento, seguimos resolviendo con redirects

@@ -68,6 +68,7 @@
     "wishlist": {
         "title": "Lista de deseos",
         "empty": "Tu lista de deseos está vacía.",
+        "select_item": "Seleccionar libro",
         "select_all": "Seleccionar todo",
         "add_to_cart": "Añadir al carrito",
         "remove_selected": "Eliminar",

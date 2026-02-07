@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../models/Book.php';
 
+
 final class BookRepository
 {
     public function __construct(private PDO $pdo) {}
@@ -10,26 +11,7 @@ final class BookRepository
 
     public function findAllByLang(string $lang): array
     {
-        $sql = "
-            SELECT
-                p.id,
-                p.name,
-                p.slug,
-                p.price,
-                p.stock,
-                p.image_path,
-                p.is_active,
-                p.is_featured,
-                b.format,
-                COALESCE(MAX(a.name), '') AS author,
-                GROUP_CONCAT(DISTINCT c.slug ORDER BY c.slug SEPARATOR ',') AS categories
-            FROM products p
-            INNER JOIN books b ON b.product_id = p.id
-            INNER JOIN book_works bw ON bw.id = b.work_id
-            LEFT JOIN book_work_authors bwa ON bwa.work_id = bw.id
-            LEFT JOIN authors a ON a.id = bwa.author_id
-            LEFT JOIN product_categories pc ON pc.product_id = p.id
-            LEFT JOIN categories c ON c.id = pc.category_id
+        $sql = $this->baseSelectSql() . "
             WHERE b.lang = :lang AND p.is_active = 1
             GROUP BY
                 p.id, p.name, p.slug, p.price, p.stock, p.image_path,
@@ -37,42 +19,13 @@ final class BookRepository
             ORDER BY p.is_featured DESC, p.name ASC
         ";
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['lang' => $lang]);
-
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $books = [];
-
-        foreach ($rows as $r) {
-            $books[] = $this->mapRowToBook($r);
-        }
-
-        return $books;
+        return $this->fetchBooks($sql, ['lang' => $lang]);
     }
 
 
     public function findFeaturedByLang(string $lang): array
     {
-        $sql = "
-            SELECT
-                p.id,
-                p.name,
-                p.slug,
-                p.price,
-                p.stock,
-                p.image_path,
-                p.is_active,
-                p.is_featured,
-                b.format,
-                COALESCE(MAX(a.name), '') AS author,
-                GROUP_CONCAT(DISTINCT c.slug ORDER BY c.slug SEPARATOR ',') AS categories
-            FROM products p
-            INNER JOIN books b ON b.product_id = p.id
-            INNER JOIN book_works bw ON bw.id = b.work_id
-            LEFT JOIN book_work_authors bwa ON bwa.work_id = bw.id
-            LEFT JOIN authors a ON a.id = bwa.author_id
-            LEFT JOIN product_categories pc ON pc.product_id = p.id
-            LEFT JOIN categories c ON c.id = pc.category_id
+        $sql = $this->baseSelectSql() . "
             WHERE b.lang = :lang AND p.is_featured = 1 AND p.is_active = 1
             GROUP BY
                 p.id, p.name, p.slug, p.price, p.stock, p.image_path,
@@ -80,17 +33,7 @@ final class BookRepository
             ORDER BY p.name ASC
         ";
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['lang' => $lang]);
-
-        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $books = [];
-
-        foreach ($rows as $r) {
-            $books[] = $this->mapRowToBook($r);
-        }
-
-        return $books;
+        return $this->fetchBooks($sql, ['lang' => $lang]);
     }
 
 
@@ -133,9 +76,7 @@ final class BookRepository
         ]);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($row === false) {
-            return null;
-        }
+        if ($row === false) return null;
 
         $book = $this->mapRowToBook($row);
 
@@ -145,6 +86,30 @@ final class BookRepository
             'publishedYear' => isset($row['published_year']) ? (int) $row['published_year'] : null,
             'pages' => isset($row['pages']) ? (int) $row['pages'] : null,
         ];
+    }
+
+
+    /**
+     * Obtiene libros por IDs de producto SIN filtrar por idioma.
+     * Útil para wishlist (y listados relacionados con ratings).
+     */
+    public function findByProductIds(array $productIds): array
+    {
+        $ids = $this->normalizeIds($productIds);
+        if (empty($ids)) return [];
+
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+
+        $sql = $this->baseSelectSql() . "
+            WHERE p.id IN ($placeholders) AND p.is_active = 1
+            GROUP BY
+                p.id, p.name, p.slug, p.price, p.stock, p.image_path,
+                p.is_active, p.is_featured, b.format
+            ORDER BY FIELD(p.id, $placeholders)
+        ";
+
+        // FIELD() necesita los mismos IDs otra vez
+        return $this->fetchBooks($sql, array_merge($ids, $ids));
     }
 
 
@@ -168,12 +133,65 @@ final class BookRepository
         ]);
 
         $result = $stmt->fetchColumn();
-
-        if ($result === false) {
-            return null;
-        }
+        if ($result === false) return null;
 
         return (int) $result;
+    }
+
+
+    private function baseSelectSql(): string
+    {
+        return "
+            SELECT
+                p.id,
+                p.name,
+                p.slug,
+                p.price,
+                p.stock,
+                p.image_path,
+                p.is_active,
+                p.is_featured,
+                b.format,
+                COALESCE(MAX(a.name), '') AS author,
+                GROUP_CONCAT(DISTINCT c.slug ORDER BY c.slug SEPARATOR ',') AS categories
+            FROM products p
+            INNER JOIN books b ON b.product_id = p.id
+            INNER JOIN book_works bw ON bw.id = b.work_id
+            LEFT JOIN book_work_authors bwa ON bwa.work_id = bw.id
+            LEFT JOIN authors a ON a.id = bwa.author_id
+            LEFT JOIN product_categories pc ON pc.product_id = p.id
+            LEFT JOIN categories c ON c.id = pc.category_id
+        ";
+    }
+
+
+    /**
+     * Ejecuta una consulta y mapea filas a Book.
+     *
+     * @param array $params Soporta params nombrados (assoc) o posicionales (num).
+     */
+    private function fetchBooks(string $sql, array $params): array
+    {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!is_array($rows)) return [];
+
+        $books = [];
+        foreach ($rows as $r) {
+            $books[] = $this->mapRowToBook($r);
+        }
+
+        return $books;
+    }
+
+
+    private function normalizeIds(array $ids): array
+    {
+        $ids = array_map('intval', $ids);
+        $ids = array_values(array_filter($ids, static fn(int $x) => $x > 0));
+        return array_values(array_unique($ids));
     }
 
 
