@@ -2,6 +2,7 @@
 import { fmt } from '../i18n.js';
 
 export function Distribution({ distribution, total, i18n }) {
+	
 	const rows = [5, 4, 3, 2, 1].map((stars) => {
 		const count = Number(distribution?.[String(stars)] ?? distribution?.[stars] ?? 0);
 		const percent = total > 0 ? (count / total) * 100 : 0;

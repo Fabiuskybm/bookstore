@@ -29,7 +29,6 @@ final class RatingRepository
         $workId = $this->getWorkIdByProductId($productId);
         if ($workId === null) return false;
 
-        // true si fue update, false si fue insert (en MySQL suele ser 2 vs 1)
         $stmt = $this->pdo->prepare(
             'INSERT INTO ratings (user_id, work_id, value)
              VALUES (:user_id, :work_id, :value)

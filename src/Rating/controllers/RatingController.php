@@ -4,17 +4,22 @@ declare(strict_types=1);
 require_once __DIR__ . '/../services/RatingService.php';
 require_once __DIR__ . '/../../Auth/services/AuthService.php';
 
+
 final class RatingController
 {
+
     public function __construct(
         private RatingService $service = new RatingService()
     ) {}
 
+
     public function vote(): array
     {
         $user = auth_user();
+
         if ($user === null) {
             http_response_code(401);
+            
             return [
                 'ok' => false,
                 'error' => 'auth_required',

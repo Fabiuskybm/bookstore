@@ -1,9 +1,12 @@
+
 import { useEffect, useMemo, useState } from 'react';
 import { fetchStats, sendVote } from './api.js';
 import { Distribution } from './components/Distribution.jsx';
 import { StarsReadOnly, StarsVote } from './components/Stars.jsx';
 
+
 function mapErrorMessage(e, i18n, kind) {
+
 	if (e?.message === 'html_instead_of_json') {
 		return i18n?.errorHtml || 'Error: el servidor devolvió HTML en vez de JSON.';
 	}
@@ -19,14 +22,15 @@ function mapErrorMessage(e, i18n, kind) {
 	return i18n?.errorNetworkLoad || 'Error de red al cargar valoraciones.';
 }
 
+
 export function RatingApp({ productId, i18n }) {
+
 	const [stats, setStats] = useState(null);
 	const [error, setError] = useState('');
 	const [myVote, setMyVote] = useState(0);
 	const [isVoting, setIsVoting] = useState(false);
-
-	// Nuevo: el backend indica si el usuario puede votar
 	const [canVote, setCanVote] = useState(false);
+
 
 	useEffect(() => {
 		let alive = true;
@@ -41,8 +45,6 @@ export function RatingApp({ productId, i18n }) {
 				}
 
 				setStats(data.stats);
-
-				// Nuevo: canVote (si no viene, asumimos false)
 				setCanVote(Boolean(data.canVote));
 
 				if (typeof data.userVote !== 'undefined') {
@@ -59,11 +61,14 @@ export function RatingApp({ productId, i18n }) {
 		return () => {
 			alive = false;
 		};
+
 	}, [productId, i18n]);
+
 
 	const avgRounded = useMemo(() => Number(stats?.averageRounded ?? 0), [stats]);
 	const count = useMemo(() => Number(stats?.count ?? 0), [stats]);
 
+	
 	async function handleVote(v) {
 		try {
 			setIsVoting(true);
@@ -89,8 +94,10 @@ export function RatingApp({ productId, i18n }) {
 			} else {
 				setMyVote(v);
 			}
+
 		} catch (e) {
 			setError(mapErrorMessage(e, i18n, 'vote'));
+			
 		} finally {
 			setIsVoting(false);
 		}
