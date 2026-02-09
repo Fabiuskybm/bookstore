@@ -1,110 +1,127 @@
-# 📚 Bookstore — Proyecto Full Stack (2º DAW)
+# Bookstore
 
-Proyecto conjunto de la **1ª Evaluación (DSW + DEW + DOR)**.
-Incluye backend en **PHP 8 + Apache (Docker)** y frontend modular con **Webpack, ES Modules y SASS**.
+Aplicación web de librería desarrollada con arquitectura **PHP modular + frontend moderno con Webpack/SASS**, orientada a catálogo de libros, packs, wishlist, carrito, autenticación y valoraciones.
 
----
+## Descripción del proyecto
 
-## 🚀 Puesta en marcha
+Este proyecto implementa una tienda de libros con renderizado server-side en PHP y una capa de interacción en JavaScript (incluyendo un módulo de rating en React). La aplicación está organizada por dominios (`Auth`, `Book`, `Wishlist`, `Pack`, `Product`, etc.) y utiliza MySQL como persistencia principal.
 
-### Backend (Docker)
+Incluye:
+- catálogo con detalle de producto;
+- wishlist persistida por usuario;
+- packs de productos;
+- preferencias de interfaz (idioma/tema);
+- autenticación básica con roles (`user`, `admin`);
+- área de administración (en construcción);
+- soporte i18n (`es`/`en`).
 
+## Stack tecnológico
+
+### Backend
+- **PHP 8.2** (Apache)
+- **MySQL 8**
+- Acceso a datos con **PDO**
+- Arquitectura modular con controladores, servicios, repositorios y vistas por dominio
+
+### Frontend
+- **JavaScript ES Modules**
+- **React 18** (módulo de rating)
+- **Webpack 5 + Babel**
+- **SASS** (estructura por `core`, `layout`, `components`, `pages`)
+
+### Infraestructura
+- **Docker / Docker Compose** para entorno completo (`web` + `db`)
+
+## Requisitos
+
+- Docker y Docker Compose
+- Node.js 18+ y npm (para compilar frontend)
+
+## Instalación y ejecución
+
+### 1) Clonar el repositorio
+
+```bash
+git clone <url-del-repo>
+cd bookstore
 ```
-docker-compose up
+
+### 2) Levantar backend y base de datos
+
+```bash
+docker compose up --build
 ```
 
-Abrir en el navegador:  
-👉 **http://localhost:8080**
+La aplicación quedará disponible en:
+- **http://localhost:8080**
 
-```yml
-services:
-  web:
-    image: php:8.2-apache
-    container_name: bookstore-web
-    ports:
-      - "8080:80"
-    volumes:
-      - ./public:/var/www/html
-      - ./src:/var/www/src
-    working_dir: /var/www/html
-```
+> Nota: el esquema SQL se carga automáticamente al iniciar MySQL por primera vez mediante `database/schema.sql`.
 
----
+### 3) Instalar dependencias del frontend
 
-## 🎨 Frontend (Webpack + SASS)
-
-### Instalar dependencias
-
-```
+```bash
 cd frontend
 npm install
 ```
 
-### Modo desarrollo (watch)
+### 4) Compilar assets
 
-```
+Desarrollo (watch):
+```bash
 npm run dev
 ```
 
-### Build final
-
-```
+Build puntual:
+```bash
 npm run build
 ```
 
-Genera los assets en:
+El bundle se genera en `public/assets/js/main.js`.
 
-- `public/assets/js/main.js`
+## Credenciales de prueba
 
----
+El esquema inicial crea un usuario administrador:
+- **email**: `admin@bookstore.com`
+- **usuario**: `admin`
+- **password**: configurada en el hash inicial de la base de datos
 
-## 🗂️ Estructura del proyecto
+Si necesitas una contraseña conocida para pruebas, actualízala en MySQL o crea un usuario nuevo desde la interfaz de registro.
 
-```
+## Estructura del proyecto
+
+```text
 bookstore/
 ├── compose.yml
+├── Dockerfile
+├── database/
+│   └── schema.sql
 ├── public/
-├── frontend/
-│   ├── src/js/...
-│   └── src/styles/...
-└── src/ (PHP)
-    ├── Auth/
-    ├── Book/
-    ├── Cart/
-    ├── Home/
-    ├── Preference/
-    ├── Wishlist/
-    ├── Admin/
-    └── Shared/
+│   ├── index.php
+│   └── assets/
+├── src/
+│   ├── Admin/ Auth/ Book/ Cart/ Home/ Pack/ Preference/ Product/ Rating/ Wishlist/
+│   └── Shared/
+└── frontend/
+    ├── src/js/
+    ├── src/styles/
+    ├── package.json
+    └── webpack.config.js
 ```
 
----
+## Scripts útiles
 
-## 🔧 Funcionalidades principales
+Desde `frontend/`:
+- `npm run dev` → compilación en modo watch
+- `npm run build` → compilación manual
 
-### Frontend
-- Webpack + ES Modules
-- SASS modular (ITCSS + BEM)
-- Carrusel de libros destacados
-- Badge dinámico del carrito
-- Dropdowns
-- Botón scroll-to-top
-- Preferencias (tema + items por página)
-- Wishlist con selección múltiple
+Desde raíz del proyecto:
+- `docker compose up --build` → arranque completo
+- `docker compose down` → parada de contenedores
 
-### Backend
-- Carga de libros desde base de datos
-- Wishlist almacenada en base de datos
-- Preferencias guardadas en cookie
-- Sistema básico de plantillas
-- Traducciones (`i18n/es.json` + `i18n/en.json`)
-- Carrito gestionado en frontend
-- Módulo de autenticación
-- Área de administración con página *Under Construction*
+## Estado actual
 
----
+El proyecto está funcional para navegación principal, catálogo, wishlist, carrito y preferencias. Algunas secciones (como parte del área admin) están señaladas como en progreso.
 
-## 📌 Estado del proyecto
+## Licencia
 
-La aplicación es **navegable y funcional** a nivel de home, carrito, wishlist, preferencias, y estructura general.  
-Pendiente: completar registro/login y contenido real en la sección de administración.
+Uso académico / formativo (2º DAW).
