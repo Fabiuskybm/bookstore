@@ -237,7 +237,13 @@
         "status_located": "Location detected successfully.",
         "status_denied": "Permission denied. You can still use the map.",
         "status_unavailable": "Geolocation is not available in this browser.",
-        "status_error": "Could not get your location."
+        "status_error": "Could not get your location.",
+        "swal_locating_title": "Locating…",
+        "swal_locating_text": "Requesting location permission",
+        "swal_located_title": "Location detected",
+        "swal_denied_title": "Permission denied",
+        "swal_error_title": "Location error",
+        "user_location": "Your location"
     }
 
 

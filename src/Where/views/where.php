@@ -41,6 +41,12 @@ declare(strict_types=1);
         data-denied="<?= e(t('where.status_denied')) ?>"
         data-unavailable="<?= e(t('where.status_unavailable')) ?>"
         data-error="<?= e(t('where.status_error')) ?>"
+
+        data-locating-title="<?= e(t('where.swal_locating_title')) ?>"
+        data-locating-text="<?= e(t('where.swal_locating_text')) ?>"
+        data-located-title="<?= e(t('where.swal_located_title')) ?>"
+        data-denied-title="<?= e(t('where.swal_denied_title')) ?>"
+        data-error-title="<?= e(t('where.swal_error_title')) ?>"
       >
         <?= t('where.status_ready') ?>
       </p>
@@ -51,6 +57,7 @@ declare(strict_types=1);
       class="where__map"
       id="where-map"
       data-popup="<?= e(t('where.store_title')) ?>"
+      data-user-popup="<?= e(t('where.user_location')) ?>"
       data-store-lat="<?= e((string) STORE_LAT) ?>"
       data-store-lng="<?= e((string) STORE_LNG) ?>"
       data-store-zoom="<?= e((string) STORE_ZOOM) ?>"

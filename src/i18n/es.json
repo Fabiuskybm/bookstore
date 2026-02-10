@@ -237,7 +237,13 @@
         "status_located": "Ubicación detectada correctamente.",
         "status_denied": "Permiso denegado. Puedes usar el mapa igualmente.",
         "status_unavailable": "Geolocalización no disponible en este navegador.",
-        "status_error": "No se pudo obtener tu ubicación."
+        "status_error": "No se pudo obtener tu ubicación.",
+        "swal_locating_title": "Localizando…",
+        "swal_locating_text": "Solicitando permiso de ubicación",
+        "swal_located_title": "Ubicación detectada",
+        "swal_denied_title": "Permiso denegado",
+        "swal_error_title": "Error de ubicación",
+        "user_location": "Tu ubicación"
     }
 
     
