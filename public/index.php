@@ -222,9 +222,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $result['data'] ?? [];
             break;
 
-
         case 'product':
             $result = $product->show();
+
             if (isset($result['redirect'])) {
                 $redirect = (string) $result['redirect'];
 
@@ -249,6 +249,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $result = $pack->show();
             $data = $result['data'] ?? [];
             break;
+
+        case 'where':
+            $data = [];
+            break;
+
     }
 }
 
@@ -295,6 +300,11 @@ switch ($view) {
     case 'packs':
         $viewFile = __DIR__ . '/../src/Pack/views/packs.php';
         $pageTitle = t('layout.page_title_packs');
+        break;
+
+    case 'where':
+        $viewFile = __DIR__ . '/../src/Where/views/where.php';
+        $pageTitle = t('layout.page_title_where');
         break;
 
     default:

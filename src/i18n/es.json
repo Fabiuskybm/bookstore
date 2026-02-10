@@ -9,7 +9,8 @@
         "page_title_admin": "Editorial Blackrose | Administración",
         "page_title_packs": "Editorial Blackrose | Packs",
         "scroll_top_label": "Volver arriba",
-        "page_title_product": "Editorial Blackrose | Detalle de producto"
+        "page_title_product": "Editorial Blackrose | Detalle de producto",
+        "page_title_where": "Editorial Blackrose | Dónde estamos"
     },
     "admin": {
         "title": "Zona administrativa",
@@ -35,7 +36,8 @@
         "packs": "Packs",
         "preferences": "Preferencias",
         "wishlist": "Lista de deseos",
-        "admin": "Zona administrativa"
+        "admin": "Zona administrativa",
+        "where": "Dónde estamos"
     },
     "user_menu": {
         "wishlist": "Lista de deseos",
@@ -222,6 +224,20 @@
         "dist_aria": "Distribución de valoraciones",
         "dist_stars": "{stars} estrellas",
         "vote_aria": "Votar {stars} estrellas"
+    },
+    "where": {
+        "title": "Dónde estamos",
+        "intro": "Consulta nuestra ubicación y, si quieres, usa tu geolocalización para ver la distancia y cómo llegar.",
+        "store_title": "Editorial Blackrose",
+        "store_note": "Ubicación de ejemplo para proyecto académico.",
+        "btn_locate": "Usar mi ubicación",
+        "btn_directions": "Cómo llegar",
+        "status_ready": "Pulsa “Usar mi ubicación” para centrar el mapa en tu posición.",
+        "status_locating": "Obteniendo tu ubicación...",
+        "status_located": "Ubicación detectada correctamente.",
+        "status_denied": "Permiso denegado. Puedes usar el mapa igualmente.",
+        "status_unavailable": "Geolocalización no disponible en este navegador.",
+        "status_error": "No se pudo obtener tu ubicación."
     }
 
     

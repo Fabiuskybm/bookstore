@@ -25,6 +25,7 @@ function get_navigation_items(): array {
     }
 
     $items[] = [ 'view' => 'preferences' ];
+    $items[] = [ 'view' => 'where' ];
     
     if ($isLogged && $user->isAdmin()) {
         $items[] = [ 'view' => 'admin' ];
