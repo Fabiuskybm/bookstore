@@ -268,6 +268,7 @@ function initGeolocation(dom, map, store) {
 
         navigator.geolocation.getCurrentPosition(
             (pos) => {
+
                 const user = {
                     lat: pos.coords.latitude,
                     lng: pos.coords.longitude,
@@ -369,11 +370,11 @@ function upsertUserMarker(existingMarker, map, user, popupText) {
  */
 function removeUserMarker(marker, map) {
     if (!marker) return;
+
     try {
         map.removeLayer(marker);
-    } catch (_) {
-        // noop
-    }
+        
+    } catch (_) {}
 }
 
 
