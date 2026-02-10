@@ -46,6 +46,9 @@ import { initPacksAsync } from './packs/packs-async.js';
 // Rating (React island)
 import { initRatingIsland } from './rating/rating-mount.jsx';
 
+// Geolocalización
+import { initWhereMap } from "./geolocation/where-map.js";
+
 
 // ==================================================
 //  DEBUG / LOADING INDICATOR
@@ -108,4 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Rating: monta el island React de valoraciones
     initRatingIsland();
+
+    // Where: mapa de la tienda + geolocalización del usuario (Leaflet + Geolocation API)
+    initWhereMap();
 });

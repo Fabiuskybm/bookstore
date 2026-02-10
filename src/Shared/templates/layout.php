@@ -13,8 +13,15 @@ $currentTheme = pref_theme();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($pageTitle ?? 'Bookstore') ?></title>
-    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Geolocalización (Plugin/Librería externa: Leaflet) -->
+      <link rel="stylesheet" 
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin=""
+        />
+
 </head>
 
 <body 
@@ -58,6 +65,13 @@ $currentTheme = pref_theme();
         </svg>
     </button>
 
+    <!-- Geolocalización (Plugin/Librería externa: Leaflet) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin="">
+    </script>
+
+    <!-- main.js de mi aplicación -->
     <script src="assets/js/main.js"></script>
 </body>
 

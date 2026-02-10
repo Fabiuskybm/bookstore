@@ -9,7 +9,8 @@
         "page_title_admin": "Blackrose Press | Admin",
         "page_title_packs": "Blackrose Press | Packs",
         "scroll_top_label": "Back to top",
-        "page_title_product": "Blackrose Press | Product details"
+        "page_title_product": "Blackrose Press | Product details",
+        "page_title_where": "Blackrose Press | Where we are"
     },
     "admin": {
         "title": "Admin area",
@@ -35,7 +36,8 @@
         "packs": "Packs",
         "preferences": "Preferences",
         "wishlist": "Wishlist",
-        "admin": "Admin area"
+        "admin": "Admin area",
+        "where": "Where we are"
     },
     "user_menu": {
         "wishlist": "Wishlist",
@@ -222,6 +224,27 @@
         "dist_aria": "Rating distribution",
         "dist_stars": "{stars} stars",
         "vote_aria": "Rate {stars} stars"
+    },
+    "where": {
+        "title": "Where we are",
+        "intro": "Check our location and, if you want, use your geolocation to see the distance and get directions.",
+        "store_title": "Blackrose Press",
+        "store_note": "Sample location.",
+        "btn_locate": "Use my location",
+        "btn_directions": "Get directions",
+        "status_ready": "Click “Use my location” to center the map on your position.",
+        "status_locating": "Getting your location...",
+        "status_located": "Location detected successfully.",
+        "status_denied": "Permission denied. You can still use the map.",
+        "status_unavailable": "Geolocation is not available in this browser.",
+        "status_error": "Could not get your location.",
+        "swal_locating_title": "Locating…",
+        "swal_locating_text": "Requesting location permission",
+        "swal_located_title": "Location detected",
+        "swal_denied_title": "Permission denied",
+        "swal_error_title": "Location error",
+        "user_location": "Your location"
     }
+
 
 }

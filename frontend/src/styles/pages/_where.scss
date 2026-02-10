@@ -1,0 +1,150 @@
+@use '../core/variables' as *;
+@use '../core/mixins' as *;
+
+.where {
+    max-width: $page-max-width;
+    margin: 0 auto;
+    padding: $page-padding-y $spacing-page-x;
+
+    &__header {
+        margin-bottom: $space-6;
+    }
+
+    &__title {
+        font-size: $font-size-h1;
+        line-height: $heading-line-height;
+        font-weight: $heading-font-weight;
+        margin: 0 0 $space-2;
+        color: inherit;
+    }
+
+    &__text {
+        margin: 0;
+        color: $color-text-muted;
+        max-width: 70ch;
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: $space-6;
+        align-items: start;
+    }
+
+    /* Panel informativo */
+    &__panel {
+        background-color: $color-surface-elevated;
+        border: 1px solid $card-border;
+        border-radius: $card-radius;
+        box-shadow: $card-shadow;
+        padding: $card-padding;
+    }
+
+    &__store-title {
+        font-size: $font-size-h2;
+        line-height: $heading-line-height;
+        font-weight: $heading-font-weight;
+        margin: 0 0 $space-2;
+        color: inherit;
+    }
+
+    &__store-note {
+        margin: 0 0 $space-4;
+        color: $color-text-muted;
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-3;
+        margin-bottom: $space-4;
+    }
+
+    &__btn,
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: $space-2;
+        padding: $button-padding-y $button-padding-x;
+        border-radius: $button-radius;
+        font-size: $button-font-size;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+            background-color 0.15s ease,
+            border-color 0.15s ease,
+            color 0.15s ease;
+    }
+
+    &__btn {
+        background-color: $button-primary-bg;
+        color: $button-primary-text;
+        border: 1px solid transparent;
+
+        &:hover {
+            background-color: $button-primary-bg-hover;
+        }
+    }
+
+    &__link {
+        background-color: $button-secondary-bg;
+        color: $button-secondary-text;
+        border: 1px solid $button-secondary-border;
+
+        &:hover {
+            background-color: $button-secondary-bg-hover;
+        }
+    }
+
+    &__status {
+        margin: 0;
+        color: $color-text-muted;
+        font-size: 0.95rem;
+    }
+
+    /* Mapa */
+    &__map {
+        width: 100%;
+        min-height: 420px;
+        border-radius: $radius-lg;
+        overflow: hidden;
+
+        border: 1px solid $card-border;
+        box-shadow: $card-shadow;
+    }
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+    .where {
+        &__content {
+            grid-template-columns: 1fr;
+        }
+
+        &__map {
+            min-height: 360px;
+        }
+    }
+}
+
+@media (max-width: 520px) {
+    .where {
+        padding-left: $space-4;
+        padding-right: $space-4;
+
+        &__actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        &__btn,
+        &__link {
+            width: 100%;
+        }
+
+        &__map {
+            min-height: 320px;
+        }
+    }
+}

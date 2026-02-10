@@ -22,3 +22,12 @@ const DB_NAME = 'bookstore';
 const DB_USER = 'root';
 const DB_PASSWORD = '1234';
 const DB_CHARSET = 'utf8mb4';
+
+
+
+// ------------------
+//  Store location
+// ------------------
+const STORE_LAT = 28.123545;
+const STORE_LNG = -15.436257;
+const STORE_ZOOM = 13;
