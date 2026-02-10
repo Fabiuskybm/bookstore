@@ -188,21 +188,58 @@ function initGeolocation(dom, map, store) {
     // Flag para controlar si el modal "localizando" está abierto
     let isLoadingOpen = false;
 
+    // Controla si ya se localizó de verdad en esta sesión (con permiso concedido)
     let hasLocatedOnce = false;
 
     const saved = sessionStorage.getItem("where_user_location");
 
+    // Restaurar ubicación SOLO si el permiso sigue en "granted"
     if (saved) {
-        try {
-            const user = JSON.parse(saved);
+        if ("permissions" in navigator && navigator.permissions?.query) {
+            navigator.permissions
+                .query({ name: "geolocation" })
+                .then((perm) => {
+                    if (perm.state !== "granted") {
+                        // Si el usuario resetea/quita permisos, limpiamos y volvemos a estado inicial
+                        sessionStorage.removeItem("where_user_location");
+                        removeUserMarker(userMarker, map);
+                        userMarker = null;
+                        setStatus(statusEl, "ready");
+                        return;
+                    }
 
-            userMarker = upsertUserMarker(userMarker, map, user, userPopupText);
-            fitMapToPoints(map, [store, user]);
-            setStatus(statusEl, "located");
-            updateDirectionsWithOrigin(directionsEl, store, user);
-            hasLocatedOnce = true;
-        } catch (_) {
-            sessionStorage.removeItem("where_user_location");
+                    try {
+                        const user = JSON.parse(saved);
+
+                        userMarker = upsertUserMarker(userMarker, map, user, userPopupText);
+                        fitMapToPoints(map, [store, user]);
+                        setStatus(statusEl, "located");
+                        updateDirectionsWithOrigin(directionsEl, store, user);
+                        hasLocatedOnce = true;
+                    } catch (_) {
+                        sessionStorage.removeItem("where_user_location");
+                        setStatus(statusEl, "ready");
+                    }
+                })
+                .catch(() => {
+                    sessionStorage.removeItem("where_user_location");
+                    setStatus(statusEl, "ready");
+                });
+        } else {
+            // Fallback: si no hay Permissions API, mantenemos para cambio de idioma.
+            // No es posible detectar de forma fiable un "reset" de permisos.
+            try {
+                const user = JSON.parse(saved);
+
+                userMarker = upsertUserMarker(userMarker, map, user, userPopupText);
+                fitMapToPoints(map, [store, user]);
+                setStatus(statusEl, "located");
+                updateDirectionsWithOrigin(directionsEl, store, user);
+                hasLocatedOnce = true;
+            } catch (_) {
+                sessionStorage.removeItem("where_user_location");
+                setStatus(statusEl, "ready");
+            }
         }
     }
 
@@ -217,19 +254,17 @@ function initGeolocation(dom, map, store) {
         setStatus(statusEl, "locating");
         locateBtn.disabled = true;
 
-        // SweetAlert: esperando permiso / localización (sin timer)
-        if (!hasLocatedOnce) {
-            Swal.fire({
-                title: getI18n(statusEl, "locating_title"),
-                text: getI18n(statusEl, "locating_text"),
-                icon: "info",
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-            });
+        // SweetAlert: esperando permiso / localización (sin timer) -> SIEMPRE
+        Swal.fire({
+            title: getI18n(statusEl, "locating_title"),
+            text: getI18n(statusEl, "locating_text"),
+            icon: "info",
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+        });
 
-            isLoadingOpen = true;
-        }
+        isLoadingOpen = true;
 
         navigator.geolocation.getCurrentPosition(
             (pos) => {
@@ -259,6 +294,7 @@ function initGeolocation(dom, map, store) {
                     isLoadingOpen = false;
                 }
 
+                // Feedback de "ubicación detectada" solo la primera vez real
                 if (!wasLocatedOnce) {
                     Swal.fire({
                         title: getI18n(statusEl, "located_title"),
@@ -273,9 +309,12 @@ function initGeolocation(dom, map, store) {
                 locateBtn.disabled = false;
             },
             (err) => {
-                handleGeoError(statusEl, err, isLoadingOpen);
+                // Limpiar ubicación guardada + marcador si hay error o denegación
+                userMarker = handleGeoError(statusEl, err, isLoadingOpen, userMarker, map);
+
                 isLoadingOpen = false;
                 locateBtn.disabled = false;
+                hasLocatedOnce = false;
             },
             getGeoOptions()
         );
@@ -325,6 +364,18 @@ function upsertUserMarker(existingMarker, map, user, popupText) {
 }
 
 
+/**
+ * Elimina el marcador del usuario del mapa (si existe).
+ */
+function removeUserMarker(marker, map) {
+    if (!marker) return;
+    try {
+        map.removeLayer(marker);
+    } catch (_) {
+        // noop
+    }
+}
+
 
 /**
  * Ajusta el mapa para mostrar todos los puntos indicados.
@@ -353,7 +404,7 @@ function updateDirectionsWithOrigin(directionsEl, store, user) {
 /**
  * Gestiona los errores de geolocalización y muestra feedback visual.
  */
-function handleGeoError(statusEl, err, isLoadingOpen) {
+function handleGeoError(statusEl, err, isLoadingOpen, userMarker, map) {
     if (isLoadingOpen) Swal.close();
 
     // 1: permiso denegado | 2: no disponible | 3: timeout
@@ -361,17 +412,27 @@ function handleGeoError(statusEl, err, isLoadingOpen) {
         setStatus(statusEl, "denied");
         sessionStorage.removeItem("where_user_location");
 
+        removeUserMarker(userMarker, map);
+        userMarker = null;
+
         Swal.fire({
             title: getI18n(statusEl, "denied_title"),
             icon: "warning",
         });
-        return;
+
+        return userMarker;
     }
 
     setStatus(statusEl, "error");
+    sessionStorage.removeItem("where_user_location");
+
+    removeUserMarker(userMarker, map);
+    userMarker = null;
 
     Swal.fire({
         title: getI18n(statusEl, "error_title"),
         icon: "error",
     });
+
+    return userMarker;
 }
