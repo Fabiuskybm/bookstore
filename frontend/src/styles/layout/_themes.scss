@@ -641,4 +641,37 @@
         opacity: 1;
     }
 
+    /* WHERE (LIGHT THEME) */
+    .where__panel {
+        background-color: $color-surface-light;
+        border-color: rgba(0, 0, 0, 0.08);
+        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.16);
+    }
+
+    .where__store-title {
+        color: $color-text-dark;
+    }
+
+    .where__text,
+    .where__store-note,
+    .where__status {
+        color: rgba(17, 17, 17, 0.65);
+    }
+
+    .where__link {
+        color: $color-text-dark;
+        border-color: rgba(0, 0, 0, 0.18);
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.06);
+            color: $color-text-dark;
+            border-color: rgba(0, 0, 0, 0.28);
+        }
+    }
+
 }
+
+
+
+
+
